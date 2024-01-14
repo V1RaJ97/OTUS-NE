@@ -17,3 +17,52 @@
 
 ## Создание сети и проверка настроек коммутатора по умолчанию
 Для первоначальной настройки коммутатора необходимо подключить компьютер PC-A  к коммутатору S1 консольным кабелем и подключиться через терменал. Telnet и SSH возможно использовать только когда настраиваемый коммутатор будет доступен по сети. Сначала нужно присвоить ip адрес на интерфейсе vlan 1 и настроить vty линии. Далее активировать прикладной протокол удаленного доступа и настроить тип аутентификации, в базовом состоянии данные настройки отсутствуют.
+
+##Настройка коммутатора
+Задаем имя Switch:
+Switch>en
+Switch#conf ter
+Switch(config)#hostname S1
+
+Устанавливаем зашифрованный пароль:
+S1>en
+S1#conf ter
+S1(config)#enable secret cisco
+S1(config)#end
+
+Конфгурация:
+S1#show running-config 
+Building configuration...
+Current configuration : 1195 bytes
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+hostname S1
+enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+no ip domain-lookup
+spanning-tree mode pvst
+spanning-tree extend system-id
+
+Настройка VTY:
+S1>en
+S1#conf ter
+S1(config)#line vty 0 4
+S1(config-line)#pass
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+S1#conf ter
+S1(config)#service password-encryption 
+S1(config)#end
+
+Конфигурация:
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+line vty 0 4
+ password 7 0822455D0A16
+ login
+line vty 5 15
+ login
