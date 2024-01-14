@@ -20,9 +20,9 @@
 
 ##Настройка коммутатора
 Задаем имя Switch:
-Switch>en
-Switch#conf ter
-Switch(config)#hostname S1
+ Switch>en
+ Switch#conf ter
+ Switch(config)#hostname S1
 
 Устанавливаем зашифрованный пароль:
 S1>en
