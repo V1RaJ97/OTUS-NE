@@ -102,3 +102,39 @@ line vty 0 4
 line vty 5 15
 
  login
+
+### Настройка баннера:
+S1# conf ter
+
+S1(config)#banner motd 1 Do not enter!!! 1
+
+S1(config)#end
+
+
+### Настройка Startup-config:
+S1>
+
+S1>en
+
+S1#copy running-config startup-config 
+
+Destination filename [startup-config]? 
+
+Building configuration...
+
+[OK]
+
+
+### Настройка VLAN1:
+
+S1#conf ter
+
+S1(config)#interface vlan 1
+
+S1(config-if)#ip address 192.168.1.2 255.255.255.0
+
+S1(config-if)#no shutdown 
+
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+S1(config)#end
