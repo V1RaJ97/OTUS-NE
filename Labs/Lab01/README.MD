@@ -339,4 +339,4 @@ end
 ## Проверка подключения
 
 Результаты ping 192.168.1.10 
-![alt-текст](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Текст заголовка логотипа 1")
+![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/5c1463ab453dff03e0a0fb4fc45ab1b6f961e0a6/Labs/Lab01/ping.png)
