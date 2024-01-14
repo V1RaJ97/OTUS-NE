@@ -99,15 +99,18 @@ line con 0
 
  login
 
+!
+
 line vty 0 4
 
- password 7 0822455D0A16
+ password 7 0822404F1A0A
 
  login
 
 line vty 5 15
 
  login
+
 
 ### Настройка Startup-config:
 S1>
