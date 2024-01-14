@@ -33,6 +33,8 @@ S1(config)#enable secret class
 
 S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 
+S1(config)#ip domain-lookup
+
 ### Устанавливаем зашифрованный пароль:
 
 S1>en
