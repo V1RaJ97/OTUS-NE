@@ -39,8 +39,8 @@ S1(config)#line console 0
 S1(config-line)#logging synchronous 
 ```
 ### Конфгурация:
-S1#show running-config 
 ```
+S1#show running-config 
 Building configuration...
 Current configuration : 1195 bytes
 version 15.0
