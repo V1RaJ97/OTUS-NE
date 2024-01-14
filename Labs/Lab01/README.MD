@@ -86,11 +86,19 @@ S1(config)#end
 
 ### Конфигурация:
 line con 0
+
  password 7 0822455D0A16
+
  logging synchronous
+
  login
+
 line vty 0 4
+
  password 7 0822455D0A16
+
  login
+
 line vty 5 15
+
  login
