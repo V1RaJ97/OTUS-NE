@@ -139,3 +139,5 @@ S1(config-if)#no shutdown
 %LINK-5-CHANGED: Interface Vlan1, changed state to up
 
 S1(config)#end
+
+## Проверка подключения
