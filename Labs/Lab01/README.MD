@@ -337,3 +337,6 @@ line vty 5 15
 end
 
 ## Проверка подключения
+
+Результаты ping 192.168.1.10 
+![alt-текст](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Текст заголовка логотипа 1")
