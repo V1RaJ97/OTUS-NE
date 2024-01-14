@@ -20,12 +20,18 @@
 
 ## Настройка коммутатора
 
-### Задаем имя Switch:
+### Первоначальная настройка Switch:
 Switch>en
 
 Switch#conf ter
 
 Switch(config)#hostname S1
+
+S1(config)#service password-encryption
+
+S1(config)#enable secret class
+
+S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 
 ### Устанавливаем зашифрованный пароль:
 
@@ -102,14 +108,6 @@ line vty 0 4
 line vty 5 15
 
  login
-
-### Настройка баннера:
-S1# conf ter
-
-S1(config)#banner motd 1 Do not enter!!! 1
-
-S1(config)#end
-
 
 ### Настройка Startup-config:
 S1>
