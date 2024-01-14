@@ -31,308 +31,171 @@ S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 S1(config)#ip domain-lookup
 ```
 ### Устанавливаем зашифрованный пароль:
-
+```
 S1>en
-
 S1#conf ter
-
 S1(config)#enable secret cisco
-
 S1(config)#line console 0
-
 S1(config-line)#logging synchronous 
-
-
+```
 ### Конфгурация:
 S1#show running-config 
-
+```
 Building configuration...
-
 Current configuration : 1195 bytes
-
 version 15.0
-
 no service timestamps log datetime msec
-
 no service timestamps debug datetime msec
-
 no service password-encryption
-
 hostname S1
-
 enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
-
 no ip domain-lookup
-
 spanning-tree mode pvst
-
 spanning-tree extend system-id
-
-
+```
 ### Настройка VTY:
+```
 S1>en
-
 S1#conf ter
-
 S1(config)#line vty 0 4
-
 S1(config-line)#pass
-
 S1(config-line)#password cisco
-
 S1(config-line)#login
-
 S1(config-line)#end
-
 S1#conf ter
-
 S1(config)#service password-encryption
-
 S1(config)#end
-
+```
 ### Конфигурация:
+```
 line con 0
-
  password 7 0822455D0A16
-
  logging synchronous
-
  login
-
 !
-
 line vty 0 4
-
  password 7 0822404F1A0A
-
  login
-
 line vty 5 15
-
  login
-
-
+```
 ### Настройка Startup-config:
+```
 S1>
-
 S1>en
-
 S1#copy running-config startup-config 
-
 Destination filename [startup-config]? 
-
 Building configuration...
-
 [OK]
-
-
+```
 ### Настройка VLAN1:
-
+```
 S1#conf ter
-
 S1(config)#interface vlan 1
-
 S1(config-if)#ip address 192.168.1.2 255.255.255.0
-
 S1(config-if)#no shutdown 
-
 %LINK-5-CHANGED: Interface Vlan1, changed state to up
-
 S1(config)#end
-
+```
 ### Финальная конфигурация
+```
 S1#show  run
-
 Building configuration...
-
 Current configuration : 1292 bytes
-
 !
-
 version 15.0
-
 no service timestamps log datetime msec
-
 no service timestamps debug datetime msec
-
 service password-encryption
-
 !
-
 hostname S1
-
 !
-
 enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
-
 !
-
 !
-
 !
-
 no ip domain-lookup
-
 !
-
 !
-
 !
-
 spanning-tree mode pvst
-
 spanning-tree extend system-id
-
 !
-
 interface FastEthernet0/1
-
 !
-
 interface FastEthernet0/2
-
 !
-
 interface FastEthernet0/3
-
 !
-
 interface FastEthernet0/4
-
 !
-
 interface FastEthernet0/5
-
 !
-
 interface FastEthernet0/6
-
 !
-
 interface FastEthernet0/7
-
 !
-
 interface FastEthernet0/8
-
 !
-
 interface FastEthernet0/9
-
 !
-
 interface FastEthernet0/10
-
 !
-
 interface FastEthernet0/11
-
 !
-
 interface FastEthernet0/12
-
 !
-
 interface FastEthernet0/13
-
 !
-
 interface FastEthernet0/14
-
 !
-
 interface FastEthernet0/15
-
 !
-
 interface FastEthernet0/16
-
 !
-
 interface FastEthernet0/17
-
 !
-
 interface FastEthernet0/18
-
 !
-
 interface FastEthernet0/19
-
 !
-
 interface FastEthernet0/20
-
 !
-
 interface FastEthernet0/21
-
 !
-
 interface FastEthernet0/22
-
 !
-
 interface FastEthernet0/23
-
 !
-
 interface FastEthernet0/24
-
 !
-
 interface GigabitEthernet0/1
-
 !
-
 interface GigabitEthernet0/2
-
 !
-
 interface Vlan1
-
  ip address 192.168.1.2 255.255.255.0
-
 !
-
 banner motd ^C Unauthorized access is strictly prohibited ^C
-
 !
-
 !
-
 !
-
 line con 0
-
  password 7 0822455D0A16
-
  logging synchronous
-
  login
-
 !
-
 line vty 0 4
-
  password 7 0822404F1A0A
-
  login
-
 line vty 5 15
-
  login
-
 !
-
 !
-
 !
-
 !
-
 end
-
+```
 ## Проверка подключения
 
 ![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/5c1463ab453dff03e0a0fb4fc45ab1b6f961e0a6/Labs/Lab01/ping.png)
