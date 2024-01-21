@@ -300,3 +300,15 @@ C:\>arp -a
 ![Alt text](https://github.com/V1RaJ97/OTUS-NE/blob/9949f53000013946278e9aca368da83254209ceb/Labs/Lab02/PingS2.png)
 #### Ping с PC-B до PC-A
 ![Alt text](https://github.com/V1RaJ97/OTUS-NE/blob/9949f53000013946278e9aca368da83254209ceb/Labs/Lab02/PingPC-A.png)
+#### Таблица MAC-адресов S2 после выполнения эхо запросов
+```
+S2#show mac address-table 
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+
+   1    000a.4161.6a01    DYNAMIC     Fa0/1
+   1    000d.bd1c.8e0a    DYNAMIC     Fa0/18
+```
