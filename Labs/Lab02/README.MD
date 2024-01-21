@@ -44,3 +44,11 @@ S1#copy running-config startup-config
 Destination filename [startup-config]? 
 Building configuration...
 ```
+```
+S1(config)#interface vlan 1
+S1(config-if)#ip address 192.168.1.11 255.255.255.0
+S1(config-if)#no shutdown
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+S1(config-if)#end
+```
