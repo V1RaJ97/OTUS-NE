@@ -197,6 +197,9 @@ line vty 5 15
 end
 ```
 ## Проверка подключения
+```
+Пореряем доступность коммутатора S1 с компьютера PC-A с помощью подключения по Telnet
+```
 
 ![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/5c1463ab453dff03e0a0fb4fc45ab1b6f961e0a6/Labs/Lab01/ping.png)
 
