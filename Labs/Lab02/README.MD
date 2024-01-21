@@ -268,3 +268,15 @@ end
 |        S2      |    0003.e4b9.b5e0    | 
 |       PC-A     |    0030.A355.A344    | 
 |       PC-B     |    000D.BD1C.8E0A    |
+### Таблица MAC-адресов S2
+```
+S2#show mac address-table 
+          Mac Address Table
+-------------------------------------------
+
+Vlan    Mac Address       Type        Ports
+----    -----------       --------    -----
+
+   1    000a.4161.6a01    DYNAMIC     Fa0/1
+   1    000d.bd1c.8e0a    DYNAMIC     Fa0/18
+```
