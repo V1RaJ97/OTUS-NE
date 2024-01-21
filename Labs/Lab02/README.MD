@@ -11,3 +11,36 @@
 ## Задание
 1. Создание и настройка сети
 2. Изучение таблицы МАС-адресов коммутатора
+
+## Настройка коммутаторов
+### Коммутатор S1
+```
+Switch>en
+Switch#conf ter
+Switch(config)#hostname S1
+S1(config)#service password-encryption 
+S1(config)#enable secret class
+S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+S1(config)#no ip domain-lookup
+S1(config)#end
+```
+```
+S1(config)#line console 0
+S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+```
+S1(config)#line vty 0 4
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+```
+S1>en
+Password: 
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+```
