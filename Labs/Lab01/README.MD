@@ -225,4 +225,4 @@ end
 
 ![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/dd4699fab4a5255ee235973d341310b49ad491a9/Labs/Lab01/telnet2.png)
 
-Подключение по Telnet
+Подключение по Telnet к 192.168.1.2
