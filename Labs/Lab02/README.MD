@@ -14,6 +14,7 @@
 
 ## Настройка коммутаторов
 ### Коммутатор S1
+#### Первоначальная настройка
 ```
 Switch>en
 Switch#conf ter
@@ -24,6 +25,7 @@ S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 S1(config)#no ip domain-lookup
 S1(config)#end
 ```
+#### Ограничичение доступа через консольный порт
 ```
 S1(config)#line console 0
 S1(config-line)#logging synchronous 
@@ -31,12 +33,14 @@ S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
 ```
+#### Настраойка VTY
 ```
 S1(config)#line vty 0 4
 S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
 ```
+#### Настройка Startup-config
 ```
 S1>en
 Password: 
@@ -44,6 +48,7 @@ S1#copy running-config startup-config
 Destination filename [startup-config]? 
 Building configuration...
 ```
+#### Настройка Vlan 1
 ```
 S1(config)#interface vlan 1
 S1(config-if)#ip address 192.168.1.11 255.255.255.0
