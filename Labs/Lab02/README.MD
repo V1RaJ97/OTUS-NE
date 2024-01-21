@@ -294,3 +294,5 @@ C:\>arp -a
   192.168.1.12          0060.7014.202c        dynamic
 ```
 ### Эхо запросы с PC-B до остальных устройств
+#### Ping с PC-B до S1
+![Alt text](https://github.com/V1RaJ97/OTUS-NE/blob/4711197dae28c3555e552a5e1ca392699a80086b/Labs/Lab02/PingS1.png)
