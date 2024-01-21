@@ -198,11 +198,11 @@ end
 ```
 ## Проверка подключения
 
-
+### Проверяем сквозное соединение с помощью команды ping с PC-A до PC-A
 ![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/5c1463ab453dff03e0a0fb4fc45ab1b6f961e0a6/Labs/Lab01/ping.png)
 
 Результаты ping 192.168.1.10 
-
+### Проверяем сквозное соединение с помощью команды ping с PC-A до S1
 ![alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/4eda321dd9f7fe3d709dcad4469d90e66a3d0221/Labs/Lab01/ping2.png)
 
 Результаты ping 192.168.1.2
