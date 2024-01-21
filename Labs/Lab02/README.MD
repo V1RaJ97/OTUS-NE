@@ -293,7 +293,7 @@ C:\>arp -a
   192.168.1.1           0030.a355.a344        dynamic
   192.168.1.12          0060.7014.202c        dynamic
 ```
-### Эхо запросы с PC-B до остальных устройств
+### Эхо-запросы с PC-B до остальных устройств
 #### Ping с PC-B до S1
 ![Alt text](https://github.com/V1RaJ97/OTUS-NE/blob/4711197dae28c3555e552a5e1ca392699a80086b/Labs/Lab02/PingS1.png)
 #### Ping с PC-B до S2
@@ -311,4 +311,12 @@ Vlan    Mac Address       Type        Ports
 
    1    000a.4161.6a01    DYNAMIC     Fa0/1
    1    000d.bd1c.8e0a    DYNAMIC     Fa0/18
+```
+#### ARP-кэш после отправки эхо-запросов
+```
+C:\>arp -a
+  Internet Address      Physical Address      Type
+  192.168.1.1           0030.a355.a344        dynamic
+  192.168.1.11          0090.2b62.0be3        dynamic
+  192.168.1.12          0060.7014.202c        dynamic
 ```
