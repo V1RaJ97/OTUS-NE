@@ -36,34 +36,39 @@ S1(config)#enable secret class
 S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 S1(config)#no ip domain-lookup
 ```
-### Устанавливаем зашифрованный пароль:
+### Ограничиваем доступ через консольный порт:
 ```
 S1>en
 S1#conf ter
-S1(config)#line console 0 4
+S1(config)#line console 0
 S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
 ```
 ### Конфгурация:
 ```
 S1#show running-config 
 Building configuration...
-Current configuration : 1195 bytes
+Current configuration : 1292 bytes
 version 15.0
 no service timestamps log datetime msec
 no service timestamps debug datetime msec
-no service password-encryption
+service password-encryption
 hostname S1
-enable secret 5 $1$mERr$hx5rVt7rPNoS4wqbXKX7m0
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
 no ip domain-lookup
 spanning-tree mode pvst
 spanning-tree extend system-id
 ```
 ### Настройка VTY:
 ```
+Включаем VTY линии с 0 по 4 и задаем пароль cisco
+```
+```
 S1>en
 S1#conf ter
 S1(config)#line vty 0 4
-S1(config-line)#pass
 S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
@@ -76,12 +81,15 @@ line con 0
  login
 !
 line vty 0 4
- password 7 0822404F1A0A
+ password 7 0822455D0A16
  login
 line vty 5 15
  login
 ```
 ### Настройка Startup-config:
+```
+С помощью команды "copy running-config startup-config" записываем running-config в startup-config.
+```
 ```
 S1>
 S1>en
