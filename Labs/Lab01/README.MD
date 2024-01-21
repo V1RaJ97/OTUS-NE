@@ -22,13 +22,19 @@
 
 ### Первоначальная настройка Switch:
 ```
+Заходим в привилегированный режим, далее в режим конфигурации.
+Задаем имя коммутатора (S1), включаем режим шифрования паролей и задаем пароль для доступа в привилегированный режим (class).
+Заполняем текст для motd (Unauthorized access is strictly prohibited).
+Отключаем трансляцию имён в ip адреса основанную на dns.
+```
+```
 Switch>en
 Switch#conf ter
 Switch(config)#hostname S1
 S1(config)#service password-encryption
 S1(config)#enable secret class
 S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
-S1(config)#ip domain-lookup
+S1(config)#no ip domain-lookup
 ```
 ### Устанавливаем зашифрованный пароль:
 ```
