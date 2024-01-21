@@ -57,7 +57,7 @@ S1(config-if)#
 %LINK-5-CHANGED: Interface Vlan1, changed state to up
 S1(config-if)#end
 ```
-#### Финальная конфигурация
+#### Финальная конфигурация S1
 ```
 S1#show running-config 
 Building configuration...
@@ -152,10 +152,111 @@ end
 ### Коммутатор S2
 ```
 Проделываем все аналогичным образом,
-задавая hostname, ip адрес и маску подсети исходя из таблици адресации.
+задаем hostname, ip адрес и маску подсети исходя из таблицы адресации.
+```
+#### Финальная конфигурация S2
+```
+S2#show running-config 
+Building configuration...
+
+Current configuration : 1293 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname S2
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+no ip domain-lookup
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+!
+interface FastEthernet0/2
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ ip address 192.168.1.12 255.255.255.0
+!
+banner motd ^C Unauthorized access is strictly prohibited ^C
+!
+!
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end
+
 ```
 ### Подключение компьютеров
 ```
 Подключаем компьютеры PC-A к S1, PC-B к S2. Исходя из схемы сети.
-Настраиваем на компьютерах ip-адреса и маски подсети исходя из даблицы адресации.
+Настраиваем на компьютерах ip-адреса и маски подсети исходя из таблицы адресации.
 ```
