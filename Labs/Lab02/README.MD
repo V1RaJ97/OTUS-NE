@@ -33,7 +33,7 @@ S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
 ```
-#### Настраойка VTY
+#### Настройка VTY
 ```
 S1(config)#line vty 0 4
 S1(config-line)#password cisco
