@@ -100,6 +100,10 @@ Building configuration...
 ```
 ### Настройка VLAN1:
 ```
+Заходим на интерфейс vlan 1, задаем ip-address и маску подсети.
+Изначально интерфейс находится в отключенном состоянии, поднимаем его командой "no shutdown"
+```
+```
 S1#conf ter
 S1(config)#interface vlan 1
 S1(config-if)#ip address 192.168.1.2 255.255.255.0
