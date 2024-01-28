@@ -3,6 +3,10 @@
 1. Определение подсетей по IPv4-адресу
 2. Расчет подсетей по IPv4-адресу
 
+## Таблица масок
+
+[!alt-text](https://github.com/V1RaJ97/OTUS-NE/blob/main/Labs/Lab03/%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0%20%D0%BC%D0%B0%D1%81%D0%BE%D0%BA.png)
+
 ## Проблема1
 
 |         Дано:         |                 |
