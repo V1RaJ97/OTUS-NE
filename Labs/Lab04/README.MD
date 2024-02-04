@@ -166,7 +166,7 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 R1(config)#IPv6 unicast-routing
 R1(config)#end
 ```
-#### Ipconfig PC-B после включения мршрутизации
+#### Ipconfig PC-B после включения маршрутизации
 ```
 C:\>ipconfig 
 
