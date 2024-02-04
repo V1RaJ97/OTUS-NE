@@ -93,7 +93,23 @@ Building configuration...
 ```
 R1(config)#int g0/0/0
 R1(config-if)#ipv6 address 2001:db8:acad:a::1/64
+R1(config-if)#no shutdown
+R1(config-if)#end
+```
+```
 R1(config)#int g0/0/1
 R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+R1(config-if)#no shutdown
 R1(config-if)#end
+```
+```
+R1#show ipv6 interface brief 
+GigabitEthernet0/0/0       [up/up]
+    FE80::20A:41FF:FE5A:AE01
+    2001:DB8:ACAD:A::1
+GigabitEthernet0/0/1       [up/up]
+    FE80::20A:41FF:FE5A:AE02
+    2001:DB8:ACAD:1::1
+Vlan1                      [administratively down/down]
+    unassigned
 ```
