@@ -80,6 +80,15 @@ S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
 ```
+#### Настройка Vlan 1
+```
+S1(config)#int vlan 1
+S1(config-if)#ipv6 address 2001:db8:acad:1::b/64
+S1(config-if)#no shutdown
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+```
 #### Настройка Startup-config
 ```
 S1>en
