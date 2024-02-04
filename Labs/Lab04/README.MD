@@ -88,3 +88,4 @@ S1#copy running-config startup-config
 Destination filename [startup-config]? 
 Building configuration...
 ```
+## Часть2
