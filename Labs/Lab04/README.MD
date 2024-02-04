@@ -1,6 +1,6 @@
 # Лабораторная работа. Настройка IPv6-адресов на сетевых устройствах 
 ## Схема сети
-[!alt-текст](https://github.com/V1RaJ97/OTUS-NE/blob/8c0deee4118ad0c08b7c26be1fd3c717c0fc1f68/Labs/Lab04/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
+[!alt текст](https://github.com/V1RaJ97/OTUS-NE/blob/8c0deee4118ad0c08b7c26be1fd3c717c0fc1f68/Labs/Lab04/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
 
 ## Таблица адресации
 ## Задачи
