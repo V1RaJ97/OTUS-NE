@@ -208,3 +208,8 @@ Vlan1 is up, line protocol is up
   ND DAD is enabled, number of DAD attempts: 1
   ND reachable time is 30000 milliseconds
 ```
+#### Настройка ipv6 адресов на компьютерах
+```
+Задаем ipv6 адреса и шлюз по умолчанию исходя из таблицы адресации:
+2001:db8:acad:1::3/64 для PC-A и 2001:db8:acad:a::3/64 для PC-B.
+```
