@@ -89,3 +89,11 @@ Destination filename [startup-config]?
 Building configuration...
 ```
 ## Часть2
+### Настройка ipv6 адресов на R1
+```
+R1(config)#int g0/0/0
+R1(config-if)#ipv6 address 2001:db8:acad:a::1/64
+R1(config)#int g0/0/1
+R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+R1(config-if)#end
+```
