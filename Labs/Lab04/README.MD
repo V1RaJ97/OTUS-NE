@@ -213,3 +213,31 @@ Vlan1 is up, line protocol is up
 Задаем ipv6 адреса и шлюз по умолчанию исходя из таблицы адресации:
 2001:db8:acad:1::3/64 для PC-A и 2001:db8:acad:a::3/64 для PC-B.
 ```
+#### PC-A
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::205:5EFF:FEE7:7D4B
+   IPv6 Address....................: 2001:DB8:ACAD:1::3
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+```
+#### PC-B
+```
+C:\>ipconfig 
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::260:70FF:FECE:9678
+   IPv6 Address....................: 2001:DB8:ACAD:A::3
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+```
