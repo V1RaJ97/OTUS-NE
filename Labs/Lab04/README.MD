@@ -180,3 +180,31 @@ FastEthernet0 Connection:(default port)
    Default Gateway.................: FE80::1
                                      0.0.0.0
 ```
+#### Назначение IPv6-адреса интерфейсу управления (SVI) на S1
+```
+S1(config)#int vlan 1
+S1(config-if)#ipv6 address 2001:db8:acad:1::b/64
+S1(config-if)#ipv6 address fe80::b link-local
+S1(config-if)#no shutdown
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+```
+```
+S1#show ipv6 interface vlan 1  
+Vlan1 is up, line protocol is up
+  IPv6 is enabled, link-local address is FE80::B
+  No Virtual link-local address(es):
+  Global unicast address(es):
+    2001:DB8:ACAD:1::B, subnet is 2001:DB8:ACAD:1::/64
+  Joined group address(es):
+    FF02::1
+    FF02::1:FF00:B
+  MTU is 1500 bytes
+  ICMP error messages limited to one every 100 milliseconds
+  ICMP redirects are enabled
+  ICMP unreachables are sent
+  Output features: Check hwidb
+  ND DAD is enabled, number of DAD attempts: 1
+  ND reachable time is 30000 milliseconds
+```
