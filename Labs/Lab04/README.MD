@@ -149,10 +149,13 @@ C:\>ipconfig
 FastEthernet0 Connection:(default port)
 
    Connection-specific DNS Suffix..: 
-   Link-local IPv6 Address.........: FE80::260:70FF:FECE:9678
-   IPv6 Address....................: 2001:DB8:ACAD:A::3
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
    IPv4 Address....................: 0.0.0.0
    Subnet Mask.....................: 0.0.0.0
-   Default Gateway.................: FE80::1
+   Default Gateway.................: ::
                                      0.0.0.0
+```
+```
+Индивидуальный ipv6 адрес для PC-B не назначен.
 ```
