@@ -15,3 +15,27 @@
 1. Настройка топологии и конфигурация основных параметров маршрутизатора и коммутатора
 2. Ручная настройка IPv6-адресов
 3. Проверка сквозного соединения
+
+## Часть 1
+### Настройка маршрутизатора
+
+### Настройка коммутатора
+#### Первичная настройка
+Switch>en
+Switch#conf ter
+Switch(config)#hostname S1
+S1(config)#service password-encryption 
+S1(config)#enable secret class
+S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+S1(config)#no ip domain-lookup
+S1(config)#sdm prefer dual-ipv4-and-ipv6 default
+S1(config)#end
+S1#reload
+```
+#### Ограничичение доступа через консольный порт
+```
+S1(config)#line console 0
+S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
