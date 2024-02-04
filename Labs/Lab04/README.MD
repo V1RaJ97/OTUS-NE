@@ -29,7 +29,7 @@ R1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
 R1(config)#no ip domain-lookup
 R1(config)#exit
 ```
-#### Ограничичение доступа через консольный порт
+#### Ограничение доступа через консольный порт
 ```
 R1(config)#line console 0
 R1(config-line)#logging synchronous 
@@ -65,7 +65,7 @@ S1(config)#sdm prefer dual-ipv4-and-ipv6 default
 S1(config)#end
 S1#reload
 ```
-#### Ограничичение доступа через консольный порт
+#### Ограничение доступа через консольный порт
 ```
 S1(config)#line console 0
 S1(config-line)#logging synchronous 
