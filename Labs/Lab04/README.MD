@@ -242,7 +242,7 @@ FastEthernet0 Connection:(default port)
                                      0.0.0.0
 ```
 ## Часть 3
-### Результат пинга с PC-A до FE80^^1
+### Результат пинга с PC-A до FE80::1
 ```
 C:\>ping FE80::1
 
