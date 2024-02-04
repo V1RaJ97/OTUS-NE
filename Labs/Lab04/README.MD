@@ -159,3 +159,10 @@ FastEthernet0 Connection:(default port)
 ```
 Индивидуальный ipv6 адрес для PC-B не назначен.
 ```
+#### Активация IPv6-маршрутизации на R1 
+```
+R1#conf ter
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#IPv6 unicast-routing
+R1(config)#end
+```
