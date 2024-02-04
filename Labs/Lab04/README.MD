@@ -166,3 +166,17 @@ Enter configuration commands, one per line.  End with CNTL/Z.
 R1(config)#IPv6 unicast-routing
 R1(config)#end
 ```
+#### Ipconfig PC-B после включения мршрутизации
+```
+C:\>ipconfig 
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::260:70FF:FECE:9678
+   IPv6 Address....................: 2001:DB8:ACAD:A:260:70FF:FECE:9678
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+```
