@@ -18,7 +18,39 @@
 
 ## Часть 1
 ### Настройка маршрутизатора
-
+#### Первичная настройка
+```
+Router>en
+Router#conf ter
+Router(config)#hostname R1
+R1(config)#service password-encryption 
+R1(config)#enable secret class
+R1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+R1(config)#no ip domain-lookup
+R1(config)#exit
+```
+#### Ограничичение доступа через консольный порт
+```
+R1(config)#line console 0
+R1(config-line)#logging synchronous 
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#end
+```
+#### Настройка VTY
+```
+R1(config)#line vty 0 4
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#end
+```
+#### Настройка Startup-config
+```
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
 ### Настройка коммутатора
 #### Первичная настройка
 ```
@@ -40,4 +72,19 @@ S1(config-line)#logging synchronous
 S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
+```
+#### Настройка VTY
+```
+S1(config)#line vty 0 4
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+#### Настройка Startup-config
+```
+S1>en
+Password: 
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
 ```
