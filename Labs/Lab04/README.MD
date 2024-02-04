@@ -122,3 +122,37 @@ GigabitEthernet0/0/1       [up/up]
 Vlan1                      [administratively down/down]
     unassigned
 ```
+```
+R1(config)#int g0/0/0
+R1(config-if)#ipv6 address fe80::1 link-local
+R1(config-if)#end
+R1(config)#int g0/0/1
+R1(config-if)#ipv6 address fe80::1 link-local
+R1(config-if)#end
+```
+```
+R1#show ipv6 interface brief
+GigabitEthernet0/0/0       [up/up]
+    FE80::1
+    2001:DB8:ACAD:A::1
+GigabitEthernet0/0/1       [up/up]
+    FE80::1
+    2001:DB8:ACAD:1::1
+Vlan1                      [administratively down/down]
+    unassigned
+```
+### Активация IPv6-маршрутизации на R1
+#### Ipconfig PC-B
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::260:70FF:FECE:9678
+   IPv6 Address....................: 2001:DB8:ACAD:A::3
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+```
