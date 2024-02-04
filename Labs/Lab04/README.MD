@@ -21,6 +21,7 @@
 
 ### Настройка коммутатора
 #### Первичная настройка
+```
 Switch>en
 Switch#conf ter
 Switch(config)#hostname S1
@@ -39,3 +40,4 @@ S1(config-line)#logging synchronous
 S1(config-line)#password cisco
 S1(config-line)#login
 S1(config-line)#end
+```
