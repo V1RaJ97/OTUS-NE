@@ -94,4 +94,15 @@ R1(config)#line vty 0 4
 R1(config-line)#password cisco
 R1(config-line)#login
 R1(config-line)#end
+
+R1(config)#interface gi0/0/1
+R1(config-if)#no shutdown 
+R1(config-if)#ip address 192.168.1.1 255.255.255.0
+R1(config-if)#end
+
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+R1#
 ```
