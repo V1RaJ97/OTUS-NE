@@ -76,3 +76,22 @@ line vty 5 15
  login
 end
 ```
+### Настройка маршрутизатора
+```
+Router(config)#hostname R1
+R1(config)#no ip domain-lookup
+R1(config)#enable secret class
+R1(config)#service password-encryption
+R1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+
+R1(config)#line console 0
+R1(config-line)#logging synchronous 
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#end
+
+R1(config)#line vty 0 4
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#end
+```
