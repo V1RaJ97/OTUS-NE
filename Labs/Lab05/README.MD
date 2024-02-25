@@ -135,3 +135,11 @@ How many bits in the modulus [512]: 1024
 R1(config)#ip ssh version 2
 R1(config)#
 ```
+```
+Создаем локального пользователя и включем протокло SSH на линиях VTY
+R1(config)#username admin secret Adm1nP@55
+R1(config)#line vty 0 4
+R1(config-line)#login local 
+R1(config-line)#transport input ssh 
+R1(config-line)#
+```
