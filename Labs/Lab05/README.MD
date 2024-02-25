@@ -143,3 +143,5 @@ R1(config-line)#login local
 R1(config-line)#transport input ssh 
 R1(config-line)#
 ```
+### Проверка подключения с PC-A к R1 через SSH
+[!alt text] 
