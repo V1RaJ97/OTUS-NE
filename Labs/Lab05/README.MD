@@ -14,68 +14,7 @@
 3. Настройка коммутатора для доступа по протоколу SSH
 4. SSH через интерфейс командной строки (CLI) коммутатора
 ## Часть 1. Настройка основных параметров устройств
-### Конфигурация коммутатора
-```
-S1#show running-config 
-Building configuration...
 
-Current configuration : 1293 bytes
-!
-version 15.0
-no service timestamps log datetime msec
-no service timestamps debug datetime msec
-service password-encryption
-!
-hostname S1
-!
-enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
-!
-no ip domain-lookup
-!
-spanning-tree mode pvst
-spanning-tree extend system-id
-!
-interface FastEthernet0/1
-interface FastEthernet0/2
-interface FastEthernet0/3
-interface FastEthernet0/4
-interface FastEthernet0/5
-interface FastEthernet0/6
-interface FastEthernet0/7
-interface FastEthernet0/8
-interface FastEthernet0/9
-interface FastEthernet0/10
-interface FastEthernet0/11
-interface FastEthernet0/12
-interface FastEthernet0/13
-interface FastEthernet0/14
-interface FastEthernet0/15
-interface FastEthernet0/16
-interface FastEthernet0/17
-interface FastEthernet0/18
-interface FastEthernet0/19
-interface FastEthernet0/20
-interface FastEthernet0/21
-interface FastEthernet0/22
-interface FastEthernet0/23
-interface FastEthernet0/24
-interface GigabitEthernet0/1
-interface GigabitEthernet0/2
-!
-interface Vlan1
- ip address 192.168.1.11 255.255.255.0
-banner motd ^C Unauthorized access is strictly prohibited ^C
-line con 0
- password 7 0822455D0A16
- logging synchronous
- login
-line vty 0 4
- password 7 0822455D0A16
- login
-line vty 5 15
- login
-end
-```
 ### Настройка маршрутизатора
 ```
 Router(config)#hostname R1
@@ -104,5 +43,63 @@ R1#copy running-config startup-config
 Destination filename [startup-config]? 
 Building configuration...
 [OK]
-R1#
+```
+#### Финальная конфигурация R1
+```
+R1#show running-config 
+Building configuration...
+
+Current configuration : 786 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+ip cef
+no ipv6 cef
+!
+no ip domain-lookup
+!
+spanning-tree mode pvst
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/1
+ ip address 192.168.1.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+no cdp run
+!
+banner motd ^C Unauthorized access is strictly prohibited ^C
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ login
+!
+end
 ```
