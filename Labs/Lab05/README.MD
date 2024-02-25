@@ -119,6 +119,8 @@ Approximate round trip times in milli-seconds:
 ```
 ## Часть 2. Настройка маршрутизатора для доступа по протоколу SSH
 ```
+Задаем домен и создаем ключ шифрования:
+
 R1(config)#ip domain name otus.ru
 R1(config)#crypto key generate rsa
 The name for the keys will be: R1.otus.ru
