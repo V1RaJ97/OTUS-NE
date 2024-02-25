@@ -117,3 +117,19 @@ Ping statistics for 192.168.1.1:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 0ms, Average = 0ms
 ```
+## Часть 2. Настройка маршрутизатора для доступа по протоколу SSH
+```
+R1(config)#ip domain name otus.ru
+R1(config)#crypto key generate rsa
+The name for the keys will be: R1.otus.ru
+Choose the size of the key modulus in the range of 360 to 2048 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+
+*Mar 1 0:15:59.15: %SSH-5-ENABLED: SSH 1.99 has been enabled
+R1(config)#ip ssh version 2
+R1(config)#
+```
