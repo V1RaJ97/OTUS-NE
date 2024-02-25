@@ -144,4 +144,5 @@ R1(config-line)#transport input ssh
 R1(config-line)#
 ```
 ### Проверка подключения с PC-A к R1 через SSH
-[!alt text] 
+[!alt text] (https://github.com/V1RaJ97/OTUS-NE/blob/63ffa778e1cf06ce5aeb58d6e4208ec7f3faa8f4/Labs/Lab05/TestSSH.png)
+Соединение по SSH установлено
