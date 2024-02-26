@@ -148,7 +148,7 @@ R1(config-line)#
 ```
 Соединение по SSH установлено
 ```
-## Часть 3. Настройка коммутатора для доступа по протоколу SSH
+## Часть 3. Настройка коммутатора R1 для доступа по протоколу SSH
 ### Финальная конфигурация коммутатора
 ```
 S1#show running-config 
@@ -238,4 +238,23 @@ line vty 0 4
 line vty 5 15
  login
 end
+```
+### Настройка доступа по SSH на коммутаторе S1
+```
+S1(config)#ip domain name otus.ru
+S1(config)#crypto key generate rsa
+The name for the keys will be: S1.otus.ru
+Choose the size of the key modulus in the range of 360 to 2048 for your
+  General Purpose Keys. Choosing a key modulus greater than 512 may take
+  a few minutes.
+
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S1(config)#ip ssh version 2
+S1(config)#R1(config)#username admin secret Adm1nP@55
+S1(config)#username admin secret Adm1nP@55
+S1(config)#line vty 0 4
+S1(config-line)#login local
+S1(config-line)#transport input ssh
+S1(config-line)#end
 ```
