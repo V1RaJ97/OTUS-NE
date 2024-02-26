@@ -251,7 +251,6 @@ Choose the size of the key modulus in the range of 360 to 2048 for your
 How many bits in the modulus [512]: 1024
 % Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
 S1(config)#ip ssh version 2
-S1(config)#R1(config)#username admin secret Adm1nP@55
 S1(config)#username admin secret Adm1nP@55
 S1(config)#line vty 0 4
 S1(config-line)#login local
