@@ -262,3 +262,30 @@ S1(config-line)#end
 ```
 Соединение по SSH установлено.
 ```
+## Часть 4. Настройка протокола SSH с использованием интерфейса командной строки (CLI) коммутатора
+### Параметры SSH
+```
+S1#ssh?
+ssh  
+S1#ssh
+```
+### Подключение по SSH S1 до R1
+```
+S1#ssh -l admin 192.168.1.1
+
+Password: 
+
+ Unauthorized access is strictly prohibited 
+
+R1>
+```
+### Переключение между сеансами S1 и R1
+```
+R1>
+S1#
+S1#
+[Resuming connection 1 to 192.168.1.1 ... ]
+R1>exit
+[Connection to 192.168.1.1 closed by foreign host]
+S1#
+```
