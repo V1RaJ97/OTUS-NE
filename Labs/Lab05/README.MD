@@ -257,3 +257,5 @@ S1(config-line)#login local
 S1(config-line)#transport input ssh
 S1(config-line)#end
 ```
+### Проверка подключения по SSH с PC-A к S1
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/07071a9590f94b727e7cd3ef8149ceaa3c9ff94c/Labs/Lab05/TestSSH2.png)
