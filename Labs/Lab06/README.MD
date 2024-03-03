@@ -165,4 +165,5 @@ S1(config-vlan)#exit
 S1(config)#vlan 1000 
 S1(config-vlan)#name Own
 S1(config-vlan)#exit
+S1(config)#ip default-gateway 192.168.10.1
 ```
