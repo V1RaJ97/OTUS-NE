@@ -233,3 +233,5 @@ S2(config-if-range)#switchport access vlan 999
 S2(config-if-range)#shutdown 
 S2(config-if-range)#exit
 ```
+### Настройка VLAN на интерфейсах
+
