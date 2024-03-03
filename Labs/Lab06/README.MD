@@ -149,6 +149,7 @@ Building configuration...
 ```
 ## Часть 2. Создание сетей VLAN и назначение портов коммутатора
 ### Создание и настройка сетей VLAN на коммутаторах S1 и S2.
+#### S1
 ```
 S1(config)#vlan 10
 S1(config-vlan)#name Management
@@ -166,4 +167,69 @@ S1(config)#vlan 1000
 S1(config-vlan)#name Own
 S1(config-vlan)#exit
 S1(config)#ip default-gateway 192.168.10.1
+```
+#### S2
+```
+S2(config)#vlan 10
+S2(config-vlan)#name Management
+S2(config-vlan)#exit
+S2(config)#vlan 20
+S2(config-vlan)#name Sales
+S2(config-vlan)#exit
+S2(config)#vlan 30 
+S2(config-vlan)#name Operations
+S2(config-vlan)#exit
+S2(config)#vlan 999
+S2(config-vlan)#name Parking_Lot
+S2(config-vlan)#exit
+S2(config)#vlan 1000
+S2(config-vlan)#name Own
+S2(config-vlan)#exit
+S2(config)#ip default-gateway 192.168.10.1
+```
+
+### Перевод неипользуемых портов в Parking_Lot
+#### S1
+```
+S1(config)#interface range f0/2-4
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+```
+```
+S1(config)#interface range f0/7-24
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown
+S1(config-if-range)#exit
+```
+```
+S1(config)#interface range g0/1-2
+S1(config-if-range)#switchport mode trunk 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+```
+#### S2
+```
+S2(config)#interface range f0/2-17
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+```
+```
+S2(config)#interface range f0/19-24
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#sw access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+```
+```
+S2(config)#interface range g0/1-2
+S2(config-if-range)#switchport mode trunk 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
 ```
