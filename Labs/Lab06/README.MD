@@ -147,3 +147,22 @@ Building configuration...
 ```
 Проделываем те же действия на коммутаторе S2
 ```
+## Часть 2. Создание сетей VLAN и назначение портов коммутатора
+### Создание и настройка сетей VLAN на коммутаторах S1 и S2.
+```
+S1(config)#vlan 10
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+S1(config)#vlan 20
+S1(config-vlan)#name Sales
+S1(config-vlan)#exit
+S1(config)#vlan 30
+S1(config-vlan)#name Operations
+S1(config-vlan)#exit
+S1(config)#vlan 999
+S1(config-vlan)#name Parking_Lot
+S1(config-vlan)#exit
+S1(config)#vlan 1000 
+S1(config-vlan)#name Own
+S1(config-vlan)#exit
+```
