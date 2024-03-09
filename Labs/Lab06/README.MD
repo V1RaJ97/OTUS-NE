@@ -424,3 +424,32 @@ Unknown unicast blocked: disabled
 Unknown multicast blocked: disabled
 Appliance trust: none
 ```
+## Часть 4. Настройка маршрутизации между сетями VLAN
+### Создание и настройка подинтерфейсов
+```
+R1(config)#int g0/0/1
+R1(config-if)#no shutdown 
+
+R1(config)#int G0/0/1.10
+R1(config-subif)#encapsulation dot1Q 10
+R1(config-subif)#ip address 192.168.10.1 255.255.255.0
+R1(config-subif)#no shutdown 
+R1(config-subif)#end
+
+R1(config)#int G0/0/1.20
+R1(config-subif)#encapsulation dot1Q 20
+R1(config-subif)#ip address 192.168.20.1 255.255.255.0
+R1(config-subif)#no shutdown 
+R1(config-subif)#end
+
+R1(config)#int G0/0/1.30
+R1(config-subif)#encapsulation dot1Q 30
+R1(config-subif)#ip address 192.168.30.1 255.255.255.0
+R1(config-subif)#no shutdown 
+R1(config-subif)#end
+
+R1(config)#int G0/0/1.1000
+R1(config-subif)#encapsulation dot1Q 1000
+R1(config-subif)#no shutdown 
+R1(config-subif)#end
+```
