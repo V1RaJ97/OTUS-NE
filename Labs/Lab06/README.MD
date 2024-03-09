@@ -236,6 +236,13 @@ S2(config-if-range)#exit
 ### Настройка VLAN на интерфейсах
 #### Коммутатор S1
 ```
+S1(config)#int vlan 10
+S1(config-if)#ip address 192.168.10.11 255.255.255.0
+S1(config-if)#no shutdown 
+S1(config-if)#end
+```
+
+```
 S1(config)#int f0/6
 S1(config-if)#switchport mode access 
 S1(config-if)#sw access vlan 20
@@ -264,6 +271,13 @@ VLAN Name                             Status    Ports
 1005 trnet-default                    active    
 ```
 #### Коммутатор S2
+```
+S2(config)#int vlan 10
+S2(config-if)#ip address 192.168.10.12 255.255.255.0
+S2(config-if)#no shutdown 
+S2(config-if)#end
+```
+
 ```
 S2(config)#int f0/18
 S2(config-if)#switchport mode access 
