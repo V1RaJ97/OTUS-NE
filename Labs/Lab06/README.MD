@@ -381,3 +381,18 @@ Unknown unicast blocked: disabled
 Unknown multicast blocked: disabled
 Appliance trust: none
 ```
+### Настройка интерфейса Fa0/5 на коммутаторе S1
+```
+S1(config)#int fa0/5
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#no shutdown 
+S1(config-if)#switchport trunk allowed vlan 10,20,30,1000
+```
+```
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+#### Инфорация об интерфейсе Fa0/5 на коммутаторе S1
