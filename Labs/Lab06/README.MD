@@ -453,3 +453,26 @@ R1(config-subif)#encapsulation dot1Q 1000
 R1(config-subif)#no shutdown 
 R1(config-subif)#end
 ```
+### Конфигурация подинтерфейсов
+```
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+!
+interface GigabitEthernet0/0/1.1000
+ encapsulation dot1Q 1000
+ no ip address
+```
