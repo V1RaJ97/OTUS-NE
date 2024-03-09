@@ -306,3 +306,20 @@ VLAN Name                             Status    Ports
 1004 fddinet-default                  active    
 1005 trnet-default                    active    
 ```
+## Часть 3. Конфигурация магистрального канала стандарта 802.1Q между коммутаторами
+### Коммутатор S1
+```
+S1(config)#int fa0/1
+S1(config-if)#switchport mode trunk 
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#no shutdown 
+S1(config-if)#switchport trunk allowed vlan 10,20,30,1000
+```
+### Коммутатор S2
+```
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 1000
+S2(config-if)#no shutdown 
+S2(config-if)#switchport trunk allowed vlan 10,20,30,1000
+S2(config-if)#end
+```
