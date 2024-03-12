@@ -206,7 +206,7 @@ S1(config-if-range)#exit
 ```
 ```
 S1(config)#interface range g0/1-2
-S1(config-if-range)#switchport mode trunk 
+S1(config-if-range)#switchport mode access 
 S1(config-if-range)#switchport access vlan 999
 S1(config-if-range)#shutdown 
 S1(config-if-range)#exit
@@ -228,7 +228,7 @@ S2(config-if-range)#exit
 ```
 ```
 S2(config)#interface range g0/1-2
-S2(config-if-range)#switchport mode trunk 
+S2(config-if-range)#switchport mode access 
 S2(config-if-range)#switchport access vlan 999
 S2(config-if-range)#shutdown 
 S2(config-if-range)#exit
@@ -449,7 +449,7 @@ R1(config-subif)#no shutdown
 R1(config-subif)#end
 
 R1(config)#int G0/0/1.1000
-R1(config-subif)#encapsulation dot1Q 1000
+R1(config-subif)#encapsulation dot1Q 1000 native
 R1(config-subif)#no shutdown 
 R1(config-subif)#end
 ```
@@ -473,7 +473,7 @@ interface GigabitEthernet0/0/1.30
  ip address 192.168.30.1 255.255.255.0
 !
 interface GigabitEthernet0/0/1.1000
- encapsulation dot1Q 1000
+ encapsulation dot1Q 1000 native
  no ip address
 ```
 ## Часть 5. Проверьте, работает ли маршрутизация между VLAN
