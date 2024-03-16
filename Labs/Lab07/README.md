@@ -170,3 +170,26 @@ Sending 5, 100-byte ICMP Echos to 192.168.1.3, timeout is 2 seconds:
 !!!!!
 Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
 ```
+## Часть 2:	Определение корневого моста
+### Настройка портов на коммутаторах
+```
+S1(config)#interface range fa0/1-24
+S1(config-if-range)#shutdown
+S1(config-if-range)#exit
+S1(config)#interface range g0/1-2
+S1(config-if-range)#shutdown 
+```
+```
+S1(config)#interface range fa0/1-4
+S1(config-if-range)#switchport mode trunk 
+S1(config-if-range)#end
+S1(config)#int fa0/2
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#int fa0/4
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+```
+```
+Аналогичные действия выполняем на коммутаторах S2 и S3
+```
