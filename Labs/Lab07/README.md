@@ -148,6 +148,7 @@ end
 #### Проверка связи между коммутаторами
 ##### Эхо-запрос с коммутатора S1 на S2
 ```
+S1>ping 192.168.1.2
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 192.168.1.2, timeout is 2 seconds:
 !!!!!
