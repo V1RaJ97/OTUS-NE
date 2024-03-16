@@ -256,3 +256,4 @@ Interface        Role Sts Cost      Prio.Nbr Type
 Fa0/2            Root FWD 19        128.2    P2p
 Fa0/4            Altn BLK 19        128.4    P2p
 ```
+### Состояние портов
