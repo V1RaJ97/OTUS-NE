@@ -45,5 +45,11 @@ S1(config-if)#ip address 192.168.1.1 255.255.255.0
 S1(config-if)#end
 ```
 ```
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+```
 Аналогично настраиваем коммутаторы S2 и S3, настриваем интерфейс VLAN 1 исходя из таблицы адресации
 ```
