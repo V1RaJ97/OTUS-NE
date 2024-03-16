@@ -257,3 +257,4 @@ Fa0/2            Root FWD 19        128.2    P2p
 Fa0/4            Altn BLK 19        128.4    P2p
 ```
 ### Состояние портов
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/47a44e6a42d300ab43b77b42327aaff216317755/Labs/Lab07/%D0%A1%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%BE%D1%80%D1%82%D0%BE%D0%B2.png)
