@@ -323,3 +323,17 @@ S3(config-if)#no spanning-tree vlan 1 cost 18
 S3(config-if)#exit
 ```
 После отмены изменений на порте fa0/2 коммутатора S3, роли портов на S1 и S3 вернулись в прежнее состояние
+## Часть 4:	Наблюдение за процессом выбора протоколом STP порта, исходя из приоритета портов
+### Включение портов fa0/1 и fa0/3 на коммутаторах
+```
+S1(config)#int fa0/1
+S1(config-if)#no shutdown 
+%LINK-5-CHANGED: Interface FastEthernet0/1, changed state to down
+S1(config-if)#exit
+
+S1(config)#int fa0/3
+S1(config-if)#no shutdown 
+%LINK-5-CHANGED: Interface FastEthernet0/3, changed state to down
+S1(config-if)#exit
+```
+Проделываем те же действия на коммутаторах S2 и S3
