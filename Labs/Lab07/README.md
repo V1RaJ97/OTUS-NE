@@ -268,3 +268,58 @@ Fa0/4            Altn BLK 19        128.4    P2p
 6. Почему протокол spanning-tree выбрал этот порт в качестве невыделенного (заблокированного) порта? Ответ: Потому что у него замое высокое значение Bridge ID
 
 ## Часть 3:	Наблюдение за процессом выбора протоколом STP порта, исходя из стоимости портов
+### Изменение стоимости порта
+```
+S3(config)#int fa0/2
+S3(config-if)#spanning-tree vlan 1 cost 18
+S3(config-if)#exit
+```
+### Результат S1
+```
+S1#sh spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0007.EC5A.525D
+             Cost        19
+             Port        2(FastEthernet0/2)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     000A.4114.BBC8
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/2            Root FWD 19        128.2    P2p
+Fa0/4            Altn BLK 19        128.4    P2p
+```
+### Результат S3
+```
+S3#sh spanning-tree 
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0007.EC5A.525D
+             Cost        18
+             Port        2(FastEthernet0/2)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     00D0.BC0D.3305
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/2            Root FWD 18        128.2    P2p
+Fa0/4            Desg FWD 19        128.4    P2p
+```
+### Удаление изменений стоимости порта
+```
+S3(config)#int fa0/2
+S3(config-if)#no spanning-tree vlan 1 cost 18 
+S3(config-if)#exit
+```
+После отмены изменений на порте fa0/2 коммутатора S3, роли портов на S1 и S3 вернулись в прежнее состояние
