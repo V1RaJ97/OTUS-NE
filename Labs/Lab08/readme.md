@@ -93,7 +93,6 @@ interface FastEthernet0/4
  shutdown
 !
 interface FastEthernet0/5
- shutdown
 !
 interface FastEthernet0/6
  shutdown
@@ -250,3 +249,4 @@ Sending 5, 100-byte ICMP Echos to 2001:db8:acad:1::1, timeout is 2 seconds:
 !!!!!
 Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
 ```
+## Часть 2. Проверка назначения адреса SLAAC от R1
