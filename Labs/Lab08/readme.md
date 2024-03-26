@@ -19,3 +19,38 @@
 5. Настройка и проверка DHCPv6 Relay на R2
 
 ## Часть 1. Создание сети и настройка основных параметров устройства
+### Настройка коммутаоров
+```
+Switch>en
+Switch#conf ter
+Switch(config)#hostname S1
+S1(config)#no ip domain-lookup
+S1(config)#service password-encryption 
+S1(config)#enable secret class
+S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+```
+```
+S1(config)#line con 0
+S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+```
+S1(config)#line vty 0 4
+S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+```
+S1(config)#interface range fa0/1-4
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#interface range fa0/7-24
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#interface range gi0/1-2
+S1(config-if-range)#shutdown 
+S1(config-if-range)#end
+```
