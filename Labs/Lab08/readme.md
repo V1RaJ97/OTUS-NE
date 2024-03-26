@@ -207,65 +207,46 @@ Destination filename [startup-config]?
 Building configuration...
 [OK]
 ```
-#### Финальная конфигурация маршрутизатора R2
 ```
-R2#sh running-config 
+Проводим аналогичные натройки на R2
+```
+#### Настройка интерфейсов и маршрутизации на R1 и R2
+```
+R1(config)#int g0/0/0
+R1(config-if)#ipv6 enable 
+R1(config-if)#ipv6 address 2001:db8:acad:2::1/64
+R1(config-if)#ipv6 address fe80::1 link-local
+R1(config-if)#no shutdown
+R1(config-if)#exit
+R1(config)#int g0/0/1
+R1(config-if)#ipv6 enable 
+R1(config-if)#ipv6 address 2001:db8:acad:1::1/64
+R1(config-if)#ipv6 address fe80::1 link-local 
+R1(config-if)#no shutdown 
+R1(config-if)#exit
+```
+```
+Аналогичныйм образом настраиваем интерфейсы на R2 исходя из таблицы маршрутизации.
+```
+```
+R1(config)#ipv6 route ::/0 2001:db8:acad:2::2
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
 Building configuration...
-
-Current configuration : 804 bytes
-!
-version 15.4
-no service timestamps log datetime msec
-no service timestamps debug datetime msec
-service password-encryption
-!
-hostname R2
-!
-enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
-!
-ip cef
-ipv6 unicast-routing
-!
-no ipv6 cef
-!
-no ip domain-lookup
-!
-spanning-tree mode pvst
-!
-interface GigabitEthernet0/0/0
- no ip address
- duplex auto
- speed auto
- shutdown
-!
-interface GigabitEthernet0/0/1
- no ip address
- duplex auto
- speed auto
- shutdown
-!
-interface Vlan1
- no ip address
- shutdown
-!
-ip classless
-!
-ip flow-export version 9
-!
-banner motd ^C Unauthorized access is strictly prohibited ^C
-!
-line con 0
- password 7 0822455D0A16
- logging synchronous
- login
-!
-line aux 0
-!
-line vty 0 4
- password 7 0822455D0A16
- logging synchronous
- login
-!
-
-end
+[OK]
+```
+```
+R2(config)#ipv6 route ::/0 2001:db8:acad:2::1
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+##### Пинг интерфейса G0/0/1 R1 c маршрутизатора R2
+```
+R2#ping 2001:db8:acad:1::1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 2001:db8:acad:1::1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
 ```
