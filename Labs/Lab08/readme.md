@@ -250,3 +250,18 @@ Sending 5, 100-byte ICMP Echos to 2001:db8:acad:1::1, timeout is 2 seconds:
 Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
 ```
 ## Часть 2. Проверка назначения адреса SLAAC от R1
+IPconfig на PC-A:
+```
+C:\>ipconfig
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Link-local IPv6 Address.........: FE80::2D0:58FF:FE14:9C29
+   IPv6 Address....................: 2001:DB8:ACAD:1:2D0:58FF:FE14:9C29
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+```
+## Часть 3. Настройка и проверка сервера DHCPv6 на R1
