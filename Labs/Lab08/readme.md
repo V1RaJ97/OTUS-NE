@@ -336,3 +336,45 @@ Ping statistics for 2001:DB8:ACAD:3::1:
 Approximate round trip times in milli-seconds:
     Minimum = 0ms, Maximum = 1ms, Average = 0ms
 ```
+## Часть 4. Настройка сервера DHCPv6 с сохранением состояния на R1
+```
+R1(config)#ipv6 dhcp pool R2-STATEFUL
+R1(config-dhcpv6)#address prefix 2001:db8:acad:3:aaa::/80
+R1(config-dhcpv6)#dns-server 2001:db8:acad::254
+R1(config-dhcpv6)#domain-name STATEFUL.com
+R1(config-dhcpv6)#exit
+R1(config)#interface g0/0/0
+R1(config-if)#ipv6 dhcp server R2-STATEFUL
+R1(config-if)#end
+```
+## Часть 5. Настройка и проверка ретрансляции DHCPv6 на R2.
+IPconfig PC-B
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0004.9A3E.B2E0
+   Link-local IPv6 Address.........: FE80::204:9AFF:FE3E:B2E0
+   IPv6 Address....................: 2001:DB8:ACAD:3:204:9AFF:FE3E:B2E0
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-10-D3-01-19-00-04-9A-3E-B2-E0
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+### Настройка R2 в качестве агента DHCP-ретрансляции для локальной сети на G0/0/1
+```
+R2(config)#int g0/0/1
+R2(config-if)#ipv6 nd managed-config-flag 
+R2(config-if)#ipv6 dhcp relay destination 2001:db8:acad:2::1 g0/0/0
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
