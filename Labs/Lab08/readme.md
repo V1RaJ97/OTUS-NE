@@ -300,6 +300,7 @@ Destination filename [startup-config]?
 Building configuration...
 [OK]
 ```
+IPconfig на PC-A
 ```
 C:\>ipconfig /all
 
