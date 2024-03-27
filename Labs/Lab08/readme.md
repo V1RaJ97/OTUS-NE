@@ -265,3 +265,73 @@ FastEthernet0 Connection:(default port)
                                      0.0.0.0
 ```
 ## Часть 3. Настройка и проверка сервера DHCPv6 на R1
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 00D0.5814.9C29
+   Link-local IPv6 Address.........: FE80::2D0:58FF:FE14:9C29
+   IPv6 Address....................: 2001:DB8:ACAD:1:2D0:58FF:FE14:9C29
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-90-3C-70-8D-00-D0-58-14-9C-29
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+### Настройка R1 для предоставления DHCPv6 
+```
+R1(config)#ipv6 dhcp pool R1-STATELESS
+R1(config-dhcpv6)#dns-server 2001:db8:acad::254
+R1(config-dhcpv6)#domain-name STATELESS.com
+```
+```
+R1(config)#interface g0/0/1
+R1(config-if)#ipv6 nd other-config-flag 
+R1(config-if)#ipv6 dhcp server R1-STATELESS
+R1(config-if)#end
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: STATELESS.com 
+   Physical Address................: 00D0.5814.9C29
+   Link-local IPv6 Address.........: FE80::2D0:58FF:FE14:9C29
+   IPv6 Address....................: 2001:DB8:ACAD:1:2D0:58FF:FE14:9C29
+   IPv4 Address....................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: FE80::1
+                                     0.0.0.0
+   DHCP Servers....................: 0.0.0.0
+   DHCPv6 IAID.....................: 520893310
+   DHCPv6 Client DUID..............: 00-01-00-01-90-3C-70-8D-00-D0-58-14-9C-29
+   DNS Servers.....................: 2001:DB8:ACAD::254
+                                     0.0.0.0
+```
+Пинг интерфейса g0/0/1 на R2
+```
+C:\>ping 2001:db8:acad:3::1
+
+Pinging 2001:db8:acad:3::1 with 32 bytes of data:
+
+Reply from 2001:DB8:ACAD:3::1: bytes=32 time=1ms TTL=254
+Reply from 2001:DB8:ACAD:3::1: bytes=32 time<1ms TTL=254
+Reply from 2001:DB8:ACAD:3::1: bytes=32 time=1ms TTL=254
+Reply from 2001:DB8:ACAD:3::1: bytes=32 time<1ms TTL=254
+
+Ping statistics for 2001:DB8:ACAD:3::1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 1ms, Average = 0ms
+```
