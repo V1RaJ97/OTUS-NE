@@ -1,5 +1,6 @@
 # Лабораторная работа - Реализация DHCPv4 
 ## Топология
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/50260140e22db30f62ca76cf9e5e8543e1c08e15/Labs/Lab08/%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F(ipv4).png)
 ## Таблица адресации
 ## Таблица VLAN
 ## Задачи
