@@ -55,3 +55,4 @@ Destination filename [startup-config]?
 Building configuration...
 [OK]
 ```
+Проводим аналогичные настройки на R2
