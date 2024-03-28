@@ -27,3 +27,31 @@
 1. Создание сети и настройка основных параметров устройства
 2. Настройка и проверка двух серверов DHCPv4 на R1
 3. Настройка и проверка DHCP-ретрансляции на R2
+
+## Часть 1.	Создание сети и настройка основных параметров устройства
+### Базовая настройка маршрутизаторов R1 и R2
+```
+Router(config)#hostname R1
+R1(config)#no ip domain-lookup
+R1(config)#service password-encryption 
+R1(config)#enable secret class
+R1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+```
+```
+R1(config)#line con 0
+R1(config-line)#logging synchronous 
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#exit
+```
+```
+R1(config)#line vty 0 4
+R1(config-line)#logging synchronous 
+R1(config-line)#password cisco
+R1(config-line)#login
+R1(config-line)#exit
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
