@@ -18,3 +18,12 @@
 3. Настройки безопасности коммутатора.
 
 ## Часть 1. Настройка основного сетевого устройства
+### Конфигурация маршрутизатора R1
+```
+R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   unassigned      YES unset  administratively down down 
+GigabitEthernet0/0/1   192.168.10.1    YES manual up                    up 
+Loopback0              10.10.1.1       YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+```
