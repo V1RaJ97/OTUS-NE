@@ -56,3 +56,51 @@ Building configuration...
 [OK]
 ```
 Проводим аналогичные настройки на R2
+### Настройка маршрутизации между сетями VLAN на маршрутизаторе R1
+```
+R1(config)#int g0/0/1
+R1(config-if)#no shutdown
+R1(config-if)#exit
+
+R1(config)#int g0/0/1.100
+R1(config-subif)#encapsulation dot1Q 100
+R1(config-subif)#ip address 192.168.1.1 255.255.255.192
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+
+R1(config)#int g0/0/1.200
+R1(config-subif)#encapsulation dot1Q 200
+R1(config-subif)#ip address 192.168.1.65 255.255.255.224
+R1(config-subif)#no shutdown 
+R1(config-subif)#exit
+
+R1(config)#int g0/0/1.1000
+R1(config-subif)#encapsulation dot1Q 1000 native
+R1(config-subif)#no shutdown
+R1(config-subif)#exit
+```
+#### Конфигурация подинтерфейсов на R1
+```
+interface GigabitEthernet0/0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1.100
+ encapsulation dot1Q 100
+ ip address 192.168.1.1 255.255.255.192
+!
+interface GigabitEthernet0/0/1.200
+ encapsulation dot1Q 200
+ ip address 192.168.1.65 255.255.255.224
+!
+interface GigabitEthernet0/0/1.1000
+ encapsulation dot1Q 1000 native
+ no ip address
+```
