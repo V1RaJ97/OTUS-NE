@@ -104,3 +104,21 @@ interface GigabitEthernet0/0/1.1000
  encapsulation dot1Q 1000 native
  no ip address
 ```
+### Настройка интерфейсов и статической маршрутизации на маршрутизаторах R1 и R2
+```
+R2(config)#int g0/0/1
+R2(config-if)#no shutdown 
+R2(config-if)#ip address 192.168.1.97 255.255.255.240
+```
+```
+R2(config)#int g0/0/0
+R2(config-if)#ip address 10.0.0.2 255.255.255.252
+R2(config-if)#no shutdown 
+R2(config-if)#exit
+```
+```
+R1(config)#int g0/0/0
+R1(config-if)#ip address 10.0.0.1 255.255.255.252
+R1(config-if)#no shutdown 
+R1(config-if)#exit
+```
