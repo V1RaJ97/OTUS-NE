@@ -235,4 +235,185 @@ S2(config)#interface range gi0/1-2
 S2(config-if-range)#shutdown
 S2(config-if-range)#exit
 ```
-### Назначение сетей VLAN соответствующим интерфейсам коммутатора.
+### Назначение сетей VLAN соответствующим интерфейсам коммутаторов.
+```
+S1(config)#int fa0/6
+S1(config-if)#switchport mode access 
+S1(config-if)#switchport access vlan 100
+S1(config-if)#shutdown 
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+```
+```
+S2(config)#int fa0/18
+S2(config-if)#switchport mode access 
+S2(config-if)#switchport access vlan 1
+S2(config-if)#shutdown 
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+```
+### Настройка интерфейса S1 F0/5 в качестве транка 802.1Q.
+```
+S1(config)#int fa0/5
+S1(config-if)#switchport mode trunk 
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#switchport trunk allowed vlan 100,200,1000
+S1(config-if)#shutdown 
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+```
+```
+!
+interface FastEthernet0/5
+ switchport trunk native vlan 1000
+ switchport trunk allowed vlan 100,200,1000
+ switchport mode trunk
+!
+```
+## Настройка и проверка двух серверов DHCPv4 на R1
+```
+R1(config)#ip dhcp pool R1_Client_LAN
+R1(dhcp-config)#domain-name CCNA-lab.com
+R1(dhcp-config)#network 192.168.1.0 255.255.255.192
+R1(dhcp-config)#default-router 192.168.1.1
+R1(dhcp-config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
+```
+```
+R1(config)#ip dhcp pool R2_Client_LAN
+R1(dhcp-config)#domain-name CCNA-lab.com
+R1(dhcp-config)#network 192.168.1.96 255.255.255.240
+R1(dhcp-config)#default-router 192.168.1.97
+R1(dhcp-config)#exit
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+### Проверка конфигурации сервера DHCPv4
+```
+R1#show ip dhcp pool
+
+Pool R1_Client_LAN :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0 
+ Total addresses                : 62
+ Leased addresses               : 0
+ Excluded addresses             : 1
+ Pending event                  : none
+
+ 1 subnet is currently in the pool
+ Current index        IP address range                    Leased/Excluded/Total
+ 192.168.1.1          192.168.1.1      - 192.168.1.62      0    / 1     / 62
+
+Pool R2_Client_LAN :
+ Utilization mark (high/low)    : 100 / 0
+ Subnet size (first/next)       : 0 / 0 
+ Total addresses                : 14
+ Leased addresses               : 0
+ Excluded addresses             : 1
+ Pending event                  : none
+
+ 1 subnet is currently in the pool
+ Current index        IP address range                    Leased/Excluded/Total
+ 192.168.1.97         192.168.1.97     - 192.168.1.110     0    / 1     / 14
+R1#show ip dhcp binding 
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+R1#show ip dhcp binding 
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+
+R1#show ip dhcp server statistics
+                ^
+% Invalid input detected at '^' marker.
+```
+### Попытка получить IP-адрес от DHCP на PC-A
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: 
+   Physical Address................: 0001.C7AB.7B26
+   Link-local IPv6 Address.........: FE80::201:C7FF:FEAB:7B26
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.1.2
+   Subnet Mask.....................: 255.255.255.192
+   Default Gateway.................: ::
+                                     192.168.1.1
+   DHCP Servers....................: 192.168.1.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-5A-4A-BA-5B-00-01-C7-AB-7B-26
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+```
+C:\>ping 192.168.1.97
+
+Pinging 192.168.1.97 with 32 bytes of data:
+
+Reply from 192.168.1.97: bytes=32 time<1ms TTL=254
+Reply from 192.168.1.97: bytes=32 time<1ms TTL=254
+Reply from 192.168.1.97: bytes=32 time<1ms TTL=254
+Reply from 192.168.1.97: bytes=32 time<1ms TTL=254
+
+Ping statistics for 192.168.1.97:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
+## Настройка и проверка DHCP-ретрансляции на R2
+```
+R2(config)#int g0/0/1
+R2(config-if)#ip helper-address 10.0.0.1
+R2(config-if)#exit
+R2#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+### Поучение ip-адреса для PC-B
+```
+C:\>ipconfig /all
+
+FastEthernet0 Connection:(default port)
+
+   Connection-specific DNS Suffix..: CCNA-lab.com
+   Physical Address................: 0090.0C4E.1A09
+   Link-local IPv6 Address.........: ::
+   IPv6 Address....................: ::
+   IPv4 Address....................: 192.168.1.99
+   Subnet Mask.....................: 255.255.255.240
+   Default Gateway.................: ::
+                                     192.168.1.97
+   DHCP Servers....................: 10.0.0.1
+   DHCPv6 IAID.....................: 
+   DHCPv6 Client DUID..............: 00-01-00-01-9B-48-B7-B3-00-90-0C-4E-1A-09
+   DNS Servers.....................: ::
+                                     0.0.0.0
+```
+```
+C:\>ping 192.168.1.1
+
+Pinging 192.168.1.1 with 32 bytes of data:
+
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=254
+Reply from 192.168.1.1: bytes=32 time<1ms TTL=254
+Reply from 192.168.1.1: bytes=32 time=26ms TTL=254
+Reply from 192.168.1.1: bytes=32 time=1ms TTL=254
+
+Ping statistics for 192.168.1.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 26ms, Average = 6ms
+```
+```
+R1#show ip dhcp binding 
+IP address       Client-ID/              Lease expiration        Type
+                 Hardware address
+192.168.1.99     0090.0C4E.1A09           --                     Automatic
+R1#show ip dhcp server statistics
+                ^
+% Invalid input detected at '^' marker.
+	
+```
