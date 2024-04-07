@@ -1,4 +1,4 @@
-# Лабораторная работа - Реализация DHCPv4 
+100# Лабораторная работа - Реализация DHCPv4 
 ## Топология
 ![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/50260140e22db30f62ca76cf9e5e8543e1c08e15/Labs/Lab08/%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F(ipv4).png)
 ## Таблица адресации
@@ -177,4 +177,48 @@ Building configuration...
 ```
 ```
 Призводим аналогичные настройки на коммутаторе S2
+```
+### Создание и настройка VLAN на коммутаорах S1 и S2
+```
+S1(config)#vlan 100
+S1(config-vlan)#name Clients
+S1(config-vlan)#exit
+S1(config)#vlan 200
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+S1(config)#vlan 999
+S1(config-vlan)#name Parking_Lot
+S1(config-vlan)#exit
+S1(config)#vlan 1000
+S1(config-vlan)#name Private
+S1(config-vlan)#exit
+```
+```
+S1(config)#int VLAN 200
+S1(config-if)#no shutdown
+S1(config-if)#ip address 192.168.1.66 255.255.255.224
+S1(config-if)#ip default-gateway 192.168.1.65
+S1(config)#exit
+```
+```
+S2(config)#int VLAN 1
+S2(config-if)#no shutdown 
+S2(config-if)#ip address 192.168.1.98 255.255.255.240
+S2(config-if)#ip default-gateway 192.168.1.97
+S2(config)#exit
+```
+```
+S1(config)#interface range fa0/1-4
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#exit
+S1(config)#interface range fa0/7-24
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#exit
+S1(config)#interface range g0/1-2
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#exit
+```
 ```
