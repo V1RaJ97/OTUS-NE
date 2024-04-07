@@ -122,3 +122,11 @@ R1(config-if)#ip address 10.0.0.1 255.255.255.252
 R1(config-if)#no shutdown 
 R1(config-if)#exit
 ```
+```
+R1(config)#ip route 10.0.0.0 255.255.255.252 10.0.0.2
+R1(config)#exit
+```
+```
+R2(config)#ip route 10.0.0.0 255.255.255.252 10.0.0.1
+R2(config)#exit
+```
