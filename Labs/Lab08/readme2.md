@@ -222,3 +222,17 @@ S1(config-if-range)#switchport access vlan 999
 S1(config-if-range)#exit
 ```
 ```
+S2(config)#interface range fa0/1-4
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#interface range fa0/6-17
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#interface range fa0/19-24
+S2(config-if-range)#shutdown
+S2(config-if-range)#exit
+S2(config)#interface range gi0/1-2
+S2(config-if-range)#shutdown
+S2(config-if-range)#exit
+```
+### Назначение сетей VLAN соответствующим интерфейсам коммутатора.
