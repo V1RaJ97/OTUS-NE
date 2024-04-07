@@ -123,10 +123,58 @@ R1(config-if)#no shutdown
 R1(config-if)#exit
 ```
 ```
-R1(config)#ip route 10.0.0.0 255.255.255.252 10.0.0.2
+R1(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.2
 R1(config)#exit
+R1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
 ```
 ```
-R2(config)#ip route 10.0.0.0 255.255.255.252 10.0.0.1
+R2(config)#ip route 0.0.0.0 0.0.0.0 10.0.0.1
 R2(config)#exit
+R2#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+#### Реузлаьаты ping с R1 до G0/0/1 на R2
+```
+R1#ping 192.168.1.97
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.97, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+```
+### Настройка базовых параметров коммутаторов S1 и S2
+```
+Switch(config)#hostname S1
+S1(config)#enable secret class
+S1(config)#service password-encryption
+S1(config)#banner motd 1 Unauthorized access is strictly prohibited 1
+S1(config)#no ip domain-lookup
+```
+```
+S1(config)#line console 0
+S1(config-line)#password cisco
+S1(config-line)#logging synchronous
+S1(config-line)#login
+S1(config-line)#exit
+```
+```
+S1(config)#line vty 0 4
+S1(config-line)#logging synchronous 
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#end
+```
+```
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+```
+Призводим аналогичные настройки на коммутаторе S2
 ```
