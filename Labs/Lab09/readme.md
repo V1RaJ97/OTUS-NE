@@ -104,3 +104,16 @@ Fa0/1       1,10,333,999
 Port        Vlans in spanning tree forwarding state and not pruned
 Fa0/1       1,10,333,999
 ```
+```
+S1(config)#int fa0/1
+S1(config-if)#switchport nonegotiate 
+S1(config-if)#shutdown 
+S1(config-if)#no shutdown 
+S1(config)#exit
+```
+```
+S1#show interfaces f0/1 switchport | include Negotiation
+Negotiation of Trunking: Off
+S2#show interfaces f0/1 switchport | include Negotiation
+Negotiation of Trunking: Off
+```
