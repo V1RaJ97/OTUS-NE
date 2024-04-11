@@ -64,3 +64,20 @@ S2(config)#VLAN 10
 S2(config-vlan)#name Management
 S2(config-vlan)#exit
 ```
+```
+S1(config)#VLAN 333
+S1(config-vlan)#name Native
+S1(config-vlan)#exit
+S1(config)#VLAN 999
+S1(config-vlan)#name ParkingLot
+S1(config-vlan)#exit
+```
+```
+S2(config)#VLAN 333
+S2(config-vlan)#name Native
+S2(config-vlan)#exit
+S2(config)#VLAN 999
+S2(config-vlan)#name ParkingLot
+S2(config-vlan)#exit
+```
+## Часть 3. Настройки безопасности коммутатора.
