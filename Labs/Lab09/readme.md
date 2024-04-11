@@ -27,3 +27,40 @@ GigabitEthernet0/0/1   192.168.10.1    YES manual up                    up
 Loopback0              10.10.1.1       YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
+### Настройка и проверка основных параметров коммутатора
+#### Коммутатор S1
+```
+Switch#conf ter
+Switch(config)#hostname S1
+S1(config)#no ip domain-lookup
+S1(config)#int VLAN 10
+S1(config-if)#no shutdown 
+S1(config-if)#ip address 192.168.10.201 255.255.255.0
+S1(config-if)#ip default-gateway 192.168.10.1
+S1(config)#exit
+```
+#### Коммутатор S2
+```
+Switch#conf ter
+Switch(config)#hostname S2
+S2(config)#no ip domain-lookup
+S2(config)#int VLAN 10
+S2(config-if)#no shutdown 
+S2(config-if)#ip address 192.168.10.202 255.255.255.0
+S2(config-if)#ip default-gateway 192.168.10.1
+S2(config)#exit
+```
+
+## Часть 2. Настройка сетей VLAN на коммутаторах.
+```
+S1(config)#VLAN 10
+%LINK-5-CHANGED: Interface Vlan10, changed state to up
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+```
+```
+S2(config)#VLAN 10
+%LINK-5-CHANGED: Interface Vlan10, changed state to up
+S2(config-vlan)#name Management
+S2(config-vlan)#exit
+```
