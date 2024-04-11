@@ -149,4 +149,91 @@ VLAN Name                             Status    Ports
 ```
 ### Безопасность неиспользуемых портов коммутатора
 ```
+S1(config)#int range fa0/2-4
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#int range fa0/7-24
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#int range gi0/1-2
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
 ```
+```
+S1#show interfaces status 
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        connected    trunk      auto    auto  10/100BaseTX
+Fa0/2                        disabled 999        auto    auto  10/100BaseTX
+Fa0/3                        disabled 999        auto    auto  10/100BaseTX
+Fa0/4                        disabled 999        auto    auto  10/100BaseTX
+Fa0/5                        connected    10         auto    auto  10/100BaseTX
+Fa0/6                        connected    10         auto    auto  10/100BaseTX
+Fa0/7                        disabled 999        auto    auto  10/100BaseTX
+Fa0/8                        disabled 999        auto    auto  10/100BaseTX
+Fa0/9                        disabled 999        auto    auto  10/100BaseTX
+Fa0/10                       disabled 999        auto    auto  10/100BaseTX
+Fa0/11                       disabled 999        auto    auto  10/100BaseTX
+Fa0/12                       disabled 999        auto    auto  10/100BaseTX
+Fa0/13                       disabled 999        auto    auto  10/100BaseTX
+Fa0/14                       disabled 999        auto    auto  10/100BaseTX
+Fa0/15                       disabled 999        auto    auto  10/100BaseTX
+Fa0/16                       disabled 999        auto    auto  10/100BaseTX
+Fa0/17                       disabled 999        auto    auto  10/100BaseTX
+Fa0/18                       disabled 999        auto    auto  10/100BaseTX
+Fa0/19                       disabled 999        auto    auto  10/100BaseTX
+Fa0/20                       disabled 999        auto    auto  10/100BaseTX
+Fa0/21                       disabled 999        auto    auto  10/100BaseTX
+Fa0/22                       disabled 999        auto    auto  10/100BaseTX
+Fa0/23                       disabled 999        auto    auto  10/100BaseTX
+Fa0/24                       disabled 999        auto    auto  10/100BaseTX
+Gig0/1                       disabled 999        auto    auto  10/100BaseTX
+Gig0/2                       disabled 999        auto    auto  10/100BaseTX
+```
+```
+S2(config)#int range fa0/2-17
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#int range fa0/19-24
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#int range gi0/1-2
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+```
+```
+S2#show interfaces status 
+Port      Name               Status       Vlan       Duplex  Speed Type
+Fa0/1                        connected    trunk      auto    auto  10/100BaseTX
+Fa0/2                        disabled 999        auto    auto  10/100BaseTX
+Fa0/3                        disabled 999        auto    auto  10/100BaseTX
+Fa0/4                        disabled 999        auto    auto  10/100BaseTX
+Fa0/5                        disabled 999        auto    auto  10/100BaseTX
+Fa0/6                        disabled 999        auto    auto  10/100BaseTX
+Fa0/7                        disabled 999        auto    auto  10/100BaseTX
+Fa0/8                        disabled 999        auto    auto  10/100BaseTX
+Fa0/9                        disabled 999        auto    auto  10/100BaseTX
+Fa0/10                       disabled 999        auto    auto  10/100BaseTX
+Fa0/11                       disabled 999        auto    auto  10/100BaseTX
+Fa0/12                       disabled 999        auto    auto  10/100BaseTX
+Fa0/13                       disabled 999        auto    auto  10/100BaseTX
+Fa0/14                       disabled 999        auto    auto  10/100BaseTX
+Fa0/15                       disabled 999        auto    auto  10/100BaseTX
+Fa0/16                       disabled 999        auto    auto  10/100BaseTX
+Fa0/17                       disabled 999        auto    auto  10/100BaseTX
+Fa0/18                       connected    10         auto    auto  10/100BaseTX
+Fa0/19                       disabled 999        auto    auto  10/100BaseTX
+Fa0/20                       disabled 999        auto    auto  10/100BaseTX
+Fa0/21                       disabled 999        auto    auto  10/100BaseTX
+Fa0/22                       disabled 999        auto    auto  10/100BaseTX
+Fa0/23                       disabled 999        auto    auto  10/100BaseTX
+Fa0/24                       disabled 999        auto    auto  10/100BaseTX
+Gig0/1                       disabled 999        auto    auto  10/100BaseTX
+Gig0/2                       disabled 999        auto    auto  10/100BaseTX
+```
+### Документирование и реализация функций безопасности порта.
