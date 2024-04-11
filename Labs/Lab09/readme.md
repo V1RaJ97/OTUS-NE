@@ -81,3 +81,26 @@ S2(config-vlan)#name ParkingLot
 S2(config-vlan)#exit
 ```
 ## Часть 3. Настройки безопасности коммутатора.
+```
+S2(config)#int fa0/1
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 333
+S2(config-if)#shutdown 
+S2(config-if)#no shutdown
+
+Производим те же действия на S1
+```
+```
+S1#show interface trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      333
+
+Port        Vlans allowed on trunk
+Fa0/1       1-1005
+
+Port        Vlans allowed and active in management domain
+Fa0/1       1,10,333,999
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       1,10,333,999
+```
