@@ -238,3 +238,177 @@ Gig0/2                       disabled 999        auto    auto  10/100BaseTX
 ```
 ### Документирование и реализация функций безопасности порта.
 ![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/e6ab6bd195fdaa73b017596d8bff400a0cfdda52/Labs/Lab09/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png)
+
+```
+S1(config)#int fa0/6
+S1(config-if)#switchport port-security
+S1(config-if)#switchport port-security violation restrict 
+S1(config-if)#switchport port-security aging time 60
+S1(config-if)#switchport port-security maximum 3
+S1(config-if)#switchport port-security aging type inactivity
+                                              ^
+% Invalid input detected at '^' marker.
+```
+```
+S1#show port-security interface f0/6
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Restrict
+Aging Time                 : 60 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 3
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 0
+Sticky MAC Addresses       : 0
+Last Source Address:Vlan   : 0030.F230.E750:10
+Security Violation Count   : 0
+```
+```
+S2(config)#int fa0/18
+S2(config-if)#switchport port-security 
+S2(config-if)#switchport port-security violation protect 
+S2(config-if)#switchport port-security aging time 60
+S2(config-if)#switchport port-security maximum 2
+S2(config-if)#switchport port-security mac-address sticky
+
+
+S2(config-if)#exit
+```
+```
+S2#show port-security interface f0/18
+Port Security              : Enabled
+Port Status                : Secure-up
+Violation Mode             : Protect
+Aging Time                 : 60 mins
+Aging Type                 : Absolute
+SecureStatic Address Aging : Disabled
+Maximum MAC Addresses      : 2
+Total MAC Addresses        : 1
+Configured MAC Addresses   : 0
+Sticky MAC Addresses       : 0
+Last Source Address:Vlan   : 0001.9776.75C1:10
+Security Violation Count   : 0
+```
+```
+S2#show port-security address
+               Secure Mac Address Table
+-----------------------------------------------------------------------------
+Vlan    Mac Address       Type                          Ports   Remaining Age
+                                                                   (mins)
+----    -----------       ----                          -----   -------------
+10	0001.9776.75C1	DynamicConfigured	FastEthernet0/18		-
+-----------------------------------------------------------------------------
+Total Addresses in System (excluding one mac per port)     : 0
+Max Addresses limit in System (excluding one mac per port) : 1024
+```
+### Реализация безопасности DHCP snooping
+```
+S2(config)#ip dhcp snooping
+S2(config)#ip dhcp snooping VLAN 10
+S2(config)#exit
+```
+```
+S2(config)#int fa0/1
+S2(config-if)#ip dhcp snooping trust 
+S2(config-if)#exit
+S2(config)#int fa0/18
+S2(config-if)#ip dhcp snooping limit rate 5
+S2(config-if)#exit
+```
+```
+S2#show ip dhcp snooping
+Switch DHCP snooping is enabled
+DHCP snooping is configured on following VLANs:
+10
+Insertion of option 82 is enabled
+Option 82 on untrusted port is not allowed
+Verification of hwaddr field is enabled
+Interface                  Trusted    Rate limit (pps)
+-----------------------    -------    ----------------
+FastEthernet0/1            yes        unlimited       
+FastEthernet0/18           no         5   
+```
+```
+C:\>ipconfig /release
+
+   IP Address......................: 0.0.0.0
+   Subnet Mask.....................: 0.0.0.0
+   Default Gateway.................: 0.0.0.0
+   DNS Server......................: 0.0.0.0
+
+C:\>ipconfig /renew
+DHCP request failed.
+```
+```
+S2#show ip dhcp snooping binding 
+MacAddress          IpAddress        Lease(sec)  Type           VLAN  Interface
+------------------  ---------------  ----------  -------------  ----  -----------------
+Total number of bindings: 0
+```
+### Реализация PortFast и BPDU Guard
+```
+S1(config)#int fa0/5
+S1(config-if)#spanning-tree portfast
+S1(config-if)#spanning-tree bpduguard enable 
+S1(config-if)#exit
+S1(config)#int fa0/6
+S1(config-if)#spanning-tree portfast
+S1(config-if)#spanning-tree bpduguard enable 
+S1(config-if)#exit
+S1(config)#spanning-tree portfast bpduguard default
+```
+```
+S2(config)#int fa0/18
+S2(config-if)#spanning-tree portfast
+%Warning: portfast should only be enabled on ports connected to a single
+host. Connecting hubs, concentrators, switches, bridges, etc... to this
+interface  when portfast is enabled, can cause temporary bridging loops.
+Use with CAUTION
+
+%Portfast has been configured on FastEthernet0/18 but will only
+have effect when the interface is in a non-trunking mode.
+S2(config-if)#exit
+S2(config)#spanning-tree portfast default
+S2(config)#exit
+```
+```
+S1#show spanning-tree interface f0/6 detail
+Port 6 (FastEthernet0/6) of VLAN0010 is designated forwarding
+  Port path cost 19, Port priority 128, Port Identifier 128.6
+  Designated root has priority 32778, address 0001.C954.A779
+  Designated bridge has priority 32778, address 0030.F28B.797B
+  Designated port id is 128.6, designated path cost 19
+  Timers: message age 16, forward delay 0, hold 0
+  Number of transitions to forwarding state: 1
+  The port is in the portfast mode
+  Link type is point-to-point by default
+```
+### Проверьте наличие сквозного ⁪подключения
+```
+Пинг с S2 до PC-A
+S2#ping 192.168.10.11
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.10.11, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 0/0/1 ms
+```
+```
+Пинг с S2 до G0/0/1 на R1
+S2#ping 192.168.10.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.10.1, timeout is 2 seconds:
+.!!!!
+Success rate is 80 percent (4/5), round-trip min/avg/max = 0/0/0 ms
+```
+```
+Пинг с S2 до LoopBack 0 на R1
+S2#ping 10.10.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/3/8 ms
+```
