@@ -237,3 +237,4 @@ Gig0/1                       disabled 999        auto    auto  10/100BaseTX
 Gig0/2                       disabled 999        auto    auto  10/100BaseTX
 ```
 ### Документирование и реализация функций безопасности порта.
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/e6ab6bd195fdaa73b017596d8bff400a0cfdda52/Labs/Lab09/%D0%94%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.png)
