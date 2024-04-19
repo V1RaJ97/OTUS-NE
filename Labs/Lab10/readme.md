@@ -215,3 +215,27 @@ R2(config)#int loopback1
 R2(config-if)#ip ospf 56 area 0
 R2(config-if)#exit
 ```
+```
+R1#show ip ospf neighbor 
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+2.2.2.2           1   FULL/BDR        00:00:38    10.53.0.2       GigabitEthernet0/0/1
+
+R2#show ip ospf neighbor 
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+1.1.1.1           1   FULL/DR         00:00:39    10.53.0.1       GigabitEthernet0/0/1
+R2#
+```
+```
+R1#show ip route ospf
+     192.168.1.0/32 is subnetted, 1 subnets
+O       192.168.1.1 [110/2] via 10.53.0.2, 00:10:00, GigabitEthernet0/0/1
+```
+```
+R1#ping 192.168.1.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 192.168.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/1 ms
+```
+## Часть 3. Оптимизация и проверка конфигурации OSPFv2 для одной области
