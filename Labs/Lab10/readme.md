@@ -174,7 +174,7 @@ line vty 5 15
 end
 ```
 ## Часть 2. Настройка и проверка базовой работы протокола OSPFv2 для одной области
-### Реализация различных оптимизаций на каждом маршрутизаторе
+### Настройка адресов на интерфейсах
 ```
 R1(config)#int g0/0/1
 R1(config-if)#no shutdown 
@@ -195,6 +195,7 @@ R2(config-if)#ip address 192.168.1.1 255.255.255.0
 R2(config-if)#no shutdown
 R2(config-if)#exit
 ```
+### Настройка OSPF на интерфейсах
 ```
 R1(config)#router ospf 56
 R1(config-router)#router-id 1.1.1.1
