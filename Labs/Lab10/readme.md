@@ -270,3 +270,36 @@ R2(config)#int g0/0/1
 R2(config-if)#ip ospf hello-interval 30
 R2(config-if)#exit
 ```
+### Настройка и распространение маршрута по умолчанию
+```
+R1(config)#ip route 0.0.0.0 0.0.0.0 loopback1
+%Default route without gateway, if not a point-to-point interface, may impact performance
+R1(config)#router ospf 56
+R1(config-router)#default-information originate 
+R1(config-router)#exit
+```
+```
+R2#show ip route 
+Gateway of last resort is 10.53.0.1 to network 0.0.0.0
+     10.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C       10.53.0.0/24 is directly connected, GigabitEthernet0/0/1
+L       10.53.0.2/32 is directly connected, GigabitEthernet0/0/1
+     192.168.1.0/24 is variably subnetted, 2 subnets, 2 masks
+C       192.168.1.0/24 is directly connected, Loopback1
+L       192.168.1.1/32 is directly connected, Loopback1
+O*E2 0.0.0.0/0 [110/1] via 10.53.0.1, 00:01:43, GigabitEthernet0/0/1
+```
+```
+R1(config)#int gi0/0/1
+R1(config-if)#ip ospf network point-to-point 
+R1(config-if)#exit
+!
+R2(config)#int g0/0/1
+R2(config-if)#ip ospf network point-to-point 
+R2(config-if)#exit
+R2(config)#exit
+!
+R2#show ip ospf neighbor 
+Neighbor ID     Pri   State           Dead Time   Address         Interface
+1.1.1.1           0   FULL/  -        00:00:28    10.53.0.1       GigabitEthernet0/0/1
+```
