@@ -328,6 +328,7 @@ Routing Protocol is "ospf 56"
 ```
 R1(config)#router ospf 56
 R1(config-router)#auto-cost reference-bandwidth 1000
+% OSPF: Reference bandwidth is changed.
 R1(config-router)#end
 R1#clear ip ospf process 
 Reset ALL OSPF processes? [no]: y
@@ -356,3 +357,47 @@ R2#
 01:17:12: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
 ```
 ### Проверка реализации OSPF
+```
+R1(config)#int g0/0/1
+R1(config-if)#ip ospf dead-interval 120
+R1(config-if)#exit
+!
+R2(config)#int g0/0/1
+R2(config-if)#ip ospf dead-interval 120
+R2(config-if)#exit
+```
+#### Show ip ospf interface g0/0/1 на R1
+```
+GigabitEthernet0/0/1 is up, line protocol is up
+  Internet address is 10.53.0.1/24, Area 0
+  Process ID 56, Router ID 1.1.1.1, Network Type POINT-TO-POINT, Cost: 10
+  Transmit Delay is 1 sec, State POINT-TO-POINT,
+  Timer intervals configured, Hello 30, Dead 120, Wait 120, Retransmit 5
+    Hello due in 00:00:00
+  Index 1/1, flood queue length 0
+  Next 0x0(0)/0x0(0)
+  Last flood scan length is 1, maximum is 1
+  Last flood scan time is 0 msec, maximum is 0 msec
+  Neighbor Count is 1 , Adjacent neighbor count is 1
+    Adjacent with neighbor 2.2.2.2
+  Suppress hello for 0 neighbor(s)
+```
+#### Show ip route ospf на R1
+```
+R1#show ip route ospf
+     192.168.1.0/32 is subnetted, 1 subnets
+O       192.168.1.1 [110/10] via 10.53.0.2, 00:01:52, GigabitEthernet0/0/1
+```
+#### Show ip route ospf на R2
+```
+R2#show ip route ospf 
+O*E2 0.0.0.0/0 [110/1] via 10.53.0.1, 00:03:54, GigabitEthernet0/0/1
+```
+#### Резульаты Ping с R2 до интерфейса Loopback1 на R1
+```
+R2#ping 172.16.1.1
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 172.16.1.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/1 ms
+```
