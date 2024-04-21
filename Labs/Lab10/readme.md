@@ -303,3 +303,54 @@ R2#show ip ospf neighbor
 Neighbor ID     Pri   State           Dead Time   Address         Interface
 1.1.1.1           0   FULL/  -        00:00:28    10.53.0.1       GigabitEthernet0/0/1
 ```
+```
+R2(config)#router ospf 56
+R2(config-router)#passive-interface loopback1
+R2(config-router)#end
+!
+R2#show ip protocols 
+Routing Protocol is "ospf 56"
+  Outgoing update filter list for all interfaces is not set 
+  Incoming update filter list for all interfaces is not set 
+  Router ID 2.2.2.2
+  Number of areas in this router is 1. 1 normal 0 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Passive Interface(s): 
+    Loopback1
+  Routing Information Sources:  
+    Gateway         Distance      Last Update 
+    1.1.1.1              110      00:07:18
+    2.2.2.2              110      00:06:17
+  Distance: (default is 110)
+```
+```
+R1(config)#router ospf 56
+R1(config-router)#auto-cost reference-bandwidth 1000
+R1(config-router)#end
+R1#clear ip ospf process 
+Reset ALL OSPF processes? [no]: y
+R1#
+01:19:37: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Adjacency forced to reset
+
+01:19:37: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+R1#
+01:19:39: %OSPF-5-ADJCHG: Process 56, Nbr 2.2.2.2 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
+```
+```
+R2(config)#router ospf 56
+R2(config-router)#auto-cost reference-bandwidth 1000
+% OSPF: Reference bandwidth is changed.
+        Please ensure reference bandwidth is consistent across all routers.
+R2(config-router)#end
+R2#clear ip ospf process 
+Reset ALL OSPF processes? [no]: y
+R2#
+01:16:51: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Adjacency forced to reset
+
+01:16:51: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+R2#
+01:17:12: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
+```
