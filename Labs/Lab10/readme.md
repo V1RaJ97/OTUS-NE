@@ -289,6 +289,7 @@ C       192.168.1.0/24 is directly connected, Loopback1
 L       192.168.1.1/32 is directly connected, Loopback1
 O*E2 0.0.0.0/0 [110/1] via 10.53.0.1, 00:01:43, GigabitEthernet0/0/1
 ```
+### Настройка конфигурации OSPF
 ```
 R1(config)#int gi0/0/1
 R1(config-if)#ip ospf network point-to-point 
@@ -354,3 +355,4 @@ R2#
 R2#
 01:17:12: %OSPF-5-ADJCHG: Process 56, Nbr 1.1.1.1 on GigabitEthernet0/0/1 from LOADING to FULL, Loading Done
 ```
+### Проверка реализации OSPF
