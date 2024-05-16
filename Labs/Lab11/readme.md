@@ -29,8 +29,8 @@
 1. Создание сети и настройка основных параметров устройства
 2. Настройка и проверка списков расширенного контроля доступа
 
-# Часть 1. Создание сети и настройка основных параметров устройства
-## Финальная конфигурация маршрутизаторов на примере R2
+## Часть 1. Создание сети и настройка основных параметров устройства
+### Финальная конфигурация маршрутизаторов на примере R2
 ```
 R2#show running-config 
 Building configuration...
@@ -95,7 +95,7 @@ line vty 0 4
  login
 end
 ```
-## Финальная конфигурация коммутаторов на примере S1
+### Финальная конфигурация коммутаторов на примере S1
 ```
 S1#show running-config 
 Building configuration...
@@ -187,3 +187,68 @@ line vty 5 15
  login
 end
 ```
+## Часть 2. Настройка сетей VLAN на коммутаторах.
+### Создание сети VLAN на коммутаторах
+```
+S1(config)#vlan 20
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+S1(config)#vlan 30
+S1(config-vlan)#name Operations
+S1(config-vlan)#exit
+S1(config)#vlan 40
+S1(config-vlan)#name Sales
+S1(config-vlan)#exit
+S1(config)#vlan 999
+S1(config-vlan)#name ParkingLot
+S1(config-vlan)#exit
+S1(config)#vlan 1000
+S1(config-vlan)#name Private
+S1(config-vlan)#exit
+S1(config)#ip de
+S1(config)#ip default-gateway 10.20.0.1
+!
+Проделываем аналогичные действия на S2
+```
+#### Настройка VLAN на S2
+```
+S2(config)#int vlan 20
+S2(config-if)#ip address 10.20.0.3 255.255.255.0
+S2(config-if)#end
+S2(config)#int f0/5
+S2(config-if)#switchport mode access 
+S2(config-if)#switchport access vlan 20
+S2(config-if)#shutdown
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+S2(config)#int f0/18
+S2(config-if)#switchport mode access 
+S2(config-if)#switchport access vlan 40
+S2(config-if)#shutdown 
+S2(config-if)#no shutdown 
+S2(config-if)#end
+```
+```
+S2(config)#interface range f0/2-4
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#int range f0/6-17
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#int range f0/19-24
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#int range g0/1-2
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+```
+
+#### Настройка VLAN на S1
