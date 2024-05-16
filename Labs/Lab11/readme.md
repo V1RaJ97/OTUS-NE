@@ -252,3 +252,25 @@ S2(config-if-range)#exit
 ```
 
 #### Настройка VLAN на S1
+```
+S1(config)#int f0/6
+S1(config-if)#switchport access vlan 30
+S1(config-if)#shutdown
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#int range f0/2-4
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#int range f0/7-24
+S1(config-if-range)#switchport mod access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#int range g0/1-2
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+```
