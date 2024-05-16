@@ -406,3 +406,21 @@ R1(config-subif)#encapsulation dot1Q 1000
 R1(config-subif)#description Private
 R1(config-subif)#exit
 ```
+```
+R1(config)#int loopback1
+R1(config-if)#ip address 172.16.1.1 255.255.255.0
+R1(config-if)#exit
+```
+```
+R1#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   unassigned      YES unset  administratively down down 
+GigabitEthernet0/0/1   unassigned      YES unset  up                    up 
+GigabitEthernet0/0/1.2010.20.0.1       YES manual up                    up 
+GigabitEthernet0/0/1.3010.30.0.1       YES manual up                    up 
+GigabitEthernet0/0/1.4010.40.0.1       YES manual up                    up 
+GigabitEthernet0/0/1.1000unassigned      YES unset  up                    up 
+GigabitEthernet0/0/2   unassigned      YES unset  administratively down down 
+Loopback1              172.16.1.1      YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+```
