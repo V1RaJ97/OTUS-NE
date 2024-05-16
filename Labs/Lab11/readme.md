@@ -424,3 +424,15 @@ GigabitEthernet0/0/2   unassigned      YES unset  administratively down down
 Loopback1              172.16.1.1      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
+### Настройка интерфейса R2 g0/0/1 с использованием адреса из таблицы и маршрута по умолчанию с адресом следующего перехода 10.20.0.1
+```
+R2(config)#int g0/0/1
+R2(config-if)#no shutdown 
+R2(config-if)#ip address 10.20.0.4 255.255.255.0
+R2(config-if)#exit
+R2(config)#ip route 0.0.0.0 0.0.0.0 10.20.0.1
+```
+## Настройка удаленного доступа
+### Настройка сетевых устройств для базовой поддержки SSH
+```
+```
