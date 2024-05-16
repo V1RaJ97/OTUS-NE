@@ -317,3 +317,68 @@ VLAN Name                             Status    Ports
 1004 fddinet-default                  active    
 1005 trnet-default                    active   
 ```
+## Часть 3. ·Настройка магистральных каналов.
+### Настройка магистрального интерфейса F0/1
+```
+S1(config)#int f0/1
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#switchport trunk allowed vlan 20,30,40,1000
+S1(config-if)#shutdown
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+!
+S2(config)#int f0/1
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 1000
+S2(config-if)#switchport trunk allowed vlan 20,30,40,1000
+S2(config-if)#shutdown 
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+```
+#### Результаты
+```
+S1#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1000
+
+Port        Vlans allowed on trunk
+Fa0/1       20,30,40,1000
+
+Port        Vlans allowed and active in management domain
+Fa0/1       20,30,40,1000
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       20,30,40,1000
+
+```
+```
+S2#show interfaces trunk
+Port        Mode         Encapsulation  Status        Native vlan
+Fa0/1       on           802.1q         trunking      1000
+
+Port        Vlans allowed on trunk
+Fa0/1       20,30,40,1000
+
+Port        Vlans allowed and active in management domain
+Fa0/1       20,30,40,1000
+
+Port        Vlans in spanning tree forwarding state and not pruned
+Fa0/1       20,30,40,1000
+```
+### Настройка магистрального интерфейса F0/5 на коммутаторе S1.
+```
+S1(config)#int f0/5
+S1(config-if)#switchport mode trunk 
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#switchport trunk allowed vlan 20,30,40,1000
+S1(config-if)#shutdown 
+S1(config-if)#no shutdown 
+S1(config-if)#end
+S1#copy running-config startup-config 
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+```
+## Настройка маршрутизации.
+### Настройка маршрутизации между сетями VLAN на R1
