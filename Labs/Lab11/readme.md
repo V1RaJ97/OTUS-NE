@@ -382,3 +382,27 @@ Building configuration...
 ```
 ## Настройка маршрутизации.
 ### Настройка маршрутизации между сетями VLAN на R1
+```
+R1(config)#int g0/0/1
+R1(config-if)#no shutdown
+R1(config-if)#exit
+R1(config)#int g0/0/1.20
+R1(config-subif)#encapsulation dot1Q 20
+R1(config-subif)#description Management
+R1(config-subif)#ip address 10.20.0.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/0/1.30
+R1(config-subif)#encapsulation dot1Q 30
+R1(config-subif)#description Operations
+R1(config-subif)#ip address 10.30.0.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/0/1.40
+R1(config-subif)#encapsulation dot1Q 40
+R1(config-subif)#description Sales
+R1(config-subif)#ip address 10.40.0.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/0/1.1000
+R1(config-subif)#encapsulation dot1Q 1000
+R1(config-subif)#description Private
+R1(config-subif)#exit
+```
