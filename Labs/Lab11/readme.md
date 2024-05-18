@@ -543,3 +543,40 @@ Approximate round trip times in milli-seconds:
 Сетевой доступ по SSH к 10.20.0.1 и 172.16.1.1 получен
 ```
 ## Часть 7. Настройка и проверка списков контроля доступа (ACL)
+### Политика №1
+```
+R2(config)#ip access-list extended 140
+R2(config-ext-nacl)#remark Deny SSH Sales to Management
+R2(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 22
+R2(config-ext-nacl)#permit tcp 10.20.0.4 255.255.255.255 any eq 22
+R2(config-ext-nacl)#exit
+R2(config)#int g0/0/1
+R2(config-if)#ip access-group 140 in
+R2(config-if)#exit
+```
+### Политика №2
+```
+Не удается включить HTTPS и HTTP сервер на R1, следовательно проверить работу ACL по этим протоколам возможности нет.
+Пробовал разные модели маршрутизаторов, результат один и тот же.
+Устанволена версия CPT 8.2.0
+Могу лишь предположить следующее:
+R1(config)#ip access-list extended 141
+R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to Management
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 443
+R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 80
+R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 443
+!
+R1(config)#ip access-list extended 142
+R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to R1 Interfaces
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 any eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 any eq 443
+R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 80
+R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 443
+R1(config-ext-nacl)#exit
+R1(config)#int g0/0/1
+R1(config-if)#ip 
+R1(config-if)#ip ac
+R1(config-if)#ip access-group 141 in
+R1(config-if)#ip access-group 142 in
+```
