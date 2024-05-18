@@ -547,7 +547,7 @@ Approximate round trip times in milli-seconds:
 ```
 R2(config)#ip access-list extended 140
 R2(config-ext-nacl)#remark Deny SSH Sales to Management
-R2(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 22
+R2(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 22
 R2(config-ext-nacl)#permit tcp 10.20.0.4 255.255.255.255 any eq 22
 R2(config-ext-nacl)#exit
 R2(config)#int g0/0/1
@@ -562,21 +562,36 @@ R2(config-if)#exit
 Могу лишь предположить следующее:
 R1(config)#ip access-list extended 141
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to Management
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 80
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.20.0.0 0.0.255.255 eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 443
 R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 80
 R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 443
 !
 R1(config)#ip access-list extended 142
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to R1 Interfaces
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 any eq 80
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 any eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 any eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 any eq 443
 R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 80
 R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 443
 R1(config-ext-nacl)#exit
 R1(config)#int g0/0/1
-R1(config-if)#ip 
-R1(config-if)#ip ac
 R1(config-if)#ip access-group 141 in
 R1(config-if)#ip access-group 142 in
+```
+### Политика №3
+```
+R1(config)#ip access-list extended 143
+R1(config-ext-nacl)#remark Deny ICMP from Sales to Operations and Management
+R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
+R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
+
+```
+### Политика №4
+```
+R1(config)#ip access-list extended 130
+R1(config-ext-nacl)#remark Deny ICMP Operations to Sales
+R1(config-ext-nacl)#deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
+R1(config-ext-nacl)#exit
+R1(config)#int g0/0/1.30
+R1(config-subif)#ip access-group 130 out
 ```
