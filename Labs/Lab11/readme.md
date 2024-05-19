@@ -545,14 +545,14 @@ Approximate round trip times in milli-seconds:
 ## Часть 7. Настройка и проверка списков контроля доступа (ACL)
 ### Политика №1
 ```
-R2(config)#ip access-list extended 140
-R2(config-ext-nacl)#remark Deny SSH Sales to Management
-R2(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 22
-R2(config-ext-nacl)#permit tcp 10.20.0.4 255.255.255.255 any eq 22
-R2(config-ext-nacl)#exit
-R2(config)#int g0/0/1
-R2(config-if)#ip access-group 140 in
-R2(config-if)#exit
+R1(config)#ip access-list extended 140
+R1(config-ext-nacl)#remark Deny SSH Sales to Management
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 22
+R1(config-ext-nacl)#permit ip any any
+R1(config-ext-nacl)#exit
+R1(config)#int g0/0/1.40
+R1(config-subif)#ip access-group 140 in
+R1(config-subif)#exit
 ```
 ### Политика №2
 ```
