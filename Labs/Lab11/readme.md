@@ -558,10 +558,10 @@ R1(config-subif)#exit
 ```
 Не удается включить HTTPS и HTTP сервер на R1, следовательно проверить работу ACL по этим протоколам возможности нет.
 Пробовал разные модели маршрутизаторов, результат один и тот же.
-Устанволена версия CPT 8.2.0
+Устанволена версия CPT 8.2.0, на 8.1.1 тоже же самое.
 Могу лишь предположить следующее:
 R1(config)#ip access-list extended 141
-R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to Management
+R1(config-ext-nacl)#remark Deny HTTP/HTTPS 
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 80
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 80
@@ -570,6 +570,7 @@ R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.1 255.255.255.255 eq 80
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.1 255.255.255.255 eq 443
 R1(config-ext-nacl)#permit tcp any any eq 80
 R1(config-ext-nacl)#permit tcp any any eq 443
+R1(config-ext-nacl)#exit
 R1(config)#int g0/0/1.40
 R1(config-subif)#ip access-group 141 in
 R1(config-subif)#exit
@@ -582,8 +583,9 @@ R1(config-ext-nacl)#remark Deny ICMP from Sales to Operations and Management
 R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
 R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
 R1(config-ext-nacl)#permit icmp any any echo
+R1(config-ext-nacl)#exit
 R1(config)#int g0/0/1.40
-R1(config-subif)#ip access-group 141 in
+R1(config-subif)#ip access-group 143 in
 R1(config-subif)#exit
 
 ```
