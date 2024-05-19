@@ -562,21 +562,16 @@ R1(config-subif)#exit
 Могу лишь предположить следующее:
 R1(config)#ip access-list extended 141
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to Management
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 80
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.255.255 eq 443
-R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 80
-R1(config-ext-nacl)#permit tcp 10.20.0.1 255.255.255.255 any eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
+deny tcp 10.40.0.0 0.0.0.255 10.20.0.1 255.255.255.255 eq 80
+deny tcp 10.40.0.0 0.0.0.255 10.20.0.1 255.255.255.255 eq 443
+deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 80
+deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 443
+permit tcp any any eq 80
+permit tcp any any eq 443
 !
-R1(config)#ip access-list extended 142
-R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to R1 Interfaces
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 any eq 80
-R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 any eq 443
-R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 80
-R1(config-ext-nacl)#permit tcp 172.16.1.1 255.255.255.0 any eq 443
-R1(config-ext-nacl)#exit
-R1(config)#int g0/0/1
-R1(config-if)#ip access-group 141 in
-R1(config-if)#ip access-group 142 in
+
 ```
 ### Политика №3
 ```
