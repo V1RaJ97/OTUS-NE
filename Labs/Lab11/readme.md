@@ -564,13 +564,15 @@ R1(config)#ip access-list extended 141
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS Sales to Management
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 80
 R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 eq 443
-deny tcp 10.40.0.0 0.0.0.255 10.20.0.1 255.255.255.255 eq 80
-deny tcp 10.40.0.0 0.0.0.255 10.20.0.1 255.255.255.255 eq 443
-deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 80
-deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 443
-permit tcp any any eq 80
-permit tcp any any eq 443
-!
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.30.0.1 255.255.255.255 eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.1 255.255.255.255 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.0.255 10.40.0.1 255.255.255.255 eq 443
+R1(config-ext-nacl)#permit tcp any any eq 80
+R1(config-ext-nacl)#permit tcp any any eq 443
+R1(config)#int g0/0/1.40
+R1(config-subif)#ip access-group 141 in
+R1(config-subif)#exit
 
 ```
 ### Политика №3
@@ -579,7 +581,10 @@ R1(config)#ip access-list extended 143
 R1(config-ext-nacl)#remark Deny ICMP from Sales to Operations and Management
 R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.20.0.0 0.0.0.255 echo
 R1(config-ext-nacl)#deny icmp 10.40.0.0 0.0.0.255 10.30.0.0 0.0.0.255 echo
-permit icmp any any echo
+R1(config-ext-nacl)#permit icmp any any echo
+R1(config)#int g0/0/1.40
+R1(config-subif)#ip access-group 141 in
+R1(config-subif)#exit
 
 ```
 ### Политика №4
@@ -587,8 +592,7 @@ permit icmp any any echo
 R1(config)#ip access-list extended 130
 R1(config-ext-nacl)#remark Deny ICMP Operations to Sales
 R1(config-ext-nacl)#deny icmp 10.30.0.0 0.0.0.255 10.40.0.0 0.0.0.255 echo
-permit icmp any any echo
-
+R1(config-ext-nacl)#permit icmp any any echo
 R1(config-ext-nacl)#exit
 R1(config)#int g0/0/1.30
 R1(config-subif)#ip access-group 130 in
