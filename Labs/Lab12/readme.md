@@ -376,3 +376,15 @@ line vty 5 15
 end
 ```
 ## Настройка и проверка NAT для IPv4.
+### Настройка NAT на R1, используя пул из трех адресов 209.165.200.226-209.165.200.228
+```
+R1(config)#access-list 1 permit 192.168.1.0 0.0.0.255
+R1(config)#ip nat pool PUBLIC_ACCESS 209.165.200.226 209.165.200.228 netmask 255.255.255.248
+R1(config)#ip nat inside source list 1 pool PUBLIC_ACCESS
+R1(config)#int g0/0/1
+R1(config-if)#ip nat inside
+R1(config-if)#exit
+R1(config)#int g0/0/0
+R1(config-if)#ip nat outside
+R1(config-if)#exit
+```
