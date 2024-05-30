@@ -64,6 +64,7 @@ interface Vlan1
  shutdown
 !
 ip classless
+ip route 0.0.0.0 0.0.0.0 209.165.200.225 
 !
 ip flow-export version 9
 !
@@ -129,7 +130,7 @@ interface Vlan1
  shutdown
 !
 ip classless
-ip route 0.0.0.0 0.0.0.0 GigabitEthernet0/0/0 
+ip route 0.0.0.0 0.0.0.0 209.165.200.230
 !
 ip flow-export version 9
 !
@@ -388,3 +389,13 @@ R1(config)#int g0/0/0
 R1(config-if)#ip nat outside
 R1(config-if)#exit
 ```
+#### Проверка
+```
+Pinging 209.165.200.1 with 32 bytes of data:
+
+Reply from 209.165.200.1: bytes=32 time=2ms TTL=254
+Reply from 209.165.200.1: bytes=32 time<1ms TTL=254
+Reply from 209.165.200.1: bytes=32 time<1ms TTL=254
+Reply from 209.165.200.1: bytes=32 time=7ms TTL=254
+```
+
