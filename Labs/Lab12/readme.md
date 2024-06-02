@@ -457,8 +457,8 @@ S2#ping 209.165.200.1
 
 Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 209.165.200.1, timeout is 2 seconds:
-.....
-Success rate is 0 percent (0/5)
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
 ```
 ```
 R1#show ip nat translations
@@ -568,6 +568,22 @@ icmp 209.165.200.230:7 192.168.1.3:7      209.165.200.1:7    209.165.200.1:7
 icmp 209.165.200.230:8 192.168.1.3:8      209.165.200.1:8    209.165.200.1:8
 ```
 #### Ping с S1 и S2 
+```
+S1#ping 209.165.200.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 209.165.200.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/2 ms
+```
+```
+S2#ping 209.165.200.1
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 209.165.200.1, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 0/0/0 ms
+```
 ```
 R1#sh ip nat translations 
 Pro  Inside global     Inside local       Outside local      Outside global
