@@ -307,3 +307,64 @@ S2#show cdp
 ```
 
 ## Часть 3. Обнаружение сетевых ресурсов с помощью протокола LLDP
+```
+Включаем LLDP командой lldp run в режиме глобальной конфигурации на всех устройствах топологии.
+```
+```
+S1#show lldp entry S2
+             ^
+% Invalid input detected at '^' marker.
+```
+```
+Вопрос: Что такое chassis ID  для коммутатора S2?
+Ответ: В качестве Chassis ID используется MAC-адрес интерфейса
+```
+
+```
+S1#show lldp neighbors detail
+------------------------------------------------
+Chassis id: 0006.2A0B.9401
+Port id: Fa0/1
+Port Description: FastEthernet0/1
+System Name: S2
+System Description:
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by mnguyen
+Time remaining: 90 seconds
+System Capabilities: B
+Enabled Capabilities: B
+Management Addresses - not advertised
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    100baseT(FD)
+    100baseT(HD)
+    1000baseT(HD)
+Media Attachment Unit type: 10
+Vlan ID: 1
+------------------------------------------------
+Chassis id: 0060.5C07.D502
+Port id: Gig0/0/1
+Port Description: GigabitEthernet0/0/1
+System Name: R1
+System Description:
+Cisco IOS Software [Everest], ISR Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.6.4,RELEASE SOFTWARE (fc3)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2018 by Cisco Systems, Inc.
+Compiled Sun 08-Jul-18 04:33 by mcpre
+Time remaining: 90 seconds
+System Capabilities: R
+Enabled Capabilities: R
+Management Addresses - not advertised
+Auto Negotiation - supported, enabled
+Physical media capabilities:
+    1000baseT(FD)
+    100baseT(FD)
+Media Attachment Unit type: 10
+Vlan ID: 1
+
+Total entries displayed: 2
+```
+
+## Часть 4. Настройка NTP
