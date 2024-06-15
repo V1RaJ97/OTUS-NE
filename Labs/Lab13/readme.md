@@ -245,3 +245,19 @@ S1#show cdp traffic
 % Invalid input detected at '^' marker.
 ```
 ### Настройка SVI для VLAN 1 на S1 и S2
+```
+S1(config)#int vlan1
+S1(config-if)#ip address 10.22.0.2 255.255.255.0
+S1(config-if)#no shutdown 
+S1(config-if)#exit
+S1(config)#ip default-gateway 10.22.0.1
+S1(config)#exit
+```
+```
+S2(config)#int vlan1
+S2(config-if)#ip address 10.22.0.3 255.255.255.0
+S2(config-if)#no shutdown 
+S2(config-if)#exit
+S2(config)#ip default-gateway 10.22.0.1
+S2(config)#exit
+```
