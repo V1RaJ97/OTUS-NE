@@ -261,3 +261,47 @@ S2(config-if)#exit
 S2(config)#ip default-gateway 10.22.0.1
 S2(config)#exit
 ```
+### show cdp entry  S1 на R1
+```
+R1#show cdp entry S1 
+
+Device ID: S1
+Entry address(es): 
+  IP address : 10.22.0.2
+Platform: cisco 2960, Capabilities: Switch
+Interface: GigabitEthernet0/0/1, Port ID (outgoing port): FastEthernet0/5
+Holdtime: 143
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by mnguyen
+
+advertisement version: 2
+Duplex: full
+```
+```
+Вопрос: Какие дополнительные сведения доступны теперь?
+Ответ: ip-адрес
+```
+### Отключение CDP на всех устройствах
+```
+R1(config)#no cdp run
+R1(config)#exit
+R1#show cdp 
+% CDP is not enabled
+!
+S1(config)#no cdp run
+S1(config)#exit
+S1#sh
+S1#show cdp
+% CDP is not enabled
+!
+S2(config)#no cdp run 
+S2(config)#exit
+S2#show cdp 
+% CDP is not enabled
+```
+
+## Часть 3. Обнаружение сетевых ресурсов с помощью протокола LLDP
