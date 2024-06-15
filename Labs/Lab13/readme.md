@@ -368,3 +368,74 @@ Total entries displayed: 2
 ```
 
 ## Часть 4. Настройка NTP
+```
+R1#show clock 
+*2:3:30.742 UTC Mon Mar 1 1993
+```
+|       Дата       |     Время    |  Часовой пояс  | Источник времени |
+|:----------------:|:------------:|:--------------:|:----------------:|
+|  Mon Mar 1 1993  |    2:3:30    |       UTC      |  _____________   |
+
+```
+R1#clock set 15:06:00 15 june 2024
+```
+```
+R1#show clock 
+15:6:1.796 UTC Sat Jun 15 2024
+```
+```
+R1(config)#ntp master 4
+R1(config)# ntp server 209.165.200.225
+```
+```
+R1#sh clock detail 
+15:34:36.572 UTC Sat Jun 15 2024
+Time source is NTP
+```
+### Настройка на S1/S2
+```
+S1(config)#ntp server 10.22.0.1
+S1(config)#exit
+S1#show ntp associations 
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~10.22.0.1     127.127.1.1     4    9        16      177    0.00           0.00              0.12
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+!
+!
+!
+S1#show ntp status 
+Clock is synchronized, stratum 5, reference is 10.22.0.1
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is E9EE0496.00000019 (15:41:10.025 UTC Sat Jun 15 2024)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 10.48 msec, peer dispersion is 0.48 msec.
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is - 0.000001193 s/s system poll interval is 6, last update was 49 sec ago.
+!
+S1#sh clock detail 
+15:42:28.175 UTC Sat Jun 15 2024
+Time source is NTP
+```
+```
+S2(config)#ntp server 10.22.0.1
+S2(config)#exit
+S2#show ntp associations 
+
+address         ref clock       st   when     poll    reach  delay          offset            disp
+*~10.22.0.1     127.127.1.1     4    26       32      377    0.00           0.00              0.24
+ * sys.peer, # selected, + candidate, - outlyer, x falseticker, ~ configured
+!
+!
+!
+S2#show ntp status 
+Clock is synchronized, stratum 5, reference is 10.22.0.1
+nominal freq is 250.0000 Hz, actual freq is 249.9990 Hz, precision is 2**24
+reference time is E9EE051A.00000227 (15:43:22.551 UTC Sat Jun 15 2024)
+clock offset is 0.00 msec, root delay is 0.00  msec
+root dispersion is 10.54 msec, peer dispersion is 0.24 msec.
+loopfilter state is 'CTRL' (Normal Controlled Loop), drift is - 0.000001193 s/s system poll interval is 5, last update was 13 sec ago.
+!
+S2#show clock detail 
+15:43:51.65 UTC Sat Jun 15 2024
+Time source is NTP
+```
