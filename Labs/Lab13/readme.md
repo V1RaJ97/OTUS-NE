@@ -202,3 +202,46 @@ end
 ```
 
 ## Часть 2. Обнаружение сетевых ресурсов с помощью протокола CDP
+```
+R1#show cdp 
+Global CDP information:
+    Sending CDP packets every 60 seconds
+    Sending a holdtime value of 180 seconds
+    Sending CDPv2 advertisements is enabled
+R1#show cdp neighbors 
+Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
+                  S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
+Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
+S1           Gig 0/0/1        172            S       2960        Fas 0/5
+
+Вопрос: Сколько интерфейсов участвует в объявлениях CDP? Какие из них активны?
+Ответ: Один -  Gig 0/0/1
+```
+```
+R1#show cdp entry  S1
+
+Device ID: S1
+Entry address(es): 
+Platform: cisco 2960, Capabilities: Switch
+Interface: GigabitEthernet0/0/1, Port ID (outgoing port): FastEthernet0/5
+Holdtime: 166
+
+Version :
+Cisco IOS Software, C2960 Software (C2960-LANBASEK9-M), Version 15.0(2)SE4, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Wed 26-Jun-13 02:49 by mnguyen
+
+advertisement version: 2
+Duplex: full
+
+Вопрос: Какая версия IOS используется на S1?
+Ответ: Version 15.0(2)SE4
+```
+
+```
+S1#show cdp traffic
+            ^
+% Invalid input detected at '^' marker.
+```
+### Настройка SVI для VLAN 1 на S1 и S2
