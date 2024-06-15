@@ -213,7 +213,8 @@ Capability Codes: R - Router, T - Trans Bridge, B - Source Route Bridge
                   S - Switch, H - Host, I - IGMP, r - Repeater, P - Phone
 Device ID    Local Intrfce   Holdtme    Capability   Platform    Port ID
 S1           Gig 0/0/1        172            S       2960        Fas 0/5
-
+```
+```
 Вопрос: Сколько интерфейсов участвует в объявлениях CDP? Какие из них активны?
 Ответ: Один -  Gig 0/0/1
 ```
@@ -234,7 +235,8 @@ Compiled Wed 26-Jun-13 02:49 by mnguyen
 
 advertisement version: 2
 Duplex: full
-
+```
+```
 Вопрос: Какая версия IOS используется на S1?
 Ответ: Version 15.0(2)SE4
 ```
@@ -261,7 +263,7 @@ S2(config-if)#exit
 S2(config)#ip default-gateway 10.22.0.1
 S2(config)#exit
 ```
-### show cdp entry  S1 на R1
+### Show cdp entry  S1 на R1
 ```
 R1#show cdp entry S1 
 
