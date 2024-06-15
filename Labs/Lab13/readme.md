@@ -17,3 +17,73 @@
 4. Настройка и проверка NTP
 
 ## Часть 1. Создание сети и настройка основных параметров устройства
+### Конфигурация R1
+```
+R1#sh running-config 
+Building configuration...
+
+Current configuration : 936 bytes
+!
+version 16.6.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+ip cef
+no ipv6 cef
+!
+no ip domain-lookup
+!
+spanning-tree mode pvst
+!
+interface Loopback1
+ ip address 172.16.1.1 255.255.255.0
+!
+interface GigabitEthernet0/0/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/1
+ ip address 10.22.0.1 255.255.255.0
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+banner motd ^C Unauthorized access is strictly prohibited ^C
+!
+line con 0
+ password 7 0822455D0A16
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 0822455D0A16
+ logging synchronous
+ login
+end
+```
+
+### Конфигурация S1/S2
+```
+```
