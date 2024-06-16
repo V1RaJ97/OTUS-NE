@@ -17,13 +17,18 @@
 ## Таблица VLAN
 | VLAN |      Имя     |         Назначенный интерфейс         |
 |:----:|:------------:|:-------------------------------------:|
-|  10  |  Management  |               S2: F0/5                |
-|  20  |Infrastructure|               S2: F0/5                |
-|  30  |  Accounting  |               S2: F0/5                |
-|  40  |      HR      |               S2: F0/5                |
-|  50  |     SBER     |               S2: F0/5                |
-|  60  |      VTB     |               S2: F0/5                |
-|  70  |      GPB     |               S2: F0/5                |
-|  999 | Parking_Lot  |               S2: F0/5                |
+|  10  |  Management  |                                       |
+|  20  |Infrastructure|                                       |
+|  30  |  Accounting  |                                       |
+|  40  |      HR      |                                       |
+|  50  |     SBER     |                                       |
+|  60  |      VTB     |                                       |
+|  70  |      GPB     |                                       |
+|  999 | Parking_Lot  |                                       |
+| 1000 |   Private    |                                       |
 
 
+### Создание сабинтерфейсов на R1
+```
+
+```
