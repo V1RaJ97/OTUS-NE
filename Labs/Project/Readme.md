@@ -25,6 +25,6 @@
 |  50  |     SBER     |               S2: F0/5                |
 |  60  |      VTB     |               S2: F0/5                |
 |  70  |      GPB     |               S2: F0/5                |
-
+|  999 | Parking_Lot  |               S2: F0/5                |
 
 
