@@ -11,6 +11,10 @@
 |     R1     |     G0/0/1.50    |   10.50.0.1    | 255.255.255.0 |                   |
 |     R1     |     G0/0/1.60    |   10.60.0.1    | 255.255.255.0 |                   |
 |     R1     |     G0/0/1.70    |   10.70.0.1    | 255.255.255.0 |                   |
+|     S1     |      G0/0/1      |   _________    | _____________ |                   |
+|     S2     |      G0/0/1      |   _________    | _____________ |                   |
+|     S3     |      G0/0/1      |   _________    | _____________ |                   |
+|     S4     |      G0/0/1      |   _________    | _____________ |                   |
 
 
 
@@ -77,4 +81,27 @@ GigabitEthernet0/0/1.7010.70.0.1       YES manual up                    up
 GigabitEthernet0/0/1.1000unassigned      YES unset  up                    up 
 GigabitEthernet0/0/2   unassigned      YES unset  administratively down down 
 Vlan1                  unassigned      YES unset  administratively down down
+```
+
+### Создание VLAN на коммутаторах S1-4
+```
+S1(config)#vlan 10
+S1(config-vlan)#name Management
+S1(config-vlan)#vlan 20
+S1(config-vlan)#name Infrastructunre
+S1(config-vlan)#vlan 30
+S1(config-vlan)#name Accounting
+S1(config-vlan)#vlan 40 
+S1(config-vlan)#name HR
+S1(config-vlan)#vlan 50
+S1(config-vlan)#name SBER
+S1(config-vlan)#vlan 60
+S1(config-vlan)#name VTB
+S1(config-vlan)#vlan 70
+S1(config-vlan)#name GPB
+S1(config-vlan)#vlan 999
+S1(config-vlan)#name Parking_Lot
+S1(config-vlan)#vlan 1000
+S1(config-vlan)#name Private
+S1(config-vlan)#exit
 ```
