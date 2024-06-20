@@ -13,6 +13,7 @@
 |     R1     |     G0/0/1.60    |   10.60.0.1    | 255.255.255.0 |                   |
 |     R1     |     G0/0/1.70    |   10.70.0.1    | 255.255.255.0 |                   |
 |     R1     |     G0/0/1.100   |   10.100.0.1   | 255.255.255.0 |                   |
+|     R1     |     G0/0/1.1000  |   _________    | _____________ |                   |
 |     S1     |      VLAN 10     |   10.10.0.11   | 255.255.255.0 |     10.10.0.1     |
 |     S2     |      VLAN 10     |   10.10.0.12   | 255.255.255.0 |     10.10.0.1     |
 |     S3     |      VLAN 10     |   10.10.0.13   | 255.255.255.0 |     10.10.0.1     |
@@ -23,14 +24,14 @@
 ## Таблица VLAN
 | VLAN |        Имя        |               Назначение              |
 |:----:|:-----------------:|:-------------------------------------:|
-|  10  | Network Management|           Сетевые устройства          |
+|  10  | Network_Management|           Сетевые устройства          |
 |  20  |   Infrastructure  |                Сервера                |
 |  30  |     Accounting    |              Бухгалтерия              |
 |  40  |         HR        |                  HR                   |
 |  50  |        SBER       |              Проект Сбер              |
 |  60  |        VTB        |              Проект ВТБ               |
 |  70  |        GPB        |              Проект ГПБ               |
-|  100 |      IT dept      |              IT отдел                 |
+|  100 |      IT_dept      |              IT отдел                 |
 |  999 |    Parking_Lot    |                                       |
 | 1000 |      Private      |                                       |
 
@@ -65,6 +66,10 @@ R1(config)#int g0/0/1.70
 R1(config-subif)#encapsulation dot1Q 70
 R1(config-subif)#ip address 10.70.0.1 255.255.255.0
 R1(config-subif)#exit
+R1(config)#int g0/0/1.100
+R1(config-subif)#encapsulation dot1Q 100
+R1(config-subif)#ip address 10.100.0.1 255.255.255.0
+R1(config-subif)#exit
 R1(config)#int g0/0/1.1000
 R1(config-subif)#encapsulation dot1Q 1000 native
 R1(config-subif)#exit
@@ -72,7 +77,7 @@ R1(config-subif)#exit
 ```
 R1#show ip interface brief 
 Interface              IP-Address      OK? Method Status                Protocol 
-GigabitEthernet0/0/0   unassigned      YES unset  administratively down down 
+GigabitEthernet0/0/0   unassigned      YES unset  up                    up 
 GigabitEthernet0/0/1   unassigned      YES unset  up                    up 
 GigabitEthernet0/0/1.1010.10.0.1       YES manual up                    up 
 GigabitEthernet0/0/1.2010.20.0.1       YES manual up                    up 
@@ -81,15 +86,17 @@ GigabitEthernet0/0/1.4010.40.0.1       YES manual up                    up
 GigabitEthernet0/0/1.5010.50.0.1       YES manual up                    up 
 GigabitEthernet0/0/1.6010.60.0.1       YES manual up                    up 
 GigabitEthernet0/0/1.7010.70.0.1       YES manual up                    up 
+GigabitEthernet0/0/1.10010.100.0.1      YES manual up                    up 
 GigabitEthernet0/0/1.1000unassigned      YES unset  up                    up 
 GigabitEthernet0/0/2   unassigned      YES unset  administratively down down 
+Loopback1              172.16.1.1      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
 
 ### Создание VLAN на коммутаторах S1-4
 ```
 S1(config)#vlan 10
-S1(config-vlan)#name Management
+S1(config-vlan)#name Network_Management
 S1(config-vlan)#vlan 20
 S1(config-vlan)#name Infrastructunre
 S1(config-vlan)#vlan 30
@@ -102,6 +109,8 @@ S1(config-vlan)#vlan 60
 S1(config-vlan)#name VTB
 S1(config-vlan)#vlan 70
 S1(config-vlan)#name GPB
+S1(config-vlan)#vlan 100
+S1(config-vlan)#name IT_dept
 S1(config-vlan)#vlan 999
 S1(config-vlan)#name Parking_Lot
 S1(config-vlan)#vlan 1000
