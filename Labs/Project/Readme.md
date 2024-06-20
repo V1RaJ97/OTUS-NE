@@ -117,34 +117,33 @@ S1(config-vlan)#vlan 1000
 S1(config-vlan)#name Private
 S1(config-vlan)#exit
 ```
+### Настойка Etherchannel
+#### S1
 ```
 S1(config)#int vlan 10
-S1(config-if)#
-%LINK-5-CHANGED: Interface Vlan10, changed state to up
-
-%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
-
-S1(config-if)#ip ad
 S1(config-if)#ip address 10.10.0.11 255.255.255.0
-S1(config-if)#sh
-S1(config-if)#shutdown 
-
-S1(config-if)#
-%LINK-5-CHANGED: Interface Vlan10, changed state to administratively down
-
-%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to down
-
-S1(config-if)#no sh
-S1(config-if)#no shutdown 
-
-S1(config-if)#
-%LINK-5-CHANGED: Interface Vlan10, changed state to up
-
-%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
-
 S1(config-if)#exit
-S1(config)#ip 
-S1(config)#ip de
 S1(config)#ip default-gateway 10.10.0.1
-S1(config)#
+S1(config)#int range fa0/13-14
+S1(config-if-range)#channel-group 1 mode desirable 
+S1(config-if-range)#int port-channel 1
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk all vlan 10,20,30,40,50,60,70,100,1000
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#exit
+S1(config)#int range fa0/11-12
+S1(config-if-range)#channel-group 2 mode active 
+S1(config-if-range)#int port-channel 2
+S1(config-if)#shutdown
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk all vlan 10,20,30,40,50,60,70,100,1000
+S1(config-if)#switchport trunk native vlan 1000
+S1(config-if)#no shutdown 
+S1(config)#int range fa0/1-10
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#exit
+S1(config)#int range fa0/16-24
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#exit
+
 ```
