@@ -235,5 +235,13 @@ S4(config-if)#switchport mode trunk
 S4(config-if)#switchport trunk allowed vlan 10,20,30,40,50,60,70,100,1000
 S4(config-if)#switchport trunk native vlan 1000
 S4(config-if)#exit
-
+```
+### Настойка SPT
+```
+S1(config)#spanning-tree vlan 10 root primary
+S1(config)#spanning-tree mode rapid-pvst 
+S3(config)#spanning-tree vlan 10 root secondary
+S3(config)#spanning-tree mode rapid-pvst
+S2(config)#spanning-tree mode rapid-pvst
+S4(config)#spanning-tree mode rapid-pvst 
 ```
