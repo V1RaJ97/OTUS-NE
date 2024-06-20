@@ -117,3 +117,34 @@ S1(config-vlan)#vlan 1000
 S1(config-vlan)#name Private
 S1(config-vlan)#exit
 ```
+```
+S1(config)#int vlan 10
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan10, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
+
+S1(config-if)#ip ad
+S1(config-if)#ip address 10.10.0.11 255.255.255.0
+S1(config-if)#sh
+S1(config-if)#shutdown 
+
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan10, changed state to administratively down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to down
+
+S1(config-if)#no sh
+S1(config-if)#no shutdown 
+
+S1(config-if)#
+%LINK-5-CHANGED: Interface Vlan10, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan10, changed state to up
+
+S1(config-if)#exit
+S1(config)#ip 
+S1(config)#ip de
+S1(config)#ip default-gateway 10.10.0.1
+S1(config)#
+```
