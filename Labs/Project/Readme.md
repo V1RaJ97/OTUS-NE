@@ -161,7 +161,6 @@ S1(config-if)#exit
 S3(config)#int vlan 10
 S3(config-if)#ip address 10.10.0.13 255.255.255.0
 S3(config-if)#exit
-S3(config)#ip def
 S3(config)#ip default-gateway 10.10.0.1
 S3(config)#int range fa0/13-14
 S3(config-if-range)#shutdown
@@ -215,4 +214,26 @@ S2(config-if)#switchport mode trunk
 S2(config-if)#switchport trunk allowed vlan 10,20,30,40,50,60,70,100,1000
 S2(config-if)#switchport trunk native vlan 1000
 S2(config-if)#exit
+```
+#### S4
+```
+S4(config)#int vlan 10
+S4(config-if)#ip address 10.10.0.14 255.255.255.0
+S4(config-if)#exit
+S4(config)#ip default-gateway 10.10.0.1
+S4(config)#int range fa0/11-12
+S4(config-if-range)#channel-group 1 mode active
+S4(config-if-range)#int port-channel 1
+S4(config-if)#shutdown 
+S4(config-if)#switchport mode trunk
+S4(config-if)#switchport trunk all vlan 10,20,30,40,50,60,70,100,1000
+S4(config-if)#switchport trunk native vlan 1000
+S4(config-if)#no shutdown 
+S4(config-if)#exit
+S4(config)#int fa0/15
+S4(config-if)#switchport mode trunk
+S4(config-if)#switchport trunk allowed vlan 10,20,30,40,50,60,70,100,1000
+S4(config-if)#switchport trunk native vlan 1000
+S4(config-if)#exit
+
 ```
