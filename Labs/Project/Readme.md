@@ -245,3 +245,18 @@ S3(config)#spanning-tree mode rapid-pvst
 S2(config)#spanning-tree mode rapid-pvst
 S4(config)#spanning-tree mode rapid-pvst 
 ```
+#### Настройка граничных портов
+```
+S2(config)#int range fa0/3-8
+S2(config-if-range)#no shutdown
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#spanning-tree portfast
+S2(config-if-range)#no shutdown 
+```
+```
+S4(config)#int range fa0/3-8
+S4(config-if-range)#no shutdown
+S4(config-if-range)#switchport mode access
+S4(config-if-range)#spanning-tree portfast
+S4(config-if-range)#no shutdown 
+```
