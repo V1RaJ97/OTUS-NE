@@ -117,6 +117,31 @@ S1(config-vlan)#vlan 1000
 S1(config-vlan)#name Private
 S1(config-vlan)#exit
 ```
+### Отключение неиспользуемых портов на коммутаторах
+#### S2
+```
+S2(config)#int range fa0/1-2
+S2(config-if-range)#shutdown
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#exit
+S2(config)#int range fa0/9-10
+S2(config-if-range)#shutdown 
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#exit
+S2(config)#int range fa0/13-14
+S2(config-if-range)#shutdown 
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#exit
+S2(config)#int range fa0/16-24
+S2(config-if-range)#shutdown
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#exit
+
+```
 ### Настойка Etherchannel
 #### S1
 ```
