@@ -140,6 +140,11 @@ S2(config-if-range)#shutdown
 S2(config-if-range)#switchport mode access
 S2(config-if-range)#switchport access vlan 999
 S2(config-if-range)#exit
+S2(config)#int range gi0/1-2
+S2(config-if-range)#shutdown
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 999
+S2(config-if-range)#exit
 
 ```
 ### Настойка Etherchannel
