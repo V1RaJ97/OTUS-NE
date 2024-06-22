@@ -31,10 +31,11 @@
 |  50  |        SBER       |              Проект Сбер              |                     S4: Fa0/3-4                    |
 |  60  |        VTB        |              Проект ВТБ               |                     S4: Fa0/5-6                    |
 |  70  |        GPB        |              Проект ГПБ               |                     S4: Fa0/7-8                    |
-|  100 |      IT_dept      |              IT отдел                 |                     S2: Fa0/3-4                    |
-|  111 |        ISP        |             Сервис провайдер          |                                                    |
+|  100 |      IT_dept      |               IT отдел                |                     S2: Fa0/3-4                    |
+|  111 |        ISP        |       Интернет cервис провайдер       |                                                    |
 |  999 |    Parking_Lot    |                                       |S2: Fa0/1-2, Fa0/9-10, Fa0/13-14, Fa0/16-24, Gi0/1-2|
-| 1000 |      Private      |                                       |                                 |
+|  999 |    Parking_Lot    |                                       |S4: Fa0/1-2, Fa0/9-10, Fa0/13-14, Fa0/16-24, Gi0/1-2|
+| 1000 |      Private      |                                       |                                                    |
 
 
 ### Создание сабинтерфейсов на R1
@@ -118,7 +119,7 @@ S1(config-vlan)#name Private
 S1(config-vlan)#exit
 ```
 ### Отключение неиспользуемых портов на коммутаторах
-#### S2
+#### S2,S4
 ```
 S2(config)#int range fa0/1-2
 S2(config-if-range)#shutdown
@@ -145,7 +146,6 @@ S2(config-if-range)#shutdown
 S2(config-if-range)#switchport mode access 
 S2(config-if-range)#switchport access vlan 999
 S2(config-if-range)#exit
-
 ```
 ### Настойка Etherchannel
 #### S1
