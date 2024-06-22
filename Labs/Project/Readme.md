@@ -121,6 +121,21 @@ S1(config-vlan)#exit
 ### Отключение неиспользуемых портов на коммутаторах
 #### S1,S3
 ```
+S1(config)#interface range fa0/1-10
+S1(config-if-range)#shutdown
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#exit
+S1(config)#interface range fa0/16-24
+S1(config-if-range)#shutdown
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 999
+S1(config-if-range)#exit
+S1(config)#int g0/2
+S1(config-if)#shutdown
+S1(config-if)#switchport mode access 
+S1(config-if)#switchport access vlan 999
+S1(config-if)#exit
 
 ```
 #### S2,S4
