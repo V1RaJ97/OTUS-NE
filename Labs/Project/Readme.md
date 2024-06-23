@@ -103,20 +103,23 @@ R1(config-if)#ip address 172.16.1.1 255.255.255.0
 R1(config-if)#exit
 ```
 ```
-R1#show ip interface br
+R1#show ip interface brief 
 Interface              IP-Address      OK? Method Status                Protocol 
 GigabitEthernet0/0     unassigned      YES unset  up                    down 
-GigabitEthernet0/1     unassigned      YES unset  up                    down 
-GigabitEthernet0/1.10  10.10.0.1       YES manual up                    down 
-GigabitEthernet0/1.20  10.20.0.1       YES manual up                    down 
-GigabitEthernet0/1.30  10.30.0.1       YES manual up                    down 
-GigabitEthernet0/1.40  10.40.0.1       YES manual up                    down 
-GigabitEthernet0/1.50  10.50.0.1       YES manual up                    down 
-GigabitEthernet0/1.60  10.60.0.1       YES manual up                    down 
-GigabitEthernet0/1.70  10.70.0.1       YES manual up                    down 
-GigabitEthernet0/1.100 10.100.0.1      YES manual up                    down 
-GigabitEthernet0/1.1000unassigned      YES unset  up                    down 
-GigabitEthernet0/2     unassigned      YES unset  up                    down 
+GigabitEthernet0/1     unassigned      YES unset  up                    up 
+GigabitEthernet0/1.10  10.10.0.1       YES manual up                    up 
+GigabitEthernet0/1.20  10.20.0.1       YES manual up                    up 
+GigabitEthernet0/1.30  10.30.0.1       YES manual up                    up 
+GigabitEthernet0/1.40  10.40.0.1       YES manual up                    up 
+GigabitEthernet0/1.50  10.50.0.1       YES manual up                    up 
+GigabitEthernet0/1.60  10.60.0.1       YES manual up                    up 
+GigabitEthernet0/1.70  10.70.0.1       YES manual up                    up 
+GigabitEthernet0/1.100 10.100.0.1      YES manual up                    up 
+GigabitEthernet0/1.1000unassigned      YES unset  up                    up 
+GigabitEthernet0/2     unassigned      YES manual up                    up 
+GigabitEthernet0/2.11  10.11.0.1       YES manual up                    up 
+GigabitEthernet0/2.21  10.21.0.1       YES manual up                    up 
+Loopback1              172.16.1.1      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
 #### R2
