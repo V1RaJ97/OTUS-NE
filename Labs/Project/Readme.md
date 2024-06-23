@@ -163,6 +163,24 @@ R2(config)#int Loopback1
 R2(config-if)#ip address 172.16.1.2 255.255.255.0
 R2(config-if)#exit
 ```
+```
+R2#show ip interface brief 
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0     unassigned      YES unset  up                    down 
+GigabitEthernet0/1     unassigned      YES unset  up                    up 
+GigabitEthernet0/1.10  10.10.0.2       YES manual up                    up 
+GigabitEthernet0/1.20  10.20.0.2       YES manual up                    up 
+GigabitEthernet0/1.30  10.30.0.2       YES manual up                    up 
+GigabitEthernet0/1.40  10.40.0.2       YES manual up                    up 
+GigabitEthernet0/1.50  10.50.0.2       YES manual up                    up 
+GigabitEthernet0/1.60  10.60.0.2       YES manual up                    up 
+GigabitEthernet0/1.70  10.70.0.2       YES manual up                    up 
+GigabitEthernet0/1.100 10.100.0.2      YES manual up                    up 
+GigabitEthernet0/1.1000unassigned      YES unset  up                    up 
+GigabitEthernet0/2     unassigned      YES unset  up                    down 
+Loopback1              172.16.1.2      YES manual up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+```
 ### Создание VLAN на коммутаторах S1-4
 ```
 S1(config)#vlan 10
