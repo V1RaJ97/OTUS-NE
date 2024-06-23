@@ -90,6 +90,14 @@ R1(config-subif)#exit
 R1(config)#int g0/1.1000
 R1(config-subif)#encapsulation dot1Q 1000 native
 R1(config-subif)#exit
+R1(config)#int g0/2.11
+R1(config-subif)#encapsulation dot1Q 11
+R1(config-subif)#ip address 10.11.0.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/2.21
+R1(config-subif)#encapsulation dot1Q 21
+R1(config-subif)#ip address 10.21.0.1 255.255.255.0
+R1(config-subif)#exit
 R1(config)#int Loopback1
 R1(config-if)#ip address 172.16.1.1 255.255.255.0
 R1(config-if)#exit
