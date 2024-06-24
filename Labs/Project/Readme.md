@@ -212,6 +212,13 @@ S5(config-vlan)#name Network_Management2
 S5(config-vlan)#vlan 21
 S5(config-vlan)#name Infrastructunre2
 ```
+```
+S5(config)#int g0/1
+S5(config-if)#switchport mode trunk
+S5(config-if)#switchport trunk allowed vlan 11,21,1000
+S5(config-if)#switchport trunk native vlan 1000
+S5(config-if)#exit
+```
 ### Отключение неиспользуемых портов на коммутаторах
 #### S1,S3
 ```
