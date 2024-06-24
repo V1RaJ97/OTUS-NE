@@ -181,7 +181,7 @@ GigabitEthernet0/2     unassigned      YES unset  up                    down
 Loopback1              172.16.1.2      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
-### Создание VLAN на коммутаторах S1-4
+### Создание VLAN на коммутаторах S1-S4
 ```
 S1(config)#vlan 10
 S1(config-vlan)#name Network_Management
@@ -204,6 +204,13 @@ S1(config-vlan)#name Parking_Lot
 S1(config-vlan)#vlan 1000
 S1(config-vlan)#name Private
 S1(config-vlan)#exit
+```
+### Создание VLAN на коммутаторе S5
+```
+S5(config)#vlan 11
+S5(config-vlan)#name Network_Management2
+S5(config-vlan)#vlan 21
+S5(config-vlan)#name Infrastructunre2
 ```
 ### Отключение неиспользуемых портов на коммутаторах
 #### S1,S3
@@ -252,6 +259,19 @@ S2(config-if-range)#shutdown
 S2(config-if-range)#switchport mode access 
 S2(config-if-range)#switchport access vlan 999
 S2(config-if-range)#exit
+```
+#### S5
+```
+S5(config)#int range fa0/1-22
+S5(config-if-range)#switchport mode access 
+S5(config-if-range)#switchport access vlan 999
+S5(config-if-range)#shutdown
+S5(config-if-range)#exit
+S5(config)#int g0/1
+S5(config-if)#switchport mode access 
+S5(config-if)#switchport access vlan 999
+S5(config-if)#shutdown
+S5(config-if)#exit
 ```
 ### Настойка Etherchannel
 #### S1
@@ -372,6 +392,12 @@ S4(config-if)#switchport trunk allowed vlan 10,20,30,40,50,60,70,100,1000
 S4(config-if)#switchport trunk native vlan 1000
 S4(config-if)#exit
 ```
+#### S5
+S5(config)#int vlan 11
+S5(config-if)#ip address 10.11.0.5 255.255.255.0
+S5(config-if)#exit
+S5(config)#ip default-gateway 10.11.0.1
+
 ### Настойка SPT
 ```
 S1(config)#spanning-tree vlan 10,20,30,40,50,60,70,100,1000 root primary
@@ -396,3 +422,4 @@ S4(config-if-range)#switchport mode access
 S4(config-if-range)#spanning-tree portfast
 S4(config-if-range)#no shutdown 
 ```
+
