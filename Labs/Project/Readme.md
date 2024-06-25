@@ -181,6 +181,30 @@ GigabitEthernet0/2     unassigned      YES unset  up                    down
 Loopback1              172.16.1.2      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
+### Настройка SSH на коммутаторах
+```
+R1(config)#ip domain-name luxtech.ru
+R1(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+R1(config)#ip ssh version 2
+R1(config)#username admin secret 1qa@WS3ed
+R1(config)#line vty 0 4
+R1(config-line)#login local
+R1(config-line)#transport input ssh
+R1(config-line)#exit
+```
+```
+R2(config)#ip domain-name luxtech.ru
+R2(config)#crypto key generate rsa
+How many bits in the modulus [512]: 1024
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+R2(config)#ip ssh version 2
+R2(config)#username admin secret 1qa@WS3ed
+R2(config)#line vty 0 4
+R2(config-line)#login local
+R2(config-line)#transport input ssh
+R2(config-line)#exit
+```
 ### Создание VLAN на коммутаторах S1-S4
 ```
 S1(config)#vlan 10
