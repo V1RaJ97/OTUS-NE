@@ -243,6 +243,64 @@ S5(config-if)#switchport trunk allowed vlan 11,21,1000
 S5(config-if)#switchport trunk native vlan 1000
 S5(config-if)#exit
 ```
+### Настройка SSH на коммутаторах
+```
+S1(config)#ip domain-name luxtech.ru
+S1(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S1(config)#ip ssh version 2
+S1(config)#username admin secret 1qa@WS3ed
+S1(config)#line vty 0 4
+S1(config-line)#login local
+S1(config-line)#transport input ssh
+S1(config-line)#exit
+```
+```
+S2(config)#ip domain-name luxtech.ru
+S2(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S2(config)#ip ssh version 2
+S2(config)#username admin secret 1qa@WS3ed
+S2(config)#line vty 0 4
+S2(config-line)#login local
+S2(config-line)#transport input ssh
+S2(config-line)#exit
+```
+```
+S3(config)#ip domain-name luxtech.ru
+S3(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S3(config)#ip ssh version 2
+S3(config)#username admin secret 1qa@WS3ed
+S3(config)#line vty 0 4
+S3(config-line)#login local
+S3(config-line)#transport input ssh
+S3(config-line)#exit
+```
+```
+S4(config)#ip domain-name luxtech.ru
+S4(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S4(config)#ip ssh version 2
+S4(config)#username admin secret 1qa@WS3ed
+S4(config)#line vty 0 4
+S4(config-line)#login local
+S4(config-line)#transport input ssh
+S4(config-line)#exit
+
+```
+```
+S5(config)#ip domain-name luxtech.ru
+S5(config)#crypto key generate rsa
+% Generating 1024 bit RSA keys, keys will be non-exportable...[OK]
+S5(config)#ip ssh version 2
+S5(config)#username admin secret 1qa@WS3ed
+S5(config)#line vty 0 4
+S5(config-line)#login local
+S5(config-line)#transport input ssh
+S5(config-line)#exit
+```
+
 ### Отключение неиспользуемых портов на коммутаторах
 #### S1,S3
 ```
