@@ -556,7 +556,7 @@ R1(dhcp-config)#default-router 10.100.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.2
 R1(config)#
-
+```
 ### Настройка маршрутизации между R1 и R2
 ```
 R1(config)#ip route 172.16.1.2 255.255.255.255 10.10.0.2 - маршрут до Loopback1 на R2
