@@ -563,3 +563,96 @@ R1(config)#ip route 172.16.1.2 255.255.255.255 10.10.0.2 - маршрут до L
 
 R2(config)#ip route 10.21.0.0 255.255.255.0 10.10.0.1 - маршрут до 21 подсети на R1
 ```
+### Настройка HSRP
+#### R1
+```
+R1(config)#int g0/1.10
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 10 ip 10.10.0.3
+R1(config-subif)#standby 10 priority 150
+R1(config-subif)#standby 10 preempt
+R1(config-subif)#exit
+R1(config)#int g0/1.20
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 20 ip 10.20.0.3
+R1(config-subif)#standby 20 priority 150
+R1(config-subif)#standby 20 preempt
+R1(config-subif)#exit
+R1(config)#int g0/1.20
+R1(config-subif)#no standby 10 preempt
+R1(config-subif)#no standby 10 priority 150
+R1(config-subif)#standby 20 priority 150
+R1(config-subif)#standby 20 preempt
+R1(config-subif)#exit
+R1(config)#int g0/1.30
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 30 ip 10.30.0.3
+R1(config-subif)#standby 30 priority 150
+R1(config-subif)#standby 30 preempt 
+R1(config-subif)#exit
+R1(config)#int g0/1.40
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 40 ip 10.40.0.3
+R1(config-subif)#standby 40 priority 150
+R1(config-subif)#standby 40 preempt 
+R1(config-subif)#exit
+R1(config)#int g0/1.50
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 50 ip 10.50.0.3
+R1(config-subif)#standby 50 priority 150
+R1(config-subif)#standby 50 preempt 
+R1(config-subif)#exit
+R1(config)#int g0/1.60
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 60 ip 10.60.0.3
+R1(config-subif)#standby 60 priority 150
+R1(config-subif)#standby 60 preempt 
+R1(config-subif)#exit
+R1(config)#int g0/1.70
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 70 ip 10.70.0.3
+R1(config-subif)#standby 70 priority 150
+R1(config-subif)#standby 70 preempt
+R1(config-subif)#exit
+R1(config)#int g0/1.100
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 100 ip 10.100.0.3
+R1(config-subif)#standby 100 priority 150
+R1(config-subif)#standby 100 preempt
+R1(config-subif)#exit
+```
+#### R2
+```
+R2(config)#int gi0/1.10
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 10 ip 10.10.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.20
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 20 ip 10.20.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.30
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 30 ip 10.30.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.40
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 40 ip 10.40.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.50
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 50 ip 10.50.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.60
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 60 ip 10.60.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.70
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 70 ip 10.70.0.3
+R2(config-subif)#exit
+R2(config)#int gi0/1.100
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 100 ip 10.100.0.3
+R2(config-subif)#exit
+```
