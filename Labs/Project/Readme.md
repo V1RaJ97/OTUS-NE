@@ -519,42 +519,42 @@ R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.30.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.30.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_HR_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.40.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.40.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_SBER_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.50.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.50.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_VTB_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.60.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.60.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_GPB_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.70.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.70.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_IT_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.100.0.0 255.255.255.0
 R1(dhcp-config)#default-router 10.100.0.1
 R1(dhcp-config)#dns-server 10.21.0.3
-R1(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.2
+R1(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.3
 R1(config)#
 ```
 ### Настройка маршрутизации между R1 и R2
