@@ -482,10 +482,12 @@ S4(config-if)#switchport trunk native vlan 1000
 S4(config-if)#exit
 ```
 #### S5
+```
 S5(config)#int vlan 11
 S5(config-if)#ip address 10.11.0.5 255.255.255.0
 S5(config-if)#exit
 S5(config)#ip default-gateway 10.11.0.1
+```
 
 ### Настойка SPT
 ```
