@@ -559,7 +559,7 @@ R1(config)#
 ```
 ### Настройка маршрутизации между R1 и R2
 ```
-R1(config)#ip route 172.16.1.2 255.255.255.255 10.10.0.2 - маршрут до Loopback1 на R2
+R1(config)#ip route 172.16.2.1 255.255.255.255 10.10.0.2 - маршрут до Loopback1 на R2
 
 R2(config)#ip route 10.21.0.0 255.255.255.0 10.10.0.1 - маршрут до 21 подсети на R1
 ```
@@ -655,4 +655,11 @@ R2(config)#int gi0/1.100
 R2(config-subif)#standby version 2
 R2(config-subif)#standby 100 ip 10.100.0.3
 R2(config-subif)#exit
+```
+### Настройка NAT
+#### R1
+```
+R1(config)#access-list 1 permit 10.0.0.0 0.255.255.255
+R1(config)#ip nat pool PUBLIC_ACCESS 172.16.1.7 172.16.1.9 netmask 255.255.255.0
+R1(config)#ip nat inside source list 1 pool PUBLIC_ACCESS
 ```
