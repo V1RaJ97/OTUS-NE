@@ -559,7 +559,8 @@ R1(config)#
 ```
 ### Настройка маршрутизации между R1 и R2
 ```
-R1(config)#ip route 172.16.2.1 255.255.255.255 10.10.0.2 - маршрут до Loopback1 на R2
+R1(config)#ip route 172.16.2.1 255.255.255.255 10.10.0.2 - маршрут до g0/2 на R2
+R1(config)#ip route 172.16.2.3 255.255.255.255 10.10.0.2 - маршрут до ISP через R2
 
 R2(config)#ip route 10.21.0.0 255.255.255.0 10.10.0.1 - маршрут до 21 подсети на R1
 ```
@@ -662,4 +663,73 @@ R2(config-subif)#exit
 R1(config)#access-list 1 permit 10.0.0.0 0.255.255.255
 R1(config)#ip nat pool PUBLIC_ACCESS 172.16.1.7 172.16.1.9 netmask 255.255.255.0
 R1(config)#ip nat inside source list 1 pool PUBLIC_ACCESS
+R1(config)#int g0/0
+R1(config-if)#ip address 172.16.1.1 255.255.255.0
+R1(config-if)#ip nat outside 
+R1(config-if)#exit
+R1(config)#int g0/1.10
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.20
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.30
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.40
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.50
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.60
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.70
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/1.100
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/2.11
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+R1(config)#int g0/2.21
+R1(config-subif)#ip nat inside
+R1(config-subif)#exit
+```
+#### R2
+```
+R2(config)#access-list 1 permit 10.0.0.0 0.255.255.255
+R2(config)#ip nat pool PUBLIC_ACCESS 172.16.2.7 172.16.2.9 netmask 255.255.255.0
+R2(config)#ip nat inside source list 1 pool PUBLIC_ACCESS
+R2(config)#int g0/2
+R2(config-if)#ip ad
+R2(config-if)#ip address 172.16.2.1 255.255.255.0
+R2(config-if)#ip nat outside
+R2(config-if)#exit
+R2(config)#int g0/1.10
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.20
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.30
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.40
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.50
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.60
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.70
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
+R2(config)#int g0/1.100
+R2(config-subif)#ip nat inside
+R2(config-subif)#exit
 ```
