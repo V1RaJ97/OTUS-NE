@@ -787,7 +787,7 @@ R2(config-subif)#exit
 ### ACL
 ```
 Требования по ограничению доступа:
-1. Доступ к сетевым устройствам и компьютерам пользователей по SSH разрешен только из IT VLAN.
+1. Доступ к сетевым устройствам и компьютерам пользователей по 22 и 3389 разрешен только из IT VLAN.
 2. Доступ к web серверам проектов по 80 и 443 разршен тольяко из IT VLAN или VLAN соотетствующего проекта. Доступ к Homepage есть у всех.
 3. Доступ к серверу 1C-Web по 80 и 443  портам есть только из VLAN Accounting и IT.
 ```
@@ -795,6 +795,7 @@ R2(config-subif)#exit
 R1(config)#ip access-list extended 110
 R1(config-ext-nacl)#remark Deny SSH to computers and network devices
 R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255 eq 22
+R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255 eq 3389
 R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 172.16.0.0 0.0.255.255 eq 22
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS
 R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
@@ -837,6 +838,9 @@ R1(config)#int g0/1.60
 R1(config-subif)#ip access-group 110 in
 R1(config-subif)#exit
 R1(config)#int g0/1.70
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
+R1(config)#int g0/1.100
 R1(config-subif)#ip access-group 110 in
 R1(config-subif)#exit
 ```
