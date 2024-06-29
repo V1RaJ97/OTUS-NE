@@ -500,16 +500,18 @@ S4(config)#spanning-tree mode rapid-pvst
 #### Настройка граничных портов
 ```
 S2(config)#int range fa0/3-8
-S2(config-if-range)#no shutdown
+S2(config-if-range)#shutdown
 S2(config-if-range)#switchport mode access
 S2(config-if-range)#spanning-tree portfast
+S2(config-if-range)#spanning-tree bpduguard enable 
 S2(config-if-range)#no shutdown 
 ```
 ```
 S4(config)#int range fa0/3-8
-S4(config-if-range)#no shutdown
+S4(config-if-range)#shutdown
 S4(config-if-range)#switchport mode access
 S4(config-if-range)#spanning-tree portfast
+S4(config-if-range)#spanning-tree bpduguard enable 
 S4(config-if-range)#no shutdown 
 ```
 ### Настройка DHCP
@@ -779,4 +781,12 @@ R2(config-subif)#exit
 R2(config)#int g0/1.100
 R2(config-subif)#ip nat inside
 R2(config-subif)#exit
+```
+### ACL
+```
+Требования по ограничению доступа:
+1. Доступ к сетевым устройствам и компьютерам пользователей по ssh разрешен только из IT VLAN.
+2. Доступ к серверам проектов разршен тольяко из IT VLAN или VLAN соотетствующего проекта.
+3. Доступ к серверу 1C-Web по 80 и 443 портам есть только из VLAN Accounting и IT 
+```
 ```
