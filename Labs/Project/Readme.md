@@ -794,8 +794,8 @@ R2(config-subif)#exit
 ```
 R1(config)#ip access-list extended 110
 R1(config-ext-nacl)#remark Deny SSH to computers and network devices
-R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.10.0.0 0.0.0.255 eq 22
-R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.11.0.0 0.0.0.255 eq 22
+R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255 eq 22
+R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 172.16.0.0 0.0.255.255 eq 22
 R1(config-ext-nacl)#remark Deny HTTP/HTTPS
 R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
 R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 443
@@ -821,7 +821,7 @@ R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 80
 R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 443
 R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 80
 R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 443
-
+R1(config-ext-nacl)#permit ip any any
 ```
 ```
 R1(config)#int g0/1.30
