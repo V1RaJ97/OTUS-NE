@@ -788,11 +788,55 @@ R2(config-subif)#exit
 ```
 Требования по ограничению доступа:
 1. Доступ к сетевым устройствам и компьютерам пользователей по SSH разрешен только из IT VLAN.
-2. Доступ к web серверам проектов по 80 и 443 разршен тольяко из IT VLAN или VLAN соотетствующего проекта.
+2. Доступ к web серверам проектов по 80 и 443 разршен тольяко из IT VLAN или VLAN соотетствующего проекта. Доступ к Homepage есть у всех.
 3. Доступ к серверу 1C-Web по 80 и 443  портам есть только из VLAN Accounting и IT.
 ```
 ```
 R1(config)#ip access-list extended 110
 R1(config-ext-nacl)#remark Deny SSH to computers and network devices
-R1(config-ext-nacl)#deny tcp 10.10.0.0 0.255.255.255 10.10.0.0 0.255.255.255 eq 22
+R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.10.0.0 0.0.0.255 eq 22
+R1(config-ext-nacl)#deny tcp 10.0.0.0 0.255.255.255 10.11.0.0 0.0.0.255 eq 22
+R1(config-ext-nacl)#remark Deny HTTP/HTTPS
+R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.30.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.40.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.50.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.50.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.50.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.50.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.60.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.60.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.60.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.60.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.5 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.6 0.0.0.0 eq 443
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 80
+R1(config-ext-nacl)#deny tcp 10.70.0.0 0.0.255.255 10.21.0.10 0.0.0.0 eq 443
+
+```
+```
+R1(config)#int g0/1.30
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
+R1(config)#int g0/1.40
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
+R1(config)#int g0/1.50
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
+R1(config)#int g0/1.60
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
+R1(config)#int g0/1.70
+R1(config-subif)#ip access-group 110 in
+R1(config-subif)#exit
 ```
