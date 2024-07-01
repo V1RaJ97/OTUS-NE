@@ -47,7 +47,7 @@
 |  70  |        GPB        |              Проект ГПБ               |                       S4: Fa0/7-8                     |
 |  100 |      IT_dept      |               IT отдел                |                       S2: Fa0/3-4                     |
 |  999 |    Parking_Lot    |                                       |S2/S4: Fa0/1-2, Fa0/9-10, Fa0/13-14, Fa0/16-24, Gi0/1-2|
-|  999 |    Parking_Lot    |                                       |            S1/S3: Fa0/1-10, Fa0/16-24, Gi0/2          |
+|  999 |    Parking_Lot    |                                       |S1/S3: Fa0/1-10, Fa0/16-24, Gi0/2 S5: Fa0/1-19         |
 | 1000 |      Private      |                                       |                                                       |
 
 
@@ -158,9 +158,14 @@ R2(config-subif)#exit
 R2(config)#int g0/1.1000
 R2(config-subif)#encapsulation dot1Q 1000 native
 R2(config-subif)#exit
-R2(config)#int Loopback1
-R2(config-if)#ip address 172.16.1.2 255.255.255.0
-R2(config-if)#exit
+R2(config)#int g0/1.11
+R2(config-subif)#encapsulation dot1Q 11
+R2(config-subif)#ip address 10.11.0.2 255.255.255.0
+R2(config-subif)#exit
+R2(config)#int g0/1.21
+R2(config-subif)#encapsulation dot1Q 21
+R2(config-subif)#ip address 10.21.0.2 255.255.255.0
+R2(config-subif)#exit
 ```
 ```
 R2#show ip interface brief 
@@ -168,7 +173,9 @@ Interface              IP-Address      OK? Method Status                Protocol
 GigabitEthernet0/0     unassigned      YES unset  up                    down 
 GigabitEthernet0/1     unassigned      YES unset  up                    up 
 GigabitEthernet0/1.10  10.10.0.2       YES manual up                    up 
+GigabitEthernet0/1.11  10.11.0.2       YES manual up                    up 
 GigabitEthernet0/1.20  10.20.0.2       YES manual up                    up 
+GigabitEthernet0/1.21  10.21.0.2       YES manual up                    up 
 GigabitEthernet0/1.30  10.30.0.2       YES manual up                    up 
 GigabitEthernet0/1.40  10.40.0.2       YES manual up                    up 
 GigabitEthernet0/1.50  10.50.0.2       YES manual up                    up 
@@ -176,8 +183,7 @@ GigabitEthernet0/1.60  10.60.0.2       YES manual up                    up
 GigabitEthernet0/1.70  10.70.0.2       YES manual up                    up 
 GigabitEthernet0/1.100 10.100.0.2      YES manual up                    up 
 GigabitEthernet0/1.1000unassigned      YES unset  up                    up 
-GigabitEthernet0/2     unassigned      YES unset  up                    down 
-Loopback1              172.16.1.2      YES manual up                    up 
+GigabitEthernet0/2     172.16.2.1      YES manual up                    up 
 Vlan1                  unassigned      YES unset  administratively down down
 ```
 ### Настройка SSH на коммутаторах
@@ -236,8 +242,13 @@ S5(config-vlan)#vlan 21
 S5(config-vlan)#name Infrastructunre2
 ```
 ```
-S5(config)#int g0/1
+S5(config)#int g0/2
 S5(config-if)#switchport mode trunk
+S5(config-if)#switchport trunk allowed vlan 11,21,1000
+S5(config-if)#switchport trunk native vlan 1000
+S5(config-if)#exit
+S5(config)#int g0/1
+S5(config-if)#switchport mode trunk 
 S5(config-if)#switchport trunk allowed vlan 11,21,1000
 S5(config-if)#switchport trunk native vlan 1000
 S5(config-if)#exit
@@ -350,16 +361,11 @@ S2(config-if-range)#exit
 ```
 #### S5
 ```
-S5(config)#int range fa0/1-22
+S5(config)#int range fa0/1-19
 S5(config-if-range)#switchport mode access 
 S5(config-if-range)#switchport access vlan 999
 S5(config-if-range)#shutdown
 S5(config-if-range)#exit
-S5(config)#int g0/1
-S5(config-if)#switchport mode access 
-S5(config-if)#switchport access vlan 999
-S5(config-if)#shutdown
-S5(config-if)#exit
 ```
 ### Настойка Etherchannel
 #### S1
