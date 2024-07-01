@@ -158,24 +158,24 @@ R2(config-subif)#exit
 R2(config)#int g0/1.1000
 R2(config-subif)#encapsulation dot1Q 1000 native
 R2(config-subif)#exit
-R2(config)#int g0/1.11
+R2(config)#int g0/0.11
 R2(config-subif)#encapsulation dot1Q 11
 R2(config-subif)#ip address 10.11.0.2 255.255.255.0
 R2(config-subif)#exit
-R2(config)#int g0/1.21
+R2(config)#int g0/0.21
 R2(config-subif)#encapsulation dot1Q 21
 R2(config-subif)#ip address 10.21.0.2 255.255.255.0
 R2(config-subif)#exit
 ```
 ```
-R2#show ip interface brief 
+R2#show ip int brief 
 Interface              IP-Address      OK? Method Status                Protocol 
-GigabitEthernet0/0     unassigned      YES unset  up                    down 
+GigabitEthernet0/0     unassigned      YES unset  up                    up 
+GigabitEthernet0/0.11  10.11.0.2       YES manual up                    up 
+GigabitEthernet0/0.21  10.21.0.2       YES manual up                    up 
 GigabitEthernet0/1     unassigned      YES unset  up                    up 
 GigabitEthernet0/1.10  10.10.0.2       YES manual up                    up 
-GigabitEthernet0/1.11  10.11.0.2       YES manual up                    up 
 GigabitEthernet0/1.20  10.20.0.2       YES manual up                    up 
-GigabitEthernet0/1.21  10.21.0.2       YES manual up                    up 
 GigabitEthernet0/1.30  10.30.0.2       YES manual up                    up 
 GigabitEthernet0/1.40  10.40.0.2       YES manual up                    up 
 GigabitEthernet0/1.50  10.50.0.2       YES manual up                    up 
