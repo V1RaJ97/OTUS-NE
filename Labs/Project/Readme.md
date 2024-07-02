@@ -575,42 +575,42 @@ R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.30.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.30.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_HR_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.40.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.40.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_SBER_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.50.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.50.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_VTB_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.60.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.60.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_GPB_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.70.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.70.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_IT_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.100.0.0 255.255.255.0
 R2(dhcp-config)#default-router 10.100.0.2
 R2(dhcp-config)#dns-server 10.21.0.3
-R2(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.3
+R2(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.127
 R2(config)#
 
 ```
