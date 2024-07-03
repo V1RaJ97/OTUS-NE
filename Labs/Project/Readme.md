@@ -373,7 +373,7 @@ S5(config-if-range)#exit
 S1(config)#int vlan 10
 S1(config-if)#ip address 10.10.0.11 255.255.255.0
 S1(config-if)#exit
-S1(config)#ip default-gateway 10.10.0.1
+S1(config)#ip default-gateway 10.10.0.3
 S1(config)#int range fa0/13-14
 S1(config-if-range)#channel-group 1 mode active 
 S1(config-if-range)#int port-channel 1
@@ -528,42 +528,42 @@ S4(config-if-range)#no shutdown
 R1(config)#ip dhcp pool R1_Accounting_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.30.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.30.0.1
+R1(dhcp-config)#default-router 10.30.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_HR_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.40.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.40.0.1
+R1(dhcp-config)#default-router 10.40.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_SBER_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.50.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.50.0.1
+R1(dhcp-config)#default-router 10.50.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_VTB_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.60.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.60.0.1
+R1(dhcp-config)#default-router 10.60.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_GPB_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.70.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.70.0.1
+R1(dhcp-config)#default-router 10.70.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.3
 R1(config)#
 R1(config)#ip dhcp pool R1_IT_vlan
 R1(dhcp-config)#domain-name luxtech.ru
 R1(dhcp-config)#network 10.100.0.0 255.255.255.0
-R1(dhcp-config)#default-router 10.100.0.1
+R1(dhcp-config)#default-router 10.100.0.3
 R1(dhcp-config)#dns-server 10.21.0.3
 R1(dhcp-config)#ip dhcp excluded-address 10.100.0.1 10.100.0.3
 R1(config)#
@@ -573,35 +573,35 @@ R1(config)#
 R2(config)#ip dhcp pool R2_Accounting_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.30.0.0 255.255.255.0
-R2(dhcp-config)#default-router 10.30.0.2
+R2(dhcp-config)#default-router 10.30.0.3
 R2(dhcp-config)#dns-server 10.21.0.3
 R2(dhcp-config)#ip dhcp excluded-address 10.30.0.1 10.30.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_HR_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.40.0.0 255.255.255.0
-R2(dhcp-config)#default-router 10.40.0.2
+R2(dhcp-config)#default-router 10.40.0.3
 R2(dhcp-config)#dns-server 10.21.0.3
 R2(dhcp-config)#ip dhcp excluded-address 10.40.0.1 10.40.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_SBER_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.50.0.0 255.255.255.0
-R2(dhcp-config)#default-router 10.50.0.2
+R2(dhcp-config)#default-router 10.50.0.3
 R2(dhcp-config)#dns-server 10.21.0.3
 R2(dhcp-config)#ip dhcp excluded-address 10.50.0.1 10.50.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_VTB_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.60.0.0 255.255.255.0
-R2(dhcp-config)#default-router 10.60.0.2
+R2(dhcp-config)#default-router 10.60.0.3
 R2(dhcp-config)#dns-server 10.21.0.3
 R2(dhcp-config)#ip dhcp excluded-address 10.60.0.1 10.60.0.127
 R2(config)#
 R2(config)#ip dhcp pool R2_GPB_vlan
 R2(dhcp-config)#domain-name luxtech.ru
 R2(dhcp-config)#network 10.70.0.0 255.255.255.0
-R2(dhcp-config)#default-router 10.70.0.2
+R2(dhcp-config)#default-router 10.70.0.3
 R2(dhcp-config)#dns-server 10.21.0.3
 R2(dhcp-config)#ip dhcp excluded-address 10.70.0.1 10.70.0.127
 R2(config)#
