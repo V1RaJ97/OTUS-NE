@@ -678,6 +678,19 @@ R1(config-subif)#standby 100 ip 10.100.0.3
 R1(config-subif)#standby 100 priority 150
 R1(config-subif)#standby 100 preempt
 R1(config-subif)#exit
+R1(config)#int g0/2.11
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 11 ip 10.11.0.11
+R1(config-subif)#standby 11 priority 150
+R1(config-subif)#standby 11 preempt
+R1(config-subif)#exit
+R1(config)#int g0/2.21
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 21 ip 10.21.0.11
+R1(config-subif)#standby 21 priority 150
+R1(config-subif)#standby 21 preempt 
+R1(config-subif)#exit
+
 ```
 #### R2
 ```
@@ -713,6 +726,16 @@ R2(config)#int gi0/1.100
 R2(config-subif)#standby version 2
 R2(config-subif)#standby 100 ip 10.100.0.3
 R2(config-subif)#exit
+R2(config)#int g0/0.11
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 11 ip 10.11.0.11
+R2(config-subif)#exit
+R2(config)#int g0/0.21
+R2(config-subif)#standby version 2
+R2(config-subif)#standby 21 ip 10.21.0.11
+R2(config-subif)#exit
+
+
 ```
 ### Настройка NAT
 #### R1
