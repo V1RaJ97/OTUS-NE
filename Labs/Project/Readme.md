@@ -648,8 +648,8 @@ R1(config-subif)#standby 10 priority 150
 R1(config-subif)#standby 10 preempt
 R1(config-subif)#exit
 R1(config)#int g0/1.20
-R1(config-subif)#no standby 10 preempt
-R1(config-subif)#no standby 10 priority 150
+R1(config-subif)#standby version 2
+R1(config-subif)#standby 20 ip 10.20.0.3
 R1(config-subif)#standby 20 priority 150
 R1(config-subif)#standby 20 preempt
 R1(config-subif)#exit
