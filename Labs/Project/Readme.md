@@ -498,11 +498,11 @@ S5(config)#ip default-gateway 10.11.0.1
 
 ### Настойка SPT
 ```
-S1(config)#spanning-tree vlan 10,20,30,40,1000 root primary
+S1(config)#spanning-tree vlan 10,20,30,40,100,1000 root primary
 S1(config)#spanning-tree vlan 50,60,70 root secondary
 S1(config)#spanning-tree mode rapid-pvst 
 S3(config)#spanning-tree vlan 50,60,70 root primary
-S3(config)#spanning-tree vlan 10,20,30,40,1000 root secondary
+S3(config)#spanning-tree vlan 10,20,30,40,100,1000 root secondary
 S3(config)#spanning-tree mode rapid-pvst
 S2(config)#spanning-tree mode rapid-pvst
 S4(config)#spanning-tree mode rapid-pvst 
