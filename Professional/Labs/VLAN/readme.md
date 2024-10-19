@@ -246,3 +246,20 @@ end
 ```
 ## Часть 2: Создание VLAN и назначение портов коммутатора
 ### Создание и настройка VLAN на коммутаторах S1 и S2
+#### S1
+```
+S1(config)#vlan 3
+S1(config-vlan)#name Management
+S1(config-vlan)#exit
+S1(config)#vlan 4
+S1(config-vlan)#name Operations
+S1(config-vlan)#exit
+S1(config)#vlan 7
+S1(config-vlan)#name Parking_Lot
+S1(config-vlan)#exit
+S1(config)#vlan 8
+S1(config-vlan)#name Native
+S1(config-vlan)#exit
+S1(config)#ip default-gateway 192.168.3.1
+```
+#### S2
