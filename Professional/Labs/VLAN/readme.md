@@ -504,3 +504,65 @@ GigabitEthernet0/0/1.8 unassigned      YES unset  up                    up
 Vlan1                  unassigned      YES unset  administratively down down
 ```
 ## Часть 5. Проверка маршрутизации между VLAN
+### Ping от PC-A до шлюза по умолчанию
+```
+C:\>ping 192.168.3.1
+
+Pinging 192.168.3.1 with 32 bytes of data:
+
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.1: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.3.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+
+```
+
+### Ping от PC-A до PC-B
+```
+C:\>ping 192.168.4.3
+
+Pinging 192.168.4.3 with 32 bytes of data:
+
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+Reply from 192.168.4.3: bytes=32 time<1ms TTL=127
+
+Ping statistics for 192.168.4.3:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
+### Ping от PC-A до S2
+```
+C:\>ping 192.168.3.12
+
+Pinging 192.168.3.12 with 32 bytes of data:
+
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+Reply from 192.168.3.12: bytes=32 time<1ms TTL=255
+
+Ping statistics for 192.168.3.12:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 0ms, Average = 0ms
+```
+### Tracert от PC-B до PC-A
+```
+C:\>tracert 192.168.3.3
+
+Tracing route to 192.168.3.3 over a maximum of 30 hops: 
+
+  1   0 ms      0 ms      0 ms      192.168.4.1
+  2   0 ms      0 ms      0 ms      192.168.3.3
+
+Trace complete.
+
+```
