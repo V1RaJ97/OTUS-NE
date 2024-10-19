@@ -262,4 +262,6 @@ S1(config-vlan)#name Native
 S1(config-vlan)#exit
 S1(config)#ip default-gateway 192.168.3.1
 ```
-#### S2
+```
+Аналогичным образом настраиваем на S2
+```
