@@ -1,6 +1,6 @@
 # Лабораторная работа - настройка маршрутизации между VLAN-сетями Router-on-a-Stick
 ## Схема сети
-![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/45acf54fe52587d6691cee1c7e9ec4668462c79f/Labs/Lab06/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/6001e275ef472672e0e3d10665f01b51e62f0bb7/Professional/Labs/VLAN/vlan.png)
 ## Таблица адресации
 | Устройство |  Интерфейс  |   IP-адрес   | Маска подсети | Шлюз по умолчанию |
 |:----------:|:-----------:|:------------:|:-------------:|:-----------------:|
