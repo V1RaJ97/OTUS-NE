@@ -333,3 +333,174 @@ VLAN Name                             Status    Ports
 1005 trnet-default                    active  
 ```
 #### S2
+```
+S2(config)#int vlan 3
+S2(config-if)#ip address 192.168.3.12 255.255.255.0
+S2(config-if)#exit
+S2(config)#int f0/18
+S2(config-if)#switchport mode access 
+S2(config-if)#sw access vlan 4
+S2(config-if)#no shutdown 
+S2(config-if)#end
+S2#show vlan brief 
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1
+3    Management                       active    
+4    Operations                       active    Fa0/18
+7    Parking_Lot                      active    Fa0/2, Fa0/3, Fa0/4, Fa0/5
+                                                Fa0/6, Fa0/7, Fa0/8, Fa0/9
+                                                Fa0/10, Fa0/11, Fa0/12, Fa0/13
+                                                Fa0/14, Fa0/15, Fa0/16, Fa0/17
+                                                Fa0/19, Fa0/20, Fa0/21, Fa0/22
+                                                Fa0/23, Fa0/24, Gig0/1, Gig0/2
+8    VLAN0008                         active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active  
+```
+## Часть 3. Настройка магистрального канала  802.1Q между коммутаторами
+### S1
+```
+S1(config)#int fa0/1
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk native vlan 8
+S1(config-if)#switchport trunk allowed vlan 3,4,8
+S1(config-if)#exit
+```
+#### Информация об интерфейсе fa0/1 на коммутаторе S1
+```
+S1#show interfaces fa0/1 switchport 
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 8 (Native)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 3-4,8
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+```
+### S2
+```
+S2(config)#int fa0/1
+S2(config-if)#switchport mode trunk
+S2(config-if)#switchport trunk native vlan 8
+S2(config-if)#switchport trunk allowed vlan 3,4,8
+S2(config-if)#exit
+```
+#### Информация об интерфейсе fa0/1 на коммутаторе S2
+```
+S2#show interfaces fa0/1 switchport 
+Name: Fa0/1
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: trunk
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 8 (VLAN0008)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 3-4,8
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+```
+### Настройка интерфейса Fa0/5 на коммутаторе S1
+```
+S1(config)#int fa0/5
+S1(config-if)#switchport mode trunk
+S1(config-if)#switchport trunk native vlan 8
+S1(config-if)#switchport trunk allowed vlan 3,4,8
+S1(config-if)#exit
+```
+#### Инфорация об интерфейсе Fa0/5 на коммутаторе S1
+```
+S1#show interfaces fa0/5 switchport 
+Name: Fa0/5
+Switchport: Enabled
+Administrative Mode: trunk
+Operational Mode: down
+Administrative Trunking Encapsulation: dot1q
+Operational Trunking Encapsulation: dot1q
+Negotiation of Trunking: On
+Access Mode VLAN: 1 (default)
+Trunking Native Mode VLAN: 8 (Native)
+Voice VLAN: none
+Administrative private-vlan host-association: none
+Administrative private-vlan mapping: none
+Administrative private-vlan trunk native VLAN: none
+Administrative private-vlan trunk encapsulation: dot1q
+Administrative private-vlan trunk normal VLANs: none
+Administrative private-vlan trunk private VLANs: none
+Operational private-vlan: none
+Trunking VLANs Enabled: 3-4,8
+Pruning VLANs Enabled: 2-1001
+Capture Mode Disabled
+Capture VLANs Allowed: ALL
+Protected: false
+Unknown unicast blocked: disabled
+Unknown multicast blocked: disabled
+Appliance trust: none
+```
+## Часть 4. Настройка маршрутизации между сетями VLAN
+### Создание и настройка сабинтерфейсов на R1
+```
+R1(config)#int g0/0/1
+R1(config-if)#no shutdown 
+R1(config-if)#exit
+R1(config)#int g0/0/1.3
+R1(config-subif)#encapsulation dot1Q 3
+R1(config-subif)#ip address 192.168.3.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/0/1.4
+R1(config-subif)#encapsulation dot1Q 4
+R1(config-subif)#ip address 192.168.4.1 255.255.255.0
+R1(config-subif)#exit
+R1(config)#int g0/0/1.8
+R1(config-subif)#encapsulation dot1Q 8 native
+R1(config-subif)#no shutdown 
+R1(config-subif)#end
+```
+#### Конфигурация подинтерфейсов
+```
+R1#show ip interface brief
+Interface              IP-Address      OK? Method Status                Protocol 
+GigabitEthernet0/0/0   unassigned      YES unset  administratively down down 
+GigabitEthernet0/0/1   unassigned      YES unset  up                    up 
+GigabitEthernet0/0/1.3 192.168.3.1     YES manual up                    up 
+GigabitEthernet0/0/1.4 192.168.4.1     YES manual up                    up 
+GigabitEthernet0/0/1.8 unassigned      YES unset  up                    up 
+Vlan1                  unassigned      YES unset  administratively down down
+```
+## Часть 5. Проверка маршрутизации между VLAN
