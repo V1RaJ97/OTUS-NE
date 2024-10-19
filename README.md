@@ -1,2 +1,2 @@
-# OTUS-NE Basic
+# OTUS-NE 
 Network Engineering
