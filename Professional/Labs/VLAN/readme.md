@@ -265,3 +265,45 @@ S1(config)#ip default-gateway 192.168.3.1
 ```
 Аналогичным образом настраиваем на S2
 ```
+### Перевод неипользуемых портов на коммутаторах в Parking_Lot
+#### S1
+```
+S1(config)#interface range f0/2-4
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 7
+S1(config-if-range)#shutdown
+S1(config-if-range)#exit
+S1(config)#interface range f0/7-24
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 7
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+S1(config)#interface range g0/1-2
+S1(config-if-range)#switchport mode access 
+S1(config-if-range)#switchport access vlan 7
+S1(config-if-range)#shutdown 
+S1(config-if-range)#exit
+```
+#### S2
+```
+S2(config)#interface range f0/2-17
+S2(config-if-range)#switchport mode access 
+S2(config-if-range)#switchport access vlan 7
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#interface range f0/19-24
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 7
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+S2(config)#interface range g0/1-2
+S2(config-if-range)#switchport mode access
+S2(config-if-range)#switchport access vlan 7
+S2(config-if-range)#shutdown 
+S2(config-if-range)#exit
+```
+
+### Настройка VLAN на интерфейсах
+```
+
+```
