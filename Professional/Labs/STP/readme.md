@@ -1,6 +1,6 @@
 # Лабораторная работа. Развертывание коммутируемой сети с резервными каналами
 ## Топология
-![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/e1087a19b35e65d7d60702d9a9711ab30e438e6e/Labs/Lab07/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/fa01f8bb93d583550992abb911951c91fd361894/Professional/Labs/STP/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
 
 ## Таблица адресации
 | Устройство |  Интерфейс  |   IP-адрес  | Маска подсети |
