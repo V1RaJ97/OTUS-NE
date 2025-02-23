@@ -197,3 +197,5 @@
 | R26          | e0/1            | 40.40.29.1     | 255.255.255.252 |            |
 | R26          | e0/2            | 40.40.26.2     | 255.255.255.252 |            |
 | R26          | e0/3            | 40.40.19.1     | 255.255.255.252 |            |
+
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/dca7985e62aeb74268ab32f91cb2bea73ac269ba/Professional/Labs/Network%20design/Configs).
