@@ -14,7 +14,7 @@
 Настроите сети офисов так, чтобы не возникало broadcast штормов, а использование линков было максимально оптимизировано
 Используете IPv4. IPv6 по желанию
 ## Схема сети
-![](https://github.com/V1RaJ97/OTUS-NE/blob/e06854d6adff8c14270d0a932cb8537dfedbe992/Professional/Labs/Network%20design/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
+![](https://github.com/V1RaJ97/OTUS-NE/blob/e4cf5152c54c3621016eb94239b72c802de4709b/Professional/Labs/Network%20design/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0.png)
 ## Филиалы
 ### Москва (AS1001)
 ```
