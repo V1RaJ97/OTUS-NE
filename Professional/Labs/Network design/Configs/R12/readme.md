@@ -67,7 +67,6 @@ interface Loopback1
 !
 interface Ethernet0/0
  no ip address
- shutdown
 !
 interface Ethernet0/0.30
  encapsulation dot1Q 30
