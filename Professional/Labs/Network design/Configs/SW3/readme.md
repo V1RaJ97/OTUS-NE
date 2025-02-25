@@ -81,7 +81,6 @@ interface Ethernet1/3
 !
 interface Vlan30
  ip address 10.10.30.13 255.255.255.0
- shutdown
 !
 ip default-gateway 10.10.30.1
 ip forward-protocol nd
