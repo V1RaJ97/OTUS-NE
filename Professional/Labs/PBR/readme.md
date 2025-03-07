@@ -1,6 +1,6 @@
 # Лабораторная работа - Маршрутизация на основе политик (PBR) 
 ## Cхема сети
-![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/b8e876b8227129f38d1e4bd51fe22bc380d0ac2b/Professional/Labs/PBR/Wireshark.png)
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/8f5f9e81ff030f5e81c5c911b7569e6a927bddeb/Professional/Labs/PBR/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
 ## Цели
 ```
 1. Настроить политику маршрутизации в офисе Чокурдах
