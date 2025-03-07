@@ -73,5 +73,5 @@ R28(config-ip-sla)#icmp-echo 40.40.28.1 source-ip 40.40.28.2
 R28(config-ip-sla-echo)#frequency 5
 R28(config-ip-sla-echo)#exit
 R28(config)#ip sla schedule 2 life forever start-time now
-
 ```
+Проверка:
