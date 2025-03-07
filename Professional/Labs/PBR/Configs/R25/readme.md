@@ -1,3 +1,4 @@
+```
 Building configuration...
 
 Current configuration : 1389 bytes
@@ -126,4 +127,4 @@ line vty 0 4
 !
 !
 end
-
+```
