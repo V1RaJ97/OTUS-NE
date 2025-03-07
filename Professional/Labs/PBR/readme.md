@@ -75,3 +75,4 @@ R28(config-ip-sla-echo)#exit
 R28(config)#ip sla schedule 2 life forever start-time now
 ```
 Проверка:
+![https://github.com/V1RaJ97/OTUS-NE/blob/b8e876b8227129f38d1e4bd51fe22bc380d0ac2b/Professional/Labs/PBR/Wireshark.png]
