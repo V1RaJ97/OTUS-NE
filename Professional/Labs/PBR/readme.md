@@ -120,3 +120,17 @@ Track Type        Instance                   Parameter        State Last Change
 1     ip sla      1                          reachability     Up    00:01:36
 2     ip sla      2                          reachability     Up    00:01:29
 ```
+### Настройка статических маршрутов на маршрутизаторах R25, R26 и R27 для проверки.
+```
+R28(config)#ip route 10.21.0.27 255.255.255.255 40.40.28.1 name v_labintagi
+R28(config)#ip route 10.21.0.27 255.255.255.255 40.40.29.1 name v_labintagi
+```
+```
+R25(config)#ip route 10.22.0.0 255.255.0.0 40.40.28.2 name track_test
+R25(config)#ip route 10.22.0.0 255.255.0.0 40.40.26.2 150 name v_r26
+R25(config)#ip route 10.21.0.27 255.255.255.255 40.40.27.2 name v_labintagi
+```
+```
+R26(config)#ip route 10.22.0.0 255.255.0.0 40.40.29.2 name v_chokh
+ip route 10.21.0.27 255.255.255.255 40.40.26.1 name v_labintagi
+```
