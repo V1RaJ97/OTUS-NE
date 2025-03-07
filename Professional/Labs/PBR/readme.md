@@ -97,3 +97,21 @@ Number of successes: 215
 Number of failures: 1
 Operation time to live: Forever
 ```
+### Настройка автоподключения и проверки доступности провайдеров
+```
+R28(config)#route-map TRIADA1 permit 10
+R28(config-route-map)#match ip address ACL-VPC30
+R28(config-route-map)#set ip next-hop verify-availability 40.40.29.1 10 track 1
+R28(config-route-map)#set ip next-hop verify-availability 40.40.28.1 20 track 2
+R28(config-route-map)#set ip next-hop 40.40.29.1
+R28(config)#route-map TRIADA2 permit 20
+R28(config-route-map)#match ip address ACL-VPC31
+R28(config-route-map)#set ip nex-hop verify-availability 40.40.28.1 10 track 2
+R28(config-route-map)#set ip nex-hop verify-availability 40.40.29.1 20 track 1
+R28(config-route-map)#set ip next-hop 40.40.28.1
+R28(config-route-map)#exit
+
+R28(config)#track 1 ip sla 1 reachability
+R28(config)#track 2 ip sla 2 reachability
+
+```
