@@ -132,5 +132,5 @@ R25(config)#ip route 10.21.0.27 255.255.255.255 40.40.27.2 name v_labintagi
 ```
 ```
 R26(config)#ip route 10.22.0.0 255.255.0.0 40.40.29.2 name v_chokh
-ip route 10.21.0.27 255.255.255.255 40.40.26.1 name v_labintagi
+R26(config)#ip route 10.21.0.27 255.255.255.255 40.40.26.1 name v_labintagi
 ```
