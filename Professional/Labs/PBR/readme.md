@@ -76,3 +76,23 @@ R28(config)#ip sla schedule 2 life forever start-time now
 ```
 Проверка:
 ![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/b8e876b8227129f38d1e4bd51fe22bc380d0ac2b/Professional/Labs/PBR/Wireshark.png)
+
+```
+Статистика: R28#sh ip sla statistics
+IPSLAs Latest Operation Statistics
+IPSLA operation id: 1
+        Latest RTT: 1 milliseconds
+Latest operation start time: 16:05:51 UTC Fri Mar 7 2025
+Latest operation return code: OK
+Number of successes: 239
+Number of failures: 0
+Operation time to live: Forever
+!
+IPSLA operation id: 2
+        Latest RTT: 1 milliseconds
+Latest operation start time: 16:05:52 UTC Fri Mar 7 2025
+Latest operation return code: OK
+Number of successes: 215
+Number of failures: 1
+Operation time to live: Forever
+```
