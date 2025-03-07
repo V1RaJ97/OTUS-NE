@@ -12,3 +12,19 @@
 Настройте для офиса Лабытнанги маршрут по-умолчанию.
 План работы и изменения зафиксированы в документации .
 ```
+### Выполнение
+```
+Прописываем маршрут по умолчанию на R27:
+R27(config)#ip route 0.0.0.0 0.0.0.0 40.40.27.1
+```
+```
+R27#sh ip route
+Gateway of last resort is 40.40.27.1 to network 0.0.0.0
+
+S*    0.0.0.0/0 [1/0] via 40.40.27.1
+      10.0.0.0/32 is subnetted, 1 subnets
+C        10.21.0.27 is directly connected, Loopback1
+      40.0.0.0/8 is variably subnetted, 2 subnets, 2 masks
+C        40.40.27.0/30 is directly connected, Ethernet0/0
+L        40.40.27.2/32 is directly connected, Ethernet0/0
+```
