@@ -113,5 +113,10 @@ R28(config-route-map)#exit
 
 R28(config)#track 1 ip sla 1 reachability
 R28(config)#track 2 ip sla 2 reachability
-
+```
+```
+R28#sh track brief
+Track Type        Instance                   Parameter        State Last Change
+1     ip sla      1                          reachability     Up    00:01:36
+2     ip sla      2                          reachability     Up    00:01:29
 ```
