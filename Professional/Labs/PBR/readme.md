@@ -136,3 +136,4 @@ R25(config)#ip route 10.21.0.27 255.255.255.255 40.40.27.2 name v_labintagi
 R26(config)#ip route 10.22.0.0 255.255.0.0 40.40.29.2 name v_chokh
 R26(config)#ip route 10.21.0.27 255.255.255.255 40.40.26.1 name v_labintagi
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/5358d36ae42e859c7cd9508c964bad8b83574244/Professional/Labs/PBR/Configs).
