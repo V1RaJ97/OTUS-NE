@@ -1,5 +1,6 @@
 # Лабораторная работа - OSPF. Фильтрация 
 ## Схема сети
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/289831888c5e33cce59ba2d5b43150b675e54dd7/Professional/Labs/OSPF/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
 ## Цель
 1. Настроить OSPF офисе Москва
 2. Разделить сеть на зоны
