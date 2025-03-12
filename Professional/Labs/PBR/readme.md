@@ -151,4 +151,38 @@ R25(config)#ip route 10.21.0.27 255.255.255.255 40.40.27.2 name v_labintagi
 R26(config)#ip route 10.22.0.0 255.255.0.0 40.40.29.2 name v_chokh
 R26(config)#ip route 10.21.0.27 255.255.255.255 40.40.26.1 name v_labintagi
 ```
+### Проверка
+```
+Все линки доступны:
+VPC30> trace 10.21.0.27
+trace to 10.21.0.27, 8 hops max, press Ctrl+C to stop
+ 1   10.22.131.1   0.877 ms  0.349 ms  0.104 ms
+ 2   40.40.29.1   0.375 ms  0.278 ms  0.211 ms
+ 3   40.40.26.1   0.388 ms  0.409 ms  0.325 ms
+ 4   *40.40.27.2   0.662 ms (ICMP type:3, code:3, Destination port unreachable)
+
+VPC31> trace 10.21.0.27
+trace to 10.21.0.27, 8 hops max, press Ctrl+C to stop
+ 1   10.22.132.1   0.420 ms  0.218 ms  0.221 ms
+ 2   40.40.28.1   0.637 ms  0.323 ms  0.436 ms
+ 3   *40.40.27.2   1.199 ms (ICMP type:3, code:3, Destination port unreachable)
+```
+
+```
+Гасим e0/3 на R25:
+VPC30> trace 10.21.0.27
+trace to 10.21.0.27, 8 hops max, press Ctrl+C to stop
+ 1   10.22.131.1   1.187 ms  0.644 ms  0.856 ms
+ 2   40.40.29.1   1.056 ms  0.535 ms  0.935 ms
+ 3   40.40.26.1   2.058 ms  0.977 ms  0.914 ms
+ 4   *40.40.27.2   1.274 ms (ICMP type:3, code:3, Destination port unreachable)
+
+VPC30> trace 10.21.0.27
+trace to 10.21.0.27, 8 hops max, press Ctrl+C to stop
+ 1   10.22.132.1   0.411 ms  0.249 ms  0.331 ms
+ 2   40.40.29.1   0.417 ms  0.371 ms  0.357 ms
+ 3   40.40.26.1   0.539 ms  0.459 ms  0.477 ms
+ 4   *40.40.27.2   0.752 ms (ICMP type:3, code:3, Destination port unreachable)
+
+```
 ### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/5358d36ae42e859c7cd9508c964bad8b83574244/Professional/Labs/PBR/Configs).
