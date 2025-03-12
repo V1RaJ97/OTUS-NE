@@ -185,4 +185,4 @@ trace to 10.21.0.27, 8 hops max, press Ctrl+C to stop
  4   *40.40.27.2   0.752 ms (ICMP type:3, code:3, Destination port unreachable)
 
 ```
-### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/5358d36ae42e859c7cd9508c964bad8b83574244/Professional/Labs/PBR/Configs).
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/c93fb10ae6171735b805c7a9bd2f91629675df36/Professional/Labs/PBR/Configs).
