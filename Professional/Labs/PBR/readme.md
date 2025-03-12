@@ -63,6 +63,19 @@ route-map TRIADA1, permit, sequence 10
     ip next-hop 40.40.29.1
   Policy routing matches: 0 packets, 0 bytes
 ```
+
+```
+Прописываем route-map На саб-интерфейсы:
+interface Ethernet0/2.131
+ encapsulation dot1Q 131
+ ip address 10.22.131.1 255.255.255.0
+ ip policy route-map TRIADA1
+!
+interface Ethernet0/2.132
+ encapsulation dot1Q 132
+ ip address 10.22.132.1 255.255.255.0
+ ip policy route-map TRIADA2
+```
 ### Настройка IP SLA
 ```
 R28(config)#ip sla 1
@@ -122,6 +135,8 @@ Track Type        Instance                   Parameter        State Last Change
 1     ip sla      1                          reachability     Up    00:01:36
 2     ip sla      2                          reachability     Up    00:01:29
 ```
+
+
 ### Настройка статических маршрутов на маршрутизаторах R25, R26 и R27 для проверки.
 ```
 R28(config)#ip route 10.21.0.27 255.255.255.255 40.40.28.1 name v_labintagi
