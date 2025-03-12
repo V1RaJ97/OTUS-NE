@@ -65,7 +65,7 @@ route-map TRIADA1, permit, sequence 10
 ```
 
 ```
-Прописываем route-map На саб-интерфейсы:
+Прописываем route-map на саб-интерфейсы:
 interface Ethernet0/2.131
  encapsulation dot1Q 131
  ip address 10.22.131.1 255.255.255.0
