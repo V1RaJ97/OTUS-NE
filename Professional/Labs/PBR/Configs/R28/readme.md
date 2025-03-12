@@ -1,9 +1,9 @@
 ```
 Building configuration...
 
-Current configuration : 2389 bytes
+Current configuration : 2448 bytes
 !
-! Last configuration change at 16:39:46 UTC Fri Mar 7 2025
+! Last configuration change at 14:03:34 UTC Wed Mar 12 2025
 !
 version 15.4
 service timestamps debug datetime msec
@@ -89,10 +89,12 @@ interface Ethernet0/2.30
 interface Ethernet0/2.131
  encapsulation dot1Q 131
  ip address 10.22.131.1 255.255.255.0
+ ip policy route-map TRIADA1
 !
 interface Ethernet0/2.132
  encapsulation dot1Q 132
  ip address 10.22.132.1 255.255.255.0
+ ip policy route-map TRIADA2
 !
 interface Ethernet0/3
  no ip address
