@@ -110,3 +110,27 @@ R13(config)#int loopback1
 R13(config-if)#ip ospf 1 area 10
 R13(config-if)#end
 ```
+#### Проверка
+```
+R14#sh ip route 10.10.111.4
+Routing entry for 10.10.111.0/24
+  Known via "ospf 1", distance 110, metric 20, type inter area
+  Last update from 10.10.14.2 on Ethernet0/1, 00:17:07 ago
+  Routing Descriptor Blocks:
+    10.10.14.2, from 10.10.15.13, 00:17:07 ago, via Ethernet0/1
+      Route metric is 20, traffic share count is 1
+  * 10.10.12.2, from 10.10.15.12, 00:20:35 ago, via Ethernet0/0
+      Route metric is 20, traffic share count is 1
+```
+```
+R15#sh ip route 10.10.112.4
+Routing entry for 10.10.112.0/24
+  Known via "ospf 1", distance 110, metric 20, type inter area
+  Last update from 10.10.13.2 on Ethernet0/0, 00:18:35 ago
+  Routing Descriptor Blocks:
+  * 10.10.27.2, from 10.10.15.12, 00:21:50 ago, via Ethernet0/1
+      Route metric is 20, traffic share count is 1
+    10.10.13.2, from 10.10.15.13, 00:18:35 ago, via Ethernet0/0
+      Route metric is 20, traffic share count is 1
+```
+### Настраиваем totally stub area 101
