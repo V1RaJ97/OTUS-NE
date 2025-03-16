@@ -52,5 +52,24 @@ R15(config-if-range)#ip ospf network point-to-point
 R15(config-if-range)#exit
 R15(config)#int loopback1
 R15(config-if)#ip ospf 1 area 0
-
+```
+```
+R12(config)#int range e0/2-3
+R12(config-if-range)#ip ospf 1 area 0
+R12(config-if-range)#ip ospf network point-to-point
+```
+```
+R13(config)#int range e0/2-3
+R13(config-if-range)#ip ospf 1 area 0
+R13(config-if-range)#ip ospf network point-to-point
+```
+```
+R19(config)#int e0/0
+R19(config-if)#ip ospf 1 area 0
+R19(config-if)#ip ospf network point-to-point
+```
+```
+R20(config)#int e0/0
+R20(config-if)#ip ospf 1 area 0
+R20(config-if)#ip ospf network point-to-point
 ```
