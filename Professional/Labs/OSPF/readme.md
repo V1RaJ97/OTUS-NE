@@ -30,3 +30,27 @@
 R14(config)#ip route 0.0.0.0 0.0.0.0 30.30.14.1
 R15(config)#ip route 0.0.0.0 0.0.0.0 20.20.15.1
 ```
+### Настраиваем backbone area
+```
+R14(config)#router ospf 1
+R14(config-router)#default-information originate
+R14(config-router)#exit
+R14(config)#int range e0/0,e0/1,e0/3
+R14(config-if-range)#ip ospf 1 area 0
+R14(config-if-range)#ip ospf network point-to-point
+R14(config-if-range)#exit
+R14(config)#int loopback1
+R14(config-if)#ip ospf 1 area 0
+```
+```
+R15(config)#router ospf 1
+R15(config-router)#default-information originate
+R15(config-router)#exit
+R15(config)#int range e0/0,e0/1,e0/3
+R15(config-if-range)#ip ospf 1 area 0
+R15(config-if-range)#ip ospf network point-to-point
+R15(config-if-range)#exit
+R15(config)#int loopback1
+R15(config-if)#ip ospf 1 area 0
+
+```
