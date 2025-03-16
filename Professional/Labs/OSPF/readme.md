@@ -73,3 +73,40 @@ R20(config)#int e0/0
 R20(config-if)#ip ospf 1 area 0
 R20(config-if)#ip ospf network point-to-point
 ```
+### Настраиваем standart area 10
+```
+R12(config)#int e0/0.30
+R12(config-subif)#ip ospf 1 area 10
+R12(config-subif)#int e0/0.111
+R12(config-subif)#ip ospf 1 area 10
+R12(config-subif)#int e0/0.112
+R12(config-subif)#ip ospf 1 area 10
+R12(config-subif)#exit
+R12(config)#router ospf 1
+R12(config-router)#passive
+R12(config-router)#passive-interface e0/0.30
+R12(config-router)#passive-interface e0/0.111
+R12(config-router)#passive-interface e0/0.112
+R12(config-router)#exit
+R12(config)#int loopback1
+R12(config-if)#ip ospf 1 area 10
+R12(config-if)#end
+```
+```
+R13(config)#int e0/0.30
+R13(config-subif)#ip ospf 1 area 10
+R13(config-subif)#int e0/0.111
+R13(config-subif)#ip ospf 1 area 10
+R13(config-subif)#int e0/0.112
+R13(config-subif)#ip ospf 1 area 10
+R13(config-subif)#exit
+R13(config)#router ospf 1
+R13(config-router)#pass
+R13(config-router)#passive-interface e0/0.30
+R13(config-router)#passive-interface e0/0.111
+R13(config-router)#passive-interface e0/0.112
+R13(config-router)#exit
+R13(config)#int loopback1
+R13(config-if)#ip ospf 1 area 10
+R13(config-if)#end
+```
