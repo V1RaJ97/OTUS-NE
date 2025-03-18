@@ -208,3 +208,4 @@ R13#sh ip route 10.10.19.1 | inc via
   Known via "ospf 1", distance 110, metric 20, type inter area
   * 10.10.14.1, from 10.10.15.14, 00:24:48 ago, via Ethernet0/3
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/d667ea010e611cf3cea10296088745fe64966f3f/Professional/Labs/OSPF/Configs).
