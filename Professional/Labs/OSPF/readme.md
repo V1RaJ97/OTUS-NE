@@ -168,3 +168,43 @@ Routing Protocol is "ospf 1"
     10.10.15.19          110      00:00:42
   Distance: (default is 110)
 ```
+```
+R19#sh ip route
+Gateway of last resort is 10.10.19.2 to network 0.0.0.0
+O*IA  0.0.0.0/0 [110/11] via 10.10.19.2, 00:04:51, Ethernet0/0
+      10.0.0.0/8 is variably subnetted, 3 subnets, 2 masks
+C        10.10.15.19/32 is directly connected, Loopback1
+C        10.10.19.0/30 is directly connected, Ethernet0/0
+L        10.10.19.1/32 is directly connected, Ethernet0/0
+
+```
+
+### Настраиваем standart area 102
+```
+R15(config)#int e0/3
+R15(config-if)#ip ospf 1 area 102
+```
+```
+R20(config)#int e0/0
+R20(config-if)#ip ospf 1 area 102
+```
+```
+R15(config)#ip prefix-list area-102 deny 10.10.19.0/30
+R15(config)#ip prefix-list area-102 deny 10.10.15.19/32
+R15(config)#P:Q
+R15(config)#router ospf 1
+R15(config-router)#area 102 filter-list prefix area-102 in
+R15(config-router)#exit
+```
+#### Проверка
+```
+R20#sh ip route 10.10.15.19
+% Subnet not in table
+R20#sh ip route 10.10.19.1
+% Subnet not in table
+```
+```
+R13#sh ip route 10.10.19.1 | inc via
+  Known via "ospf 1", distance 110, metric 20, type inter area
+  * 10.10.14.1, from 10.10.15.14, 00:24:48 ago, via Ethernet0/3
+```
