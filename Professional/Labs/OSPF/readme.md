@@ -63,16 +63,6 @@ R13(config)#int range e0/2-3
 R13(config-if-range)#ip ospf 1 area 0
 R13(config-if-range)#ip ospf network point-to-point
 ```
-```
-R19(config)#int e0/0
-R19(config-if)#ip ospf 1 area 0
-R19(config-if)#ip ospf network point-to-point
-```
-```
-R20(config)#int e0/0
-R20(config-if)#ip ospf 1 area 0
-R20(config-if)#ip ospf network point-to-point
-```
 ### Настраиваем standart area 10
 ```
 R12(config)#int e0/0.30
@@ -134,3 +124,47 @@ Routing entry for 10.10.112.0/24
       Route metric is 20, traffic share count is 1
 ```
 ### Настраиваем totally stub area 101
+```
+R19(config)#router ospf 1
+R19(config-router)#area 101 stub
+R19(config-router)#exit
+R19(config)#int loopback1
+R19(config-if)#ip ospf 1 area 101
+R19(config-if)#exit
+R19(config)#int e0/0
+R19(config-if)#ip ospf 1 area 101
+R19(config-if)#exit
+```
+```
+R14(config)#int e0/3
+R14(config-if)#ip ospf 1 area 101
+R14(config-if)#exit
+R14(config)#router ospf 1
+R14(config-router)#area 101 stub no-summary
+```
+#### Проверка
+```
+Результат show ip protocols на R14:
+Routing Protocol is "ospf 1"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Router ID 10.10.15.14
+  It is an area border and autonomous system boundary router
+ Redistributing External Routes from,
+  Number of areas in this router is 2. 1 normal 1 stub 0 nssa
+  Maximum path: 4
+  Routing for Networks:
+  Routing on Interfaces Configured Explicitly (Area 0):
+    Loopback1
+    Ethernet0/1
+    Ethernet0/0
+  Routing on Interfaces Configured Explicitly (Area 101):
+    Ethernet0/3
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+    10.10.15.15          110      00:00:42
+    10.10.15.13          110      00:00:52
+    10.10.15.12          110      00:00:52
+    10.10.15.19          110      00:00:42
+  Distance: (default is 110)
+```
