@@ -65,3 +65,18 @@ R25(config)#int range e0/0,e0/2,loopback1
 R25(config-if-range)#ip router isis
 R25(config-if-range)#end
 ```
+### Проверка
+```
+R25#sh ip route isis
+Gateway of last resort is not set
+      40.0.0.0/8 is variably subnetted, 11 subnets, 2 masks
+i L1     40.40.15.23/32 [115/20] via 40.40.25.1, 00:03:15, Ethernet0/0
+i L1     40.40.24.0/30 [115/20] via 40.40.25.1, 00:03:15, Ethernet0/0
+```
+```
+R23#sh ip route isis
+Gateway of last resort is not set
+      40.0.0.0/8 is variably subnetted, 9 subnets, 2 masks
+i L1     40.40.15.25/32 [115/20] via 40.40.25.2, 00:04:11, Ethernet0/1
+i L1     40.40.26.0/30 [115/20] via 40.40.25.2, 00:04:11, Ethernet0/1
+```
