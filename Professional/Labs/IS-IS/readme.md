@@ -114,3 +114,25 @@ i L2     40.40.15.26/32 [115/20] via 40.40.20.2, 00:02:05, Ethernet0/1
 i L2     40.40.25.0/30 [115/20] via 40.40.24.1, 00:13:14, Ethernet0/2
 i L2     40.40.26.0/30 [115/20] via 40.40.20.2, 00:02:05, Ethernet0/1
 ```
+## Проверка работы ISIS
+До разрыва линка между R24 и R26
+```
+R24#sh isis topology
+IS-IS TID 0 paths to level-2 routers
+System Id            Metric     Next-Hop             Interface   SNPA
+R23                  10         R23                  Et0/2       aabb.cc01.7020
+R24                  --
+R25                  20         R23                  Et0/2       aabb.cc01.7020
+                                R26                  Et0/1       aabb.cc01.a000
+R26                  10         R26                  Et0/1       aabb.cc01.a000
+```
+После разрыва линка между R24 и R26
+```
+R24#sh isis topology
+IS-IS TID 0 paths to level-2 routers
+System Id            Metric     Next-Hop             Interface   SNPA
+R23                  10         R23                  Et0/2       aabb.cc01.7020
+R24                  --
+R25                  20         R23                  Et0/2       aabb.cc01.7020
+R26                  30         R23                  Et0/2       aabb.cc01.7020
+```
