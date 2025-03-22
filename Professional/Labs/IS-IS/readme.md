@@ -168,3 +168,4 @@ i L2     40.40.15.25/32 [115/20] via 40.40.26.1, 00:14:42, Ethernet0/2
 i L2     40.40.24.0/30 [115/20] via 40.40.20.1, 00:04:47, Ethernet0/0
 i L2     40.40.25.0/30 [115/20] via 40.40.26.1, 00:14:42, Ethernet0/2
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/497b650e4dc843dfdf78b563b19ab8db2a604dd1/Professional/Labs/IS-IS/Configs).
