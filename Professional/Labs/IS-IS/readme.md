@@ -88,5 +88,10 @@ R24(config-if-range)#ip router isis
 R24(config-if-range)#end
 ```
 ```
-
+R26(config)#router isis
+R26(config-router)#net 49.26.0400.4001.5026.00
+R26(config-router)#exit
+R26(config)#int range e0/0,e0/2,loopback1
+R26(config-if-range)#ip router isis
+R26(config-if-range)#end
 ```
