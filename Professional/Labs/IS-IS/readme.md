@@ -10,4 +10,11 @@
 
 ## Топология
 ![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/00461f1e5707bca46131d3c5755e697065ff9b3d/Professional/Labs/IS-IS/triada.png)
+
+| Устройство | Интерфейс |    IP-адрес    |
+| :--------: | :-------: | :------------: |
+| R23        | Loopback0 | 40.40.15.23/32 |
+| R24        | Loopback0 | 40.40.15.24/32 |
+| R25        | Loopback0 | 40.40.15.25/32 |
+| R26        | Loopback0 | 40.40.15.26/32 |
 ## Выполнение
