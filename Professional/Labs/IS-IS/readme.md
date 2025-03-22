@@ -136,3 +136,35 @@ R24                  --
 R25                  20         R23                  Et0/2       aabb.cc01.7020
 R26                  30         R23                  Et0/2       aabb.cc01.7020
 ```
+После разрыва линка между R23 и R25
+```
+R23#sh isis nei
+
+System Id      Type Interface   IP Address      State Holdtime Circuit Id
+R24            L2   Et0/2       40.40.24.2      UP    8        R24.02  
+```
+```
+R25#sh isis nei
+
+System Id      Type Interface   IP Address      State Holdtime Circuit Id
+R26            L2   Et0/2       40.40.26.2      UP    9        R26.02
+```
+```
+R24#sh ip route isis
+Gateway of last resort is not set
+      40.0.0.0/8 is variably subnetted, 14 subnets, 2 masks
+i L2     40.40.15.23/32 [115/20] via 40.40.24.1, 00:24:47, Ethernet0/2
+i L2     40.40.15.25/32 [115/30] via 40.40.20.2, 00:00:49, Ethernet0/1
+i L2     40.40.15.26/32 [115/20] via 40.40.20.2, 00:03:44, Ethernet0/1
+i L2     40.40.25.0/30 [115/30] via 40.40.20.2, 00:00:49, Ethernet0/1
+i L2     40.40.26.0/30 [115/20] via 40.40.20.2, 00:03:44, Ethernet0/1
+```
+```
+R26#sh ip route isis
+      40.0.0.0/8 is variably subnetted, 14 subnets, 2 masks
+i L2     40.40.15.23/32 [115/30] via 40.40.20.1, 00:01:25, Ethernet0/0
+i L2     40.40.15.24/32 [115/20] via 40.40.20.1, 00:04:47, Ethernet0/0
+i L2     40.40.15.25/32 [115/20] via 40.40.26.1, 00:14:42, Ethernet0/2
+i L2     40.40.24.0/30 [115/20] via 40.40.20.1, 00:04:47, Ethernet0/0
+i L2     40.40.25.0/30 [115/20] via 40.40.26.1, 00:14:42, Ethernet0/2
+```
