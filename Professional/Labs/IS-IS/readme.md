@@ -46,4 +46,25 @@
 | R25        | L1L2 |
 | R26        | L2   |
 
-## Выполнение
+## Настройка R23 и R25
+``
+R23(config)#router isis
+R23(config-router)#net 49.2222.0400.4001.5023.00
+R23(config-router)#is-type level-1-2
+R23(config-router)#exit
+R23(config)#int range e0/1-2
+R23(config-if-range)#ip router isis
+R23(config-if-range)#exit
+R23(config)#int loopback1
+R23(config-if)#ip router isis
+R23(config-if)#end
+``
+``
+R25(config)#router isis
+R25(config-router)#net 49.2222.0400.4001.5025.00
+R25(config-router)#is-type level-1-2
+R25(config-router)#exit
+R25(config)#int range e0/0,e0/2,loopback1
+R25(config-if-range)#ip router isis
+R25(config-if-range)#end
+``
