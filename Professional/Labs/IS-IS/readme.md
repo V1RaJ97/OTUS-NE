@@ -95,3 +95,22 @@ R26(config)#int range e0/0,e0/2,loopback1
 R26(config-if-range)#ip router isis
 R26(config-if-range)#end
 ```
+### Проверка
+```
+R25#sh isi nei
+System Id      Type Interface   IP Address      State Holdtime Circuit Id
+R23            L1   Et0/0       40.40.25.1      UP    25       R25.01           
+R23            L2   Et0/0       40.40.25.1      UP    24       R25.01           
+R26            L2   Et0/2       40.40.26.2      UP    7        R26.02  
+```
+```
+R24#sh ip route isis
+Gateway of last resort is not set
+      40.0.0.0/8 is variably subnetted, 14 subnets, 2 masks
+i L2     40.40.15.23/32 [115/20] via 40.40.24.1, 00:13:14, Ethernet0/2
+i L2     40.40.15.25/32 [115/30] via 40.40.24.1, 00:02:05, Ethernet0/2
+                        [115/30] via 40.40.20.2, 00:02:05, Ethernet0/1
+i L2     40.40.15.26/32 [115/20] via 40.40.20.2, 00:02:05, Ethernet0/1
+i L2     40.40.25.0/30 [115/20] via 40.40.24.1, 00:13:14, Ethernet0/2
+i L2     40.40.26.0/30 [115/20] via 40.40.20.2, 00:02:05, Ethernet0/1
+```
