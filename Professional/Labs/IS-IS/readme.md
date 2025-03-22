@@ -49,12 +49,9 @@ R23(config)#router isis
 R23(config-router)#net 49.2222.0400.4001.5023.00
 R23(config-router)#is-type level-1-2
 R23(config-router)#exit
-R23(config)#int range e0/1-2
+R23(config)#int range e0/1-2,loopback1
 R23(config-if-range)#ip router isis
-R23(config-if-range)#exit
-R23(config)#int loopback1
-R23(config-if)#ip router isis
-R23(config-if)#end
+R23(config-if-range)#end
 ```
 ```
 R25(config)#router isis
@@ -79,4 +76,17 @@ Gateway of last resort is not set
       40.0.0.0/8 is variably subnetted, 9 subnets, 2 masks
 i L1     40.40.15.25/32 [115/20] via 40.40.25.2, 00:04:11, Ethernet0/1
 i L1     40.40.26.0/30 [115/20] via 40.40.25.2, 00:04:11, Ethernet0/1
+```
+## Настройка R24 и R26
+```
+R24(config)#router isis
+R24(config-router)#net 49.24.0400.4001.5024.00
+R24(config-router)#is-type level-2-only
+R24(config-router)#exit
+R24(config)#int range e0/1-2,loopback1
+R24(config-if-range)#ip router isis
+R24(config-if-range)#end
+```
+```
+
 ```
