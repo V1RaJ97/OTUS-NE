@@ -60,3 +60,40 @@ D        10.20.15.18/32 [90/1024640] via 10.20.17.1, 00:15:56, Ethernet0/1
 D        10.20.16.0/30 [90/1536000] via 10.20.17.1, 00:15:56, Ethernet0/1
 
 ```
+### Настройка R16
+```
+R16(config)#router eigrp SPB-EIGRP
+R16(config-router)#address-family ipv4 autonomous-system 2042
+R16(config-router-af)#network 10.20.0.0 0.0.255.255
+R16(config-router-af)#af-interface e0/0.30
+R16(config-router-af-interface)#passive-interface
+R16(config-router-af-interface)#af-interface e0/0.121
+R16(config-router-af-interface)#passive-interface
+R16(config-router-af-interface)#af-interface e0/0.122
+R16(config-router-af-interface)#passive-interface
+R16(config-router-af-interface)#af-interface e0/1
+R16(config-router-af-interface)#summary-address 10.20.0.0/16
+R16(config-router-af-interface)#exit
+R16(config-router-af)#eigrp stub summary
+R16(config-router-af)#af-interface e0/3
+R16(config-router-af-interface)#summary-address 0.0.0.0 0.0.0.0
+R16(config-router-af-interface)#end
+```
+#### Проверка
+```
+R18#ping 10.20.15.17
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.20.15.17, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R18#ping 10.20.15.16
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.20.15.16, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
+R18#sh ip route eigrp
+Gateway of last resort is 40.40.19.1 to network 0.0.0.0
+      10.0.0.0/8 is variably subnetted, 6 subnets, 3 masks
+D        10.20.0.0/16 [90/1024640] via 10.20.17.2, 00:03:38, Ethernet0/1
+                      [90/1024640] via 10.20.16.2, 00:03:38, Ethernet0/0
+```
