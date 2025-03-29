@@ -37,5 +37,8 @@ R17(config-router-af-interface)#af-interface e0/0.121
 R17(config-router-af-interface)#passive-interface
 R17(config-router-af-interface)#af-interface e0/0.122
 R17(config-router-af-interface)#passive-interface
+R17(config-router-af-interface)exit
+R17(config-router-af)#af-interface e0/1
+R17(config-router-af-interface)#summary-address 10.20.0.0/16
 R17(config-router-af-interface)#end
 ```
