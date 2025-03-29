@@ -97,3 +97,18 @@ Gateway of last resort is 40.40.19.1 to network 0.0.0.0
 D        10.20.0.0/16 [90/1024640] via 10.20.17.2, 00:03:38, Ethernet0/1
                       [90/1024640] via 10.20.16.2, 00:03:38, Ethernet0/0
 ```
+### Настройка R32
+```
+R32(config)#router eigrp SPB-EIGRP
+R32(config-router)#address-family ipv4 autonomous-system 2042
+R32(config-router-af)#network 10.20.0.0 0.0.255.255
+R32(config-router-af)#eigrp stub
+R32(config-router-af)#end
+```
+#### Проверка
+```
+R32#sh ip route eigrp
+Gateway of last resort is 10.20.32.1 to network 0.0.0.0
+D*    0.0.0.0/0 [90/1024640] via 10.20.32.1, 00:00:18, Ethernet0/0
+
+```
