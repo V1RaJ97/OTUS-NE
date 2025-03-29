@@ -97,6 +97,17 @@ Gateway of last resort is 40.40.19.1 to network 0.0.0.0
 D        10.20.0.0/16 [90/1024640] via 10.20.17.2, 00:03:38, Ethernet0/1
                       [90/1024640] via 10.20.16.2, 00:03:38, Ethernet0/0
 ```
+```
+R16#sh ip route eigrp
+Gateway of last resort is 0.0.0.0 to network 0.0.0.0
+D*    0.0.0.0/0 is a summary, 00:04:37, Null0
+      10.0.0.0/8 is variably subnetted, 15 subnets, 4 masks
+D        10.20.0.0/16 is a summary, 00:28:31, Null0
+D        10.20.15.18/32 [90/1024640] via 10.20.16.1, 00:04:37, Ethernet0/1
+D        10.20.15.32/32 [90/1024640] via 10.20.32.2, 00:04:36, Ethernet0/3
+D        10.20.17.0/30 [90/1536000] via 10.20.16.1, 00:04:37, Ethernet0/1
+
+```
 ### Настройка R32
 ```
 R32(config)#router eigrp SPB-EIGRP
