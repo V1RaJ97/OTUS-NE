@@ -42,3 +42,21 @@ R17(config-router-af)#af-interface e0/1
 R17(config-router-af-interface)#summary-address 10.20.0.0/16
 R17(config-router-af-interface)#end
 ```
+#### Проверка
+```
+R18#sh ip route eigrp
+Gateway of last resort is 40.40.19.1 to network 0.0.0.0
+      10.0.0.0/8 is variably subnetted, 6 subnets, 3 masks
+D        10.20.0.0/16 [90/1024640] via 10.20.17.2, 00:02:24, Ethernet0/1
+
+```
+```
+R17#sh ip route eigrp
+Gateway of last resort is 10.20.17.1 to network 0.0.0.0
+D*EX  0.0.0.0/0 [170/1536000] via 10.20.17.1, 00:15:56, Ethernet0/1
+      10.0.0.0/8 is variably subnetted, 12 subnets, 4 masks
+D        10.20.0.0/16 is a summary, 00:03:03, Null0
+D        10.20.15.18/32 [90/1024640] via 10.20.17.1, 00:15:56, Ethernet0/1
+D        10.20.16.0/30 [90/1536000] via 10.20.17.1, 00:15:56, Ethernet0/1
+
+```
