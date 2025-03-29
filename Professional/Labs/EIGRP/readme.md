@@ -148,3 +148,4 @@ D*    0.0.0.0/0 [90/1024640] via 10.20.32.1, 00:00:18, Ethernet0/0
 ```
 R32 получет только маршрут по умолчанию
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/db92d1bf2fbf123e3efef21a875ed4253dd3440e/Professional/Labs/EIGRP/Configs).
