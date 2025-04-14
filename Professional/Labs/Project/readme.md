@@ -1,4 +1,6 @@
 # Проектная работа. Создание сетевой инфраструктуры для крупной IT-компании
+## Схема сети
+![alt text](https://github.com/V1RaJ97/OTUS-NE/blob/2b9f1db39846713a930c9d45ff4086cc3f86f3e6/Professional/Labs/Project/%D0%A1%D1%85%D0%B5%D0%BC%D0%B0%20%D1%81%D0%B5%D1%82%D0%B8.png)
 ## Филиалы
 ### Москва
 ```
