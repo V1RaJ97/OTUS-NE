@@ -260,7 +260,7 @@
 | DC-SV-VTB    |    Eth0    | 10.50.100.113 | 255.255.255.0   | 10.50.100.1 |
 
 ## Настройка BGP
-### IBGP
+### iBGP
 ```
 GN-R1(config)#router bgp 401
 GN-R1(config-router)#bgp log-neighbor-changes
@@ -292,5 +292,49 @@ GN-R4(config-router)#neighbor 11.40.14.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.14.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.24.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.14.1 next-hop-self
+```
+### eBGP
 
+```
+GN-R1(config)#router bgp 401
+GN-R1(config-router)#neighbor 11.40.111.2 remote-as 301
+GN-R1(config-router)#neighbor 11.40.117.2 remote-as 5001
+```
+```
+GN-R2(config)#router bgp 401
+GN-R2(config-router)#neighbor 11.40.118.2 remote-as 5001
+GN-R2(config-router)#neighbor 11.40.112.2 remote-as 202
+```
+```
+GN-R3(config)#router bgp 401
+GN-R3(config-router)#neighbor 11.40.116.2 remote-as 302
+GN-R3(config-router)#neighbor 11.40.113.2 remote-as 101
+```
+```
+GN-R4(config)#router bgp 401
+GN-R4(config-router)#neighbor 11.40.114.2 remote-as 102
+GN-R4(config-router)#neighbor 11.40.115.2 remote-as 201
+```
+```
+OMSK-ISP1(config)#router bgp 301
+OMSK-ISP1(config-router)#neighbor 11.40.111.1 remote-as 401
+
+OMSK-ISP2(config)#router bgp 302
+OMSK-ISP2(config-router)#neighbor 11.40.116.1 remote-as 401
+
+MSK-ISP1(config)#router bgp 101
+MSK-ISP1(config-router)#neighbor 11.40.113.1 remote-as 401
+
+MSK-ISP2(config)#router bgp 102
+MSK-ISP2(config-router)#neighbor 11.40.114.1 remote-as 401
+
+SPB-ISP1(config)#router bgp 201
+SPB-ISP1(config-router)#neighbor 11.40.115.1 remote-as 401
+
+SPB-ISP2(config)#router bgp 202
+SPB-ISP2(config-router)#neighbor 11.40.112.1 remote-as 401
+
+DC-R1(config)#router bgp 5001
+DC-R1(config-router)#neighbor 11.40.117.1 remote-as 401
+DC-R1(config-router)#neighbor 11.40.118.1 remote-as 401
 ```
