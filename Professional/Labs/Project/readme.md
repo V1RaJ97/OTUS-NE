@@ -338,3 +338,24 @@ DC-R1(config)#router bgp 5001
 DC-R1(config-router)#neighbor 11.40.117.1 remote-as 401
 DC-R1(config-router)#neighbor 11.40.118.1 remote-as 401
 ```
+## NAT
+```
+MSK-CORE1(config)#ip access-list standard NAT-INSIDE
+MSK-CORE1(config-std-nacl)#permit 10.10.0.0 0.0.255.255
+MSK-CORE1(config)#int e0/1
+MSK-CORE1(config-if)#ip nat outside
+MSK-CORE1(config-if)#exit
+MSK-CORE1(config)#int range e0/0,e0/2
+MSK-CORE1(config-if-range)#ip nat inside
+MSK-CORE1(config)#ip nat inside source list NAT-INSIDE int e0/1 overload
+```
+```
+MSK-CORE2(config)#ip access-list standard NAT-INSIDE
+MSK-CORE2(config-std-nacl)#permit 10.10.0.0 0.0.255.255
+MSK-CORE2(config)#int e0/1
+MSK-CORE2(config-if)#ip nat outside
+MSK-CORE2(config-if)#exit
+MSK-CORE2(config)#int range e0/0,e0/2
+MSK-CORE2(config-if-range)#ip nat inside
+MSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/1 overload
+```
