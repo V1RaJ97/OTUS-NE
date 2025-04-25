@@ -420,3 +420,7 @@ OMSK-CORE2(config-if-range)#ip nat inside
 OMSK-CORE2(config-if-range)#exit
 OMSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
 ```
+## DMVPN OVER IPSEC
+```
+
+```
