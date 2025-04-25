@@ -359,3 +359,51 @@ MSK-CORE2(config)#int range e0/0,e0/2
 MSK-CORE2(config-if-range)#ip nat inside
 MSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/1 overload
 ```
+```
+SPB-CORE1(config)#ip access-list standard NAT-INSIDE
+SPB-CORE1(config-std-nacl)#permit 10.20.0.0 0.0.255.255
+SPB-CORE1(config-std-nacl)#exit
+SPB-CORE1(config)#int e0/0
+SPB-CORE1(config-if)#ip nat outside
+SPB-CORE1(config-if)#exit
+SPB-CORE1(config)#int range e0/1-2
+SPB-CORE1(config-if-range)#ip nat inside
+SPB-CORE1(config-if-range)#exit
+SPB-CORE1(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
+```
+```
+SPB-CORE2(config)#ip access-list standard NAT-INSIDE
+SPB-CORE2(config-std-nacl)#permit 10.20.0.0 0.0.255.255
+SPB-CORE2(config-std-nacl)#exit
+SPB-CORE2(config)#int e0/0
+SPB-CORE2(config-if)#ip nat outside
+SPB-CORE2(config-if)#exit
+SPB-CORE2(config)#int range e0/1-2
+SPB-CORE2(config-if-range)#ip nat inside
+SPB-CORE2(config-if-range)#exit
+SPB-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
+```
+```
+OMSK-CORE1(config)#ip access-list standard NAT-INSIDE
+OMSK-CORE1(config-std-nacl)#permit 10.30.0.0 0.0.255.255
+OMSK-CORE1(config-std-nacl)#exit
+OMSK-CORE1(config)#int e0/0
+OMSK-CORE1(config-if)#ip nat outside
+OMSK-CORE1(config-if)#exit
+OMSK-CORE1(config)#int range e0/1-2
+OMSK-CORE1(config-if-range)#ip nat inside
+OMSK-CORE1(config-if-range)#exit
+OMSK-CORE1(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
+```
+```
+OMSK-CORE2(config)#ip access-list standard NAT-INSIDE
+OMSK-CORE2(config-std-nacl)#permit 10.30.0.0 0.0.255.255
+OMSK-CORE2(config-std-nacl)#exit
+OMSK-CORE2(config)#int e0/0
+OMSK-CORE2(config-if)#ip nat outside
+OMSK-CORE2(config-if)#exit
+OMSK-CORE2(config)#int range e0/1-2
+OMSK-CORE2(config-if-range)#ip nat inside
+OMSK-CORE2(config-if-range)#exit
+OMSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
+```
