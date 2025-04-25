@@ -291,7 +291,20 @@ GN-R4(config-router)#bgp log-neighbor-changes
 GN-R4(config-router)#neighbor 11.40.14.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.14.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.24.1 remote-as 401
-GN-R4(config-router)#neighbor 11.40.14.1 next-hop-self
+GN-R4(config-router)#neighbor 11.40.24.1 next-hop-self
+```
+```
+GN-R1(config)#router bgp 401
+GN-R1(config-router)#neighbor 11.40.14.2 remote-as 401
+GN-R1(config-router)#neighbor 11.40.14.2 ebgp-multihop 2
+
+
+GN-R4(config)#router bgp 401
+GN-R4(config-router)#neighbor 11.40.12.1 remote-as 401
+GN-R4(config-router)#neighbor 11.40.12.1 ebgp-multihop 2
+
+
+
 ```
 ### eBGP
 
