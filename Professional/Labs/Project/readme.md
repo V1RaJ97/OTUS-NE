@@ -435,7 +435,7 @@ OMSK-CORE2(config-if-range)#ip nat inside
 OMSK-CORE2(config-if-range)#exit
 OMSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
 ```
-## DMVPN OVER IPSEC
+## DMVPN OVER IPSEC Phase 3
 ### MSK-CORE1/2 (Hubs)
 ```
 MSK-CORE1(config)#crypto isakmp policy 10
@@ -468,7 +468,7 @@ MSK-CORE2(config-isakmp)#hash sha256
 MSK-CORE2(config-isakmp)#authentication pre-share
 MSK-CORE2(config-isakmp)#group 14
 MSK-CORE2(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
-MSK-CORE2(config)#$c transform-set TS-SET esp-aes 256 esp-sha256-hmac
+MSK-CORE2(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
 MSK-CORE2(cfg-crypto-trans)#mode transport
 MSK-CORE2(cfg-crypto-trans)#exit
 MSK-CORE2(config)#crypto ipsec profile DMVPN-PROFILE
@@ -484,12 +484,126 @@ MSK-CORE2(config-if)#ip nhrp authentication dmvpn
 MSK-CORE2(config-if)#ip nhrp map multicast dynamic
 MSK-CORE2(config-if)#ip nhrp network-id 102
 MSK-CORE2(config-if)#ip nhrp redirect
+```
+### Spokes
+```
+SPB-CORE1(config)#crypto isakmp policy 10
+SPB-CORE1(config-isakmp)#encr aes 256
+SPB-CORE1(config-isakmp)#hash sha256
+SPB-CORE1(config-isakmp)#authentication pre-share
+SPB-CORE1(config-isakmp)#group 14
+SPB-CORE1(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+SPB-CORE1(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+SPB-CORE1(cfg-crypto-trans)#mode transport
+SPB-CORE1(cfg-crypto-trans)#exit
+SPB-CORE1(config)#crypto ipsec profile DMVPN-PROFILE
+SPB-CORE1(ipsec-profile)#set transform-set TS-SET
+SPB-CORE1(ipsec-profile)#exit
 
+SPB-CORE1(config)#interface Tunnel0
+SPB-CORE1(config-if)#ip address 10.1.1.21 255.255.255.0
+SPB-CORE1(config-if)#tunnel source e0/0
+SPB-CORE1(config-if)#tunnel mode gre multipoint
+SPB-CORE1(config-if)#tunnel key 201
+SPB-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+SPB-CORE1(config-if)#ip nhrp authentication dmvpn
+SPB-CORE1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+SPB-CORE1(config-if)#ip nhrp nhs 10.1.1.1
+SPB-CORE1(config-if)#ip nhrp network-id 201
+SPB-CORE1(config-if)#ip nhrp map multicast 11.11.10.2
+SPB-CORE1(config-if)#ip nhrp shortcut
+SPB-CORE1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+SPB-CORE1(config-if)#ip nhrp nhs 10.1.1.2
+SPB-CORE1(config-if)#ip nhrp map multicast 11.12.10.2
+```
+```
+SPB-CORE2(config)#crypto isakmp policy 10
+SPB-CORE2(config-isakmp)#encr aes 256
+SPB-CORE2(config-isakmp)#hash sha256
+SPB-CORE2(config-isakmp)#authentication pre-share
+SPB-CORE2(config-isakmp)#group 14
+SPB-CORE2(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+SPB-CORE2(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+SPB-CORE2(cfg-crypto-trans)#mode transport
+SPB-CORE2(cfg-crypto-trans)#exit
+SPB-CORE2(config)#crypto ipsec profile DMVPN-PROFILE
+SPB-CORE2(ipsec-profile)#set transform-set TS-SET
+SPB-CORE2(ipsec-profile)#exit
 
+SPB-CORE2(config)#interface Tunnel0
+SPB-CORE2(config-if)#ip address 10.1.1.22 255.255.255.0
+SPB-CORE2(config-if)#tunnel source e0/0
+SPB-CORE2(config-if)#tunnel mode gre multipoint
+SPB-CORE2(config-if)#tunnel key 202
+SPB-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+SPB-CORE2(config-if)#ip nhrp authentication dmvpn
+SPB-CORE2(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+SPB-CORE2(config-if)#ip nhrp nhs 10.1.1.1
+SPB-CORE2(config-if)#ip nhrp map multicast 11.11.10.2
+SPB-CORE2(config-if)#ip nhrp shortcut
+SPB-CORE2(config-if)#ip nhrp network-id 202
+SPB-CORE2(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+SPB-CORE2(config-if)#ip nhrp nhs 10.1.1.2
+SPB-CORE2(config-if)#ip nhrp map multicast 11.12.10.2
+```
+```
+OMSK-CORE1(config)#crypto isakmp policy 10
+OMSK-CORE1(config-isakmp)#encr aes 256
+OMSK-CORE1(config-isakmp)#hash sha256
+OMSK-CORE1(config-isakmp)#authentication pre-share
+OMSK-CORE1(config-isakmp)#group 14
+OMSK-CORE1(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+OMSK-CORE1(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+OMSK-CORE1(cfg-crypto-trans)#mode transport
+OMSK-CORE1(cfg-crypto-trans)#exit
+OMSK-CORE1(config)#crypto ipsec profile DMVPN-PROFILE
+OMSK-CORE1(ipsec-profile)#set transform-set TS-SET
+OMSK-CORE1(ipsec-profile)#exit
 
+OMSK-CORE1(config)#interface Tunnel0
+OMSK-CORE1(config-if)#ip address 10.1.1.31 255.255.255.0
+OMSK-CORE1(config-if)#tunnel source e0/0
+OMSK-CORE1(config-if)#tunnel mode gre multipoint
+OMSK-CORE1(config-if)#tunnel key 301
+OMSK-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+OMSK-CORE1(config-if)#ip nhrp authentication dmvpn
+OMSK-CORE1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+OMSK-CORE1(config-if)#ip nhrp nhs 10.1.1.1
+OMSK-CORE1(config-if)#ip nhrp map multicast 11.11.10.2
+OMSK-CORE1(config-if)#ip nhrp shortcut
+OMSK-CORE1(config-if)#ip nhrp network-id 301
+OMSK-CORE1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+OMSK-CORE1(config-if)#ip nhrp nhs 10.1.1.2
+OMSK-CORE1(config-if)#ip nhrp map multicast 11.12.10.2
+```
+```
+OMSK-CORE2(config)#crypto isakmp policy 10
+OMSK-CORE2(config-isakmp)#encr aes 256
+OMSK-CORE2(config-isakmp)#hash sha256
+OMSK-CORE2(config-isakmp)#authentication pre-share
+OMSK-CORE2(config-isakmp)#group 14
+OMSK-CORE2(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+OMSK-CORE2(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+OMSK-CORE2(cfg-crypto-trans)#mode transport
+OMSK-CORE2(cfg-crypto-trans)#exit
+OMSK-CORE2(config)#crypto ipsec profile DMVPN-PROFILE
+OMSK-CORE2(ipsec-profile)#set transform-set TS-SET
+OMSK-CORE2(ipsec-profile)#exit
 
-
-
-
+OMSK-CORE2(config)#interface Tunnel0
+OMSK-CORE2(config-if)#ip address 10.1.1.32 255.255.255.0
+OMSK-CORE2(config-if)#tunnel source e0/0
+OMSK-CORE2(config-if)#tunnel mode gre multipoint
+OMSK-CORE2(config-if)#tunnel key 302
+OMSK-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+OMSK-CORE2(config-if)#ip nhrp authentication dmvpn
+OMSK-CORE2(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+OMSK-CORE2(config-if)#ip nhrp nhs 10.1.1.1
+OMSK-CORE2(config-if)#ip nhrp map multicast 11.11.10.2
+OMSK-CORE2(config-if)#ip nhrp shortcut
+OMSK-CORE2(config-if)#ip nhrp network-id 302
+OMSK-CORE2(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+OMSK-CORE2(config-if)#ip nhrp nhs 10.1.1.2
+OMSK-CORE2(config-if)#ip nhrp map multicast 11.12.10.2
 
 ```
