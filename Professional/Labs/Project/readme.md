@@ -272,6 +272,8 @@ GN-R1(config-router)#neighbor 11.40.12.2 remote-as 401
 GN-R1(config-router)#neighbor 11.40.13.2 remote-as 401
 GN-R1(config-router)#neighbor 11.40.12.2 next-hop-self
 GN-R1(config-router)#neighbor 11.40.13.2 next-hop-self
+GN-R1(config-router)#neighbor 11.40.11.2 remote-as 401
+GN-R1(config-router)#neighbor 11.40.11.2 next-hop-self
 ```
 ```
 GN-R2(config)#router bgp 401
@@ -280,6 +282,9 @@ GN-R2(config-router)#neighbor 11.40.12.1 remote-as 401
 GN-R2(config-router)#neighbor 11.40.14.2 remote-as 401
 GN-R2(config-router)#neighbor 11.40.12.1 next-hop-self
 GN-R2(config-router)#neighbor 11.40.14.2 next-hop-self
+GN-R2(config-router)#neighbor 11.40.16.2 remote-as 401
+GN-R2(config-router)#neighbor 11.40.16.2 next-hop-self
+
 ```
 ```
 GN-R3(config)#router bgp 401
@@ -288,6 +293,9 @@ GN-R3(config-router)#neighbor 11.40.13.1 remote-as 401
 GN-R3(config-router)#neighbor 11.40.13.1 next-hop-self
 GN-R3(config-router)#neighbor 11.40.24.2 remote-as 401
 GN-R3(config-router)#neighbor 11.40.24.2 next-hop-self
+GN-R3(config-router)#neighbor 11.40.16.1 remote-as 401
+GN-R3(config-router)#neighbor 11.40.16.1 next-hop-self
+
 ```
 ```
 GN-R4(config)#router bgp 401
@@ -296,6 +304,9 @@ GN-R4(config-router)#neighbor 11.40.14.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.14.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.24.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.24.1 next-hop-self
+GN-R4(config-router)#neighbor 11.40.11.1 next-hop-se
+GN-R4(config-router)#neighbor 11.40.11.1 next-hop-self
+
 ```
 ```
 GN-R1(config)#router bgp 401
