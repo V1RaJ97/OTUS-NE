@@ -436,6 +436,60 @@ OMSK-CORE2(config-if-range)#exit
 OMSK-CORE2(config)#ip nat inside source list NAT-INSIDE int e0/0 overload
 ```
 ## DMVPN OVER IPSEC
+### MSK-CORE1/2 (Hubs)
 ```
+MSK-CORE1(config)#crypto isakmp policy 10
+MSK-CORE1(config-isakmp)#encr aes 256
+MSK-CORE1(config-isakmp)#hash sha256
+MSK-CORE1(config-isakmp)#authentication pre-share
+MSK-CORE1(config-isakmp)#group 14
+MSK-CORE1(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+MSK-CORE1(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+MSK-CORE1(cfg-crypto-trans)#mode transport
+MSK-CORE1(cfg-crypto-trans)#exit
+MSK-CORE1(config)#crypto ipsec profile DMVPN-PROFILE
+MSK-CORE1(ipsec-profile)#set transform-set TS-SET
+
+MSK-CORE1(config)#interface Tunnel0
+MSK-CORE1(config-if)#ip address 10.1.1.1 255.255.255.0
+MSK-CORE1(config-if)#tunnel source e0/1
+MSK-CORE1(config-if)#tunnel mode gre multipoint
+MSK-CORE1(config-if)#tunnel key 101
+MSK-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+MSK-CORE1(config-if)#ip nhrp authentication dmvpn
+MSK-CORE1(config-if)#ip nhrp map multicast dynamic
+MSK-CORE1(config-if)#ip nhrp network-id 101
+MSK-CORE1(config-if)#ip nhrp redirect
+```
+```
+MSK-CORE2(config)#crypto isakmp policy 10
+MSK-CORE2(config-isakmp)#encr aes 256
+MSK-CORE2(config-isakmp)#hash sha256
+MSK-CORE2(config-isakmp)#authentication pre-share
+MSK-CORE2(config-isakmp)#group 14
+MSK-CORE2(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+MSK-CORE2(config)#$c transform-set TS-SET esp-aes 256 esp-sha256-hmac
+MSK-CORE2(cfg-crypto-trans)#mode transport
+MSK-CORE2(cfg-crypto-trans)#exit
+MSK-CORE2(config)#crypto ipsec profile DMVPN-PROFILE
+MSK-CORE2(ipsec-profile)#set transform-set TS-SET
+
+MSK-CORE2(config)#interface Tunnel0
+MSK-CORE2(config-if)#ip address 10.1.1.2 255.255.255.0
+MSK-CORE2(config-if)#tunnel source e0/1
+MSK-CORE2(config-if)#tunnel mode gre multipoint
+MSK-CORE2(config-if)#tunnel key 102
+MSK-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+MSK-CORE2(config-if)#ip nhrp authentication dmvpn
+MSK-CORE2(config-if)#ip nhrp map multicast dynamic
+MSK-CORE2(config-if)#ip nhrp network-id 102
+MSK-CORE2(config-if)#ip nhrp redirect
+
+
+
+
+
+
+
 
 ```
