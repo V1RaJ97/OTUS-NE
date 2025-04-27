@@ -454,11 +454,11 @@ MSK-CORE1(config)#interface Tunnel0
 MSK-CORE1(config-if)#ip address 10.1.1.1 255.255.255.0
 MSK-CORE1(config-if)#tunnel source e0/1
 MSK-CORE1(config-if)#tunnel mode gre multipoint
-MSK-CORE1(config-if)#tunnel key 101
+MSK-CORE1(config-if)#tunnel key 100
 MSK-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 MSK-CORE1(config-if)#ip nhrp authentication dmvpn
 MSK-CORE1(config-if)#ip nhrp map multicast dynamic
-MSK-CORE1(config-if)#ip nhrp network-id 101
+MSK-CORE1(config-if)#ip nhrp network-id 100
 MSK-CORE1(config-if)#ip nhrp redirect
 ```
 ```
@@ -478,11 +478,11 @@ MSK-CORE2(config)#interface Tunnel0
 MSK-CORE2(config-if)#ip address 10.1.1.2 255.255.255.0
 MSK-CORE2(config-if)#tunnel source e0/1
 MSK-CORE2(config-if)#tunnel mode gre multipoint
-MSK-CORE2(config-if)#tunnel key 102
+MSK-CORE2(config-if)#tunnel key 100
 MSK-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 MSK-CORE2(config-if)#ip nhrp authentication dmvpn
 MSK-CORE2(config-if)#ip nhrp map multicast dynamic
-MSK-CORE2(config-if)#ip nhrp network-id 102
+MSK-CORE2(config-if)#ip nhrp network-id 100
 MSK-CORE2(config-if)#ip nhrp redirect
 ```
 ### Spokes
@@ -504,12 +504,12 @@ SPB-CORE1(config)#interface Tunnel0
 SPB-CORE1(config-if)#ip address 10.1.1.21 255.255.255.0
 SPB-CORE1(config-if)#tunnel source e0/0
 SPB-CORE1(config-if)#tunnel mode gre multipoint
-SPB-CORE1(config-if)#tunnel key 201
+SPB-CORE1(config-if)#tunnel key 100
 SPB-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 SPB-CORE1(config-if)#ip nhrp authentication dmvpn
 SPB-CORE1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
 SPB-CORE1(config-if)#ip nhrp nhs 10.1.1.1
-SPB-CORE1(config-if)#ip nhrp network-id 201
+SPB-CORE1(config-if)#ip nhrp network-id 100
 SPB-CORE1(config-if)#ip nhrp map multicast 11.11.10.2
 SPB-CORE1(config-if)#ip nhrp shortcut
 SPB-CORE1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
@@ -534,14 +534,14 @@ SPB-CORE2(config)#interface Tunnel0
 SPB-CORE2(config-if)#ip address 10.1.1.22 255.255.255.0
 SPB-CORE2(config-if)#tunnel source e0/0
 SPB-CORE2(config-if)#tunnel mode gre multipoint
-SPB-CORE2(config-if)#tunnel key 202
+SPB-CORE2(config-if)#tunnel key 100
 SPB-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 SPB-CORE2(config-if)#ip nhrp authentication dmvpn
 SPB-CORE2(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
 SPB-CORE2(config-if)#ip nhrp nhs 10.1.1.1
 SPB-CORE2(config-if)#ip nhrp map multicast 11.11.10.2
 SPB-CORE2(config-if)#ip nhrp shortcut
-SPB-CORE2(config-if)#ip nhrp network-id 202
+SPB-CORE2(config-if)#ip nhrp network-id 100
 SPB-CORE2(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
 SPB-CORE2(config-if)#ip nhrp nhs 10.1.1.2
 SPB-CORE2(config-if)#ip nhrp map multicast 11.12.10.2
@@ -564,14 +564,14 @@ OMSK-CORE1(config)#interface Tunnel0
 OMSK-CORE1(config-if)#ip address 10.1.1.31 255.255.255.0
 OMSK-CORE1(config-if)#tunnel source e0/0
 OMSK-CORE1(config-if)#tunnel mode gre multipoint
-OMSK-CORE1(config-if)#tunnel key 301
+OMSK-CORE1(config-if)#tunnel key 100
 OMSK-CORE1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 OMSK-CORE1(config-if)#ip nhrp authentication dmvpn
 OMSK-CORE1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
 OMSK-CORE1(config-if)#ip nhrp nhs 10.1.1.1
 OMSK-CORE1(config-if)#ip nhrp map multicast 11.11.10.2
 OMSK-CORE1(config-if)#ip nhrp shortcut
-OMSK-CORE1(config-if)#ip nhrp network-id 301
+OMSK-CORE1(config-if)#ip nhrp network-id 100
 OMSK-CORE1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
 OMSK-CORE1(config-if)#ip nhrp nhs 10.1.1.2
 OMSK-CORE1(config-if)#ip nhrp map multicast 11.12.10.2
@@ -594,16 +594,61 @@ OMSK-CORE2(config)#interface Tunnel0
 OMSK-CORE2(config-if)#ip address 10.1.1.32 255.255.255.0
 OMSK-CORE2(config-if)#tunnel source e0/0
 OMSK-CORE2(config-if)#tunnel mode gre multipoint
-OMSK-CORE2(config-if)#tunnel key 302
+OMSK-CORE2(config-if)#tunnel key 100
 OMSK-CORE2(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
 OMSK-CORE2(config-if)#ip nhrp authentication dmvpn
 OMSK-CORE2(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
 OMSK-CORE2(config-if)#ip nhrp nhs 10.1.1.1
 OMSK-CORE2(config-if)#ip nhrp map multicast 11.11.10.2
 OMSK-CORE2(config-if)#ip nhrp shortcut
-OMSK-CORE2(config-if)#ip nhrp network-id 302
+OMSK-CORE2(config-if)#ip nhrp network-id 100
 OMSK-CORE2(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
 OMSK-CORE2(config-if)#ip nhrp nhs 10.1.1.2
 OMSK-CORE2(config-if)#ip nhrp map multicast 11.12.10.2
+```
+```
+DC-R1(config)#crypto isakmp policy 10
+DC-R1(config-isakmp)#encr aes 256
+DC-R1(config-isakmp)#hash sha256
+DC-R1(config-isakmp)#authentication pre-share
+DC-R1(config-isakmp)#group 14
+DC-R1(config-isakmp)#crypto isakmp key 0 Cisco123 address 0.0.0.0 0.0.0.0
+DC-R1(config)#crypto ipsec transform-set TS-SET esp-aes 256 esp-sha256-hmac
+DC-R1(cfg-crypto-trans)#mode transport
+DC-R1(cfg-crypto-trans)#exit
+DC-R1(config)#crypto ipsec profile DMVPN-PROFILE
+DC-R1(ipsec-profile)#set transform-set TS-SET
+DC-R1(ipsec-profile)#exit
+DC-R1(config)#interface Tunnel0
+DC-R1(config-if)#ip address 10.1.1.51 255.255.255.0
+DC-R1(config-if)#tunnel source e0/1
+DC-R1(config-if)#tunnel mode gre multipoint
+DC-R1(config-if)#tunnel key 100
+DC-R1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+DC-R1(config-if)#ip nhrp authentication dmvpn
+DC-R1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+DC-R1(config-if)#ip nhrp nhs 10.1.1.1
+DC-R1(config-if)#ip nhrp map multicast 11.11.10.2
+DC-R1(config-if)#ip nhrp shortcut
+DC-R1(config-if)#ip nhrp network-id 100
+DC-R1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+DC-R1(config-if)#ip nhrp nhs 10.1.1.2
+DC-R1(config-if)#ip nhrp map multicast 11.12.10.2
+DC-R1(config-if)#exit
+DC-R1(config)#interface Tunnel1
+DC-R1(config-if)#ip address 10.1.2.51 255.255.255.0
+DC-R1(config-if)#tunnel source e0/2
+DC-R1(config-if)#tunnel mode gre multipoint
+DC-R1(config-if)#tunnel key 100
+DC-R1(config-if)#tunnel protection ipsec profile DMVPN-PROFILE
+DC-R1(config-if)#ip nhrp authentication dmvpn
+DC-R1(config-if)#ip nhrp map 10.1.1.1 11.11.10.2
+DC-R1(config-if)#ip nhrp nhs 10.1.1.1
+DC-R1(config-if)#ip nhrp map multicast 11.11.10.2
+DC-R1(config-if)#ip nhrp shortcut
+DC-R1(config-if)#ip nhrp network-id 100
+DC-R1(config-if)#ip nhrp map 10.1.1.2 11.12.10.2
+DC-R1(config-if)#ip nhrp nhs 10.1.1.2
+DC-R1(config-if)#ip nhrp map multicast 11.12.10.2
 
 ```
