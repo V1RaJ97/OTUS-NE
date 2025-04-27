@@ -322,7 +322,7 @@ GN-R4(config-router)#neighbor 11.40.12.1 ebgp-multihop 2
 
 ```
 ### eBGP
-
+#### Между GN и ISP
 ```
 GN-R1(config)#router bgp 401
 GN-R1(config-router)#neighbor 11.40.111.2 remote-as 301
@@ -366,7 +366,51 @@ DC-R1(config)#router bgp 5001
 DC-R1(config-router)#neighbor 11.40.117.1 remote-as 401
 DC-R1(config-router)#neighbor 11.40.118.1 remote-as 401
 ```
-## NAT
+#### Между ISP и Офисами
+```
+MSK-ISP1(config)#router bgp 101
+MSK-ISP1(config-router)#neighbor 11.11.10.2 remote-as 1001
+
+MSK-CORE1(config)#router bgp 1001
+MSK-CORE1(config-router)#neighbor 11.11.10.1 remote-as 101
+```
+```
+MSK-ISP2(config)#router bgp 102
+MSK-ISP2(config-router)#neighbor 11.12.10.2 remote-as 1001
+
+MSK-CORE2(config)#router bgp 1001
+MSK-CORE2(config-router)#neighbor 11.12.10.1 remote-as 102
+```
+```
+SPB-ISP1(config)#router bgp 201
+SPB-ISP1(config-router)#neighbor 11.21.10.2 remote-as 2002
+
+SPB-CORE1(config)#router bgp 2002
+SPB-CORE1(config-router)#neighbor 11.21.10.1 remote-as 201
+```
+```
+SPB-ISP2(config)#router bgp 202
+SPB-ISP2(config-router)#neighbor 11.22.10.2 remote-as 2002
+
+SPB-CORE2(config)#router bgp 2002
+SPB-CORE2(config-router)#neighbor 11.22.10.1 remote-as 202
+```
+```
+OMSK-ISP1(config)#router bgp 301
+OMSK-ISP1(config-router)#neighbor 11.31.10.2 remote-as 3003
+
+OMSK-CORE1(config)#router bgp 3003
+OMSK-CORE1(config-router)#neighbor 11.31.10.1 remote-as 301
+```
+```
+OMSK-ISP2(config)#router bgp 302
+OMSK-ISP2(config-router)#neighbor 11.32.10.2 remote-as 3003
+
+OMSK-CORE2(config)#router bgp 3003
+OMSK-CORE2(config-router)#neighbor 11.32.10.1 remote-as 302
+
+```
+## NAT(PAT)
 ```
 MSK-CORE1(config)#ip access-list standard NAT-INSIDE
 MSK-CORE1(config-std-nacl)#permit 10.10.0.0 0.0.255.255
