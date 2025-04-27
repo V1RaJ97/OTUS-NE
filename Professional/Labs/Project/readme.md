@@ -274,6 +274,8 @@ GN-R1(config-router)#neighbor 11.40.12.2 next-hop-self
 GN-R1(config-router)#neighbor 11.40.13.2 next-hop-self
 GN-R1(config-router)#neighbor 11.40.11.2 remote-as 401
 GN-R1(config-router)#neighbor 11.40.11.2 next-hop-self
+GN-R1(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 ```
 ```
 GN-R2(config)#router bgp 401
@@ -284,6 +286,8 @@ GN-R2(config-router)#neighbor 11.40.12.1 next-hop-self
 GN-R2(config-router)#neighbor 11.40.14.2 next-hop-self
 GN-R2(config-router)#neighbor 11.40.16.2 remote-as 401
 GN-R2(config-router)#neighbor 11.40.16.2 next-hop-self
+GN-R2(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 ```
 ```
@@ -295,6 +299,8 @@ GN-R3(config-router)#neighbor 11.40.24.2 remote-as 401
 GN-R3(config-router)#neighbor 11.40.24.2 next-hop-self
 GN-R3(config-router)#neighbor 11.40.16.1 remote-as 401
 GN-R3(config-router)#neighbor 11.40.16.1 next-hop-self
+GN-R3(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 ```
 ```
@@ -306,6 +312,8 @@ GN-R4(config-router)#neighbor 11.40.24.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.24.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-se
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-self
+GN-R4(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 ```
 ```
@@ -346,21 +354,32 @@ GN-R4(config-router)#neighbor 11.40.115.2 remote-as 201
 ```
 OMSK-ISP1(config)#router bgp 301
 OMSK-ISP1(config-router)#neighbor 11.40.111.1 remote-as 401
+OMSK-ISP1(config-router)#network 0.0.0.0 mask 0.0.0.0
 
 OMSK-ISP2(config)#router bgp 302
 OMSK-ISP2(config-router)#neighbor 11.40.116.1 remote-as 401
+OMSK-ISP2(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 MSK-ISP1(config)#router bgp 101
 MSK-ISP1(config-router)#neighbor 11.40.113.1 remote-as 401
+MSK-ISP1(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 MSK-ISP2(config)#router bgp 102
 MSK-ISP2(config-router)#neighbor 11.40.114.1 remote-as 401
+MSK-ISP2(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 SPB-ISP1(config)#router bgp 201
 SPB-ISP1(config-router)#neighbor 11.40.115.1 remote-as 401
+SPB-ISP1(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 SPB-ISP2(config)#router bgp 202
 SPB-ISP2(config-router)#neighbor 11.40.112.1 remote-as 401
+SPB-ISP2(config-router)#network 0.0.0.0 mask 0.0.0.0
+
 
 DC-R1(config)#router bgp 5001
 DC-R1(config-router)#neighbor 11.40.117.1 remote-as 401
