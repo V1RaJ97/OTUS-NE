@@ -273,8 +273,7 @@ GN-R1(config-router)#neighbor 11.40.12.2 next-hop-self
 GN-R1(config-router)#neighbor 11.40.13.2 next-hop-self
 GN-R1(config-router)#neighbor 11.40.11.2 remote-as 401
 GN-R1(config-router)#neighbor 11.40.11.2 next-hop-self
-GN-R1(config-router)#network 0.0.0.0 mask 0.0.0.0
-
+GN-R1(config-router)#redistribute connected
 ```
 ```
 GN-R2(config)#router bgp 401
@@ -285,9 +284,7 @@ GN-R2(config-router)#neighbor 11.40.12.1 next-hop-self
 GN-R2(config-router)#neighbor 11.40.14.2 next-hop-self
 GN-R2(config-router)#neighbor 11.40.16.2 remote-as 401
 GN-R2(config-router)#neighbor 11.40.16.2 next-hop-self
-GN-R2(config-router)#network 0.0.0.0 mask 0.0.0.0
-
-
+GN-R2(config-router)#redistribute connected
 ```
 ```
 GN-R3(config)#router bgp 401
@@ -298,9 +295,7 @@ GN-R3(config-router)#neighbor 11.40.24.2 remote-as 401
 GN-R3(config-router)#neighbor 11.40.24.2 next-hop-self
 GN-R3(config-router)#neighbor 11.40.16.1 remote-as 401
 GN-R3(config-router)#neighbor 11.40.16.1 next-hop-self
-GN-R3(config-router)#network 0.0.0.0 mask 0.0.0.0
-
-
+GN-R3(config-router)#redistribute connected
 ```
 ```
 GN-R4(config)#router bgp 401
@@ -311,7 +306,7 @@ GN-R4(config-router)#neighbor 11.40.24.1 remote-as 401
 GN-R4(config-router)#neighbor 11.40.24.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-se
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-self
-GN-R4(config-router)#network 0.0.0.0 mask 0.0.0.0
+GN-R4(config-router)#redistribute connected
 ```
 #### Между Core в общей AS
 ```
@@ -418,7 +413,6 @@ SPB-ISP1(config-router)#neighbor 11.21.10.2 default-originate
 SPB-ISP1(config-router)#neighbor 11.21.10.2 next-hop-self
 SPB-ISP1(config-router)#redistribute connected
 
-
 SPB-CORE1(config)#router bgp 2002
 SPB-CORE1(config-router)#neighbor 11.21.10.1 remote-as 201
 ```
@@ -428,7 +422,6 @@ SPB-ISP2(config-router)#neighbor 11.22.10.2 remote-as 2002
 SPB-ISP2(config-router)#neighbor 11.22.10.2 default-originate
 SPB-ISP2(config-router)#neighbor 11.22.10.2 next-hop-self
 SPB-ISP2(config-router)#redistribute connected
-
 
 SPB-CORE2(config)#router bgp 2002
 SPB-CORE2(config-router)#neighbor 11.22.10.1 remote-as 202
@@ -440,7 +433,6 @@ OMSK-ISP1(config-router)#neighbor 11.31.10.2 default-originate
 OMSK-ISP1(config-router)#neighbor 11.31.10.2 next-hop-self
 OMSK-ISP1(config-router)#redistribute connected
 
-
 OMSK-CORE1(config)#router bgp 3003
 OMSK-CORE1(config-router)#neighbor 11.31.10.1 remote-as 301
 ```
@@ -451,9 +443,16 @@ OMSK-ISP2(config-router)#neighbor 11.32.10.2 default-originate
 OMSK-ISP2(config-router)#neighbor 11.32.10.2 next-hop-self
 OMSK-ISP2(config-router)#redistribute connected
 
-
 OMSK-CORE2(config)#router bgp 3003
 OMSK-CORE2(config-router)#neighbor 11.32.10.1 remote-as 302
+```
+```
+GN-R1(config)#router bgp 401
+GN-R1(config-router)#neighbor 11.40.117.2 remote-as 5001
+GN-R1(config-router)#neighbor 11.40.117.2 default-originate
+GN-R1(config-router)#neighbor 11.40.117.2 next-hop-self
+GN-R1(config-router)#redistribute connected
+
 ```
 
 ## NAT(PAT)
