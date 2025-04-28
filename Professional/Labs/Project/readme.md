@@ -452,9 +452,57 @@ GN-R1(config-router)#neighbor 11.40.117.2 remote-as 5001
 GN-R1(config-router)#neighbor 11.40.117.2 default-originate
 GN-R1(config-router)#neighbor 11.40.117.2 next-hop-self
 GN-R1(config-router)#redistribute connected
-
 ```
-
+##### Фильтрация исходящих анонсов
+```
+MSK-CORE1(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+MSK-CORE1(config)#route-map BLOCK-OUT deny 10
+MSK-CORE1(config-route-map)#match ip address prefix-list BLOCK-ALL
+MSK-CORE1(config)#router bgp 1001
+MSK-CORE1(config-router)#neighbor 11.11.10.1 route-map BLOCK-OUT out
+```
+```
+MSK-CORE2(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+MSK-CORE2(config)#route-map BLOCK-OUT deny 10
+MSK-CORE2(config-route-map)#match ip address prefix-list BLOCK-ALL
+MSK-CORE2(config-route-map)#router bgp 1001
+MSK-CORE2(config-router)#neighbor 11.12.10.1 route-map BLOCK-OUT out
+```
+```
+OMSK-CORE1(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+OMSK-CORE1(config)#route-map BLOCK-OUT deny 10
+OMSK-CORE1(config-route-map)#match ip address prefix-list BLOCK-ALL
+OMSK-CORE1(config-route-map)#router bgp 3003
+OMSK-CORE1(config-router)#neighbor 11.31.10.1 route-map BLOCK-OUT out
+```
+```
+OMSK-CORE2(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+OMSK-CORE2(config)#route-map BLOCK-OUT deny 10
+OMSK-CORE2(config-route-map)#match ip address prefix-list BLOCK-ALL
+OMSK-CORE2(config-route-map)#router bgp 3003
+OMSK-CORE2(config-router)#neighbor 11.32.10.1 route-map BLOCK-OUT out
+```
+```
+SPB-CORE1(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+SPB-CORE1(config)#route-map BLOCK-OUT deny 10
+SPB-CORE1(config-route-map)#match ip address prefix-list BLOCK-ALL
+SPB-CORE1(config-route-map)#router bgp 2002
+SPB-CORE1(config-router)#neighbor 11.21.10.1 route-map BLOCK-OUT out
+```
+```
+SPB-CORE2(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+SPB-CORE2(config)#route-map BLOCK-OUT deny 10
+SPB-CORE2(config-route-map)#match ip address prefix-list BLOCK-ALL
+SPB-CORE2(config-route-map)#router bgp 2002
+SPB-CORE2(config-router)#neighbor 11.22.10.1 route-map BLOCK-OUT out
+```
+```
+DC-R1(config)#ip prefix-list BLOCK-ALL seq 5 deny 0.0.0.0/0 le 32
+DC-R1(config)#route-map BLOCK-OUT deny 10
+DC-R1(config-route-map)#match ip address prefix-list BLOCK-ALL
+DC-R1(config-route-map)#router bgp 5001
+DC-R1(config-router)#neighbor 11.40.117.1 route-map BLOCK-OUT out
+```
 ## NAT(PAT)
 ```
 MSK-CORE1(config)#ip access-list standard NAT-INSIDE
