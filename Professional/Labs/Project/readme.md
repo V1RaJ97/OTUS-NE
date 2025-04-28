@@ -263,6 +263,7 @@
 
 ## Настройка BGP
 ### iBGP
+#### Внутри Global Network
 ```
 GN-R1(config)#router bgp 401
 GN-R1(config-router)#bgp log-neighbor-changes
@@ -311,21 +312,34 @@ GN-R4(config-router)#neighbor 11.40.24.1 next-hop-self
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-se
 GN-R4(config-router)#neighbor 11.40.11.1 next-hop-self
 GN-R4(config-router)#network 0.0.0.0 mask 0.0.0.0
+```
+#### Между Core в общей AS
+```
+MSK-CORE1(config)#router bgp 1001
+MSK-CORE1(config-router)#neighbor 10.10.15.22 remote-as 1001
+MSK-CORE1(config-router)#neighbor 10.10.15.22 update-source Loopback1
 
-
+MSK-CORE2(config)#router bgp 1001
+MSK-CORE2(config-router)#neighbor 10.10.15.21 remote-as 1001
+MSK-CORE2(config-router)#neighbor 10.10.15.21 update-source Loopback1
 ```
 ```
-GN-R1(config)#router bgp 401
-GN-R1(config-router)#neighbor 11.40.14.2 remote-as 401
-GN-R1(config-router)#neighbor 11.40.14.2 ebgp-multihop 2
+OMSK-CORE1(config)#router bgp 3003
+OMSK-CORE1(config-router)#neighbor 10.30.15.22 remote-as 3003
+OMSK-CORE1(config-router)#neighbor 10.30.15.22 update-source Loopback1
 
+OMSK-CORE2(config)#router bgp 3003
+OMSK-CORE2(config-router)#neighbor 10.30.15.21 remote-as 3003
+OMSK-CORE2(config-router)#neighbor 10.30.15.21 update-source Loopback1
+```
+```
+SPB-CORE1(config)#router bgp 2002
+SPB-CORE1(config-router)#neighbor 10.20.15.22 remote-as 2002
+SPB-CORE1(config-router)#neighbor 10.20.15.22 update-source Loopback1
 
-GN-R4(config)#router bgp 401
-GN-R4(config-router)#neighbor 11.40.12.1 remote-as 401
-GN-R4(config-router)#neighbor 11.40.12.1 ebgp-multihop 2
-
-
-
+SPB-CORE2(config)#router bgp 2002
+SPB-CORE2(config-router)#neighbor 10.20.15.21 remote-as 2002
+SPB-CORE2(config-router)#neighbor 10.20.15.21 update-source Loopback1
 ```
 ### eBGP
 #### Между GN и ISP
@@ -425,8 +439,8 @@ OMSK-ISP2(config-router)#neighbor 11.32.10.2 remote-as 3003
 
 OMSK-CORE2(config)#router bgp 3003
 OMSK-CORE2(config-router)#neighbor 11.32.10.1 remote-as 302
-
 ```
+
 ## NAT(PAT)
 ```
 MSK-CORE1(config)#ip access-list standard NAT-INSIDE
