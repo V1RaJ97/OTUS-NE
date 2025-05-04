@@ -1,6 +1,6 @@
 # Лабораторная работа - BGP. Основы
 ## Схема сети
-![alt-text=(https://github.com/V1RaJ97/OTUS-NE/blob/3421c1e71c2ab5da5b0bca1391606b86f4bcdb38/Professional/Labs/BGP/bgp.png)
+![alt-text](https://github.com/V1RaJ97/OTUS-NE/blob/3421c1e71c2ab5da5b0bca1391606b86f4bcdb38/Professional/Labs/BGP/bgp.png)
 ## Цель
 Настроить BGP между автономными системами и организовать доступность между офисами Москва и С.-Петербург
 ## Описание
