@@ -11,3 +11,30 @@
 - Организовать IP доступность между пограничным роутерами офисами Москва и С.-Петербург.
 - План работы и изменения зафиксировать в документации.
 
+### Настройка eBGP между Московским офисом и провайдерами Киторн и Ламас
+```
+R14(config)#router bgp 1001
+R14(config-router)#neighbor 30.30.14.1 remote-as 101
+R14(config-router)#network 10.10.15.0 mask 255.255.255.0
+R14(config-router)#network 10.10.111.0 mask 255.255.255.0
+R14(config-router)#network 10.10.112.0 mask 255.255.255.0
+R14(config-router)#exit
+R14(config)#ip route 10.10.15.0 255.255.255.0 null 0
+
+R22(config)#router bgp 101
+R22(config-router)#neighbor 30.30.14.2 remote-as 1001
+
+```
+```
+R15(config)#router bgp 1001
+R15(config-router)#neighbor 20.20.15.1 remote-as 301
+R15(config-router)#network 10.10.15.0 mask 255.255.255.0
+R15(config-router)#network 10.10.111.0 mask 255.255.255.0
+R15(config-router)#network 10.10.112.0 mask 255.255.255.0
+R15(config-router)#exit
+R15(config)#ip route 10.10.15.0 255.255.255.0 null 0
+
+R21(config)#router bgp 301
+R21(config-router)#neighbor 20.20.15.2 remote-as 1001
+
+```
