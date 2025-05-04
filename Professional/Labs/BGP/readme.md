@@ -36,5 +36,32 @@ R15(config)#ip route 10.10.15.0 255.255.255.0 null 0
 
 R21(config)#router bgp 301
 R21(config-router)#neighbor 20.20.15.2 remote-as 1001
+```
+### Настройка eBGP между провайдерами Киторн и Ламас
+```
+R22(config)#router bgp 101
+R22(config-router)#neighbor 30.30.22.2 remote-as 301
+
+R21(config)#router bgp 301
+R21(config-router)#neighbor 30.30.22.1 remote-as 101
+```
+### Настроика eBGP между Ламас и Триада
+```
+R21(config)#router bgp 301
+R21(config-router)#neighbor 40.40.21.1 remote-as 520
+
+R24(config)#router bgp 520
+R24(config-router)#neighbor 40.40.21.2 remote-as 301
+```
+### Настройка eBGP между Триада С.-Петербург
+```
+R24(config)#router bgp 520
+R24(config-router)#neighbor 40.40.18.2 remote-as 2042
+
+R18(config)#router bgp 2042
+R18(config-router)#neighbor 40.40.18.1 remote-as 520
+R18(config-router)#network 10.20.15.0 mask 255.255.255.0
+
+
 
 ```
