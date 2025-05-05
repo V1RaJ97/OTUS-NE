@@ -119,5 +119,5 @@ Type escape sequence to abort.
 Sending 5, 100-byte ICMP Echos to 20.20.15.2, timeout is 2 seconds:
 !!!!!
 Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/1 ms
-
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/57ccf554ef7ef71638f5a13aecc118277f802e6c/Professional/Labs/BGP/Configs).
