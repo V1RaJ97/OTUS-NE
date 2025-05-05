@@ -1,9 +1,9 @@
 ```
 Building configuration...
 
-Current configuration : 1403 bytes
+Current configuration : 1401 bytes
 !
-! Last configuration change at 11:39:18 UTC Mon May 5 2025
+! Last configuration change at 12:14:06 UTC Mon May 5 2025
 !
 version 15.4
 service timestamps debug datetime msec
@@ -94,7 +94,7 @@ router eigrp SPB-EIGRP
 !
 router bgp 2042
  bgp log-neighbor-changes
- network 40.40.18.0 mask 255.255.255.252
+ network 10.20.15.0 mask 255.255.255.0
  neighbor 40.40.18.1 remote-as 520
 !
 ip forward-protocol nd
@@ -126,5 +126,4 @@ line vty 0 4
 !
 !
 end
-
 ```
