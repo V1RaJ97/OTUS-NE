@@ -70,13 +70,13 @@ R24(config)#ip route 40.40.0.0 255.255.0.0 Null0
 
 R18(config)#router bgp 2042
 R18(config-router)#neighbor 40.40.18.1 remote-as 520
-R18(config-router)#network 40.40.18.0 mask 255.255.255.252
+R18(config-router)#network 10.20.15.0 mask 255.255.255.0
 ```
 ### Проверка
 #### Маршруты на R24
 ```
 R24#sh ip bgp
-BGP table version is 10, local router ID is 40.40.15.24
+BGP table version is 11, local router ID is 40.40.15.24
 Status codes: s suppressed, d damped, h history, * valid, > best, i - internal,
               r RIB-failure, S Stale, m multipath, b backup-path, f RT-Filter,
               x best-external, a additional-path, c RIB-compressed,
@@ -90,7 +90,6 @@ RPKI validation codes: V valid, I invalid, N Not found
  *>  20.20.0.0/16     40.40.21.2               0             0 301 i
  *>  30.30.0.0/16     40.40.21.2                             0 301 101 i
  *>  40.40.0.0/16     0.0.0.0                  0         32768 i
- r>  40.40.18.0/30    40.40.18.2               0             0 2042 i
 ```
 #### Результаты ping с Московских роутеров до R18
 ```
