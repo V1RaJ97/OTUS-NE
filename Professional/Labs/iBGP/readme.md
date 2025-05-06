@@ -39,5 +39,53 @@ R24(config-router)#neighbor 40.40.15.26 route-reflector-cliente
 R24(config-router)#neighbor 40.40.15.26 update-source Loopback1
 ```
 ```
+R26(config)#router bgp 520
+R26(config-router)#neighbor 40.40.15.23 remote-as 520
+R26(config-router)#neighbor 40.40.15.23 route-reflector-client
+R26(config-router)#neighbor 40.40.15.23 update-source Loopback1
+R26(config-router)#neighbor 40.40.15.24 remote-as 520
+R26(config-router)#neighbor 40.40.15.24 route-reflector-client
+R26(config-router)#neighbor 40.40.15.24 update-source Loopback1
+R26(config-router)#neighbor 40.40.15.25 remote-as 520
+R26(config-router)#neighbor 40.40.15.25 route-reflector-client
+R26(config-router)#neighbor 40.40.15.25 update-source Loopback1
+R26(config-router)#network 40.40.29.0 mask 255.255.255.252
+```
+```
+R23(config)#router bgp 520
+R23(config-router)#neighbor 40.40.15.24 remote-as 520
+R23(config-router)#neighbor 40.40.15.24 route-reflector-client
+R23(config-router)#neighbor 40.40.15.24 update-source Loopback1
+R23(config-router)#neighbor 40.40.15.25 remote-as 520
+R23(config-router)#neighbor 40.40.15.25 route-reflector-client
+R23(config-router)#neighbor 40.40.15.25 update-source Loopback1
+R23(config-router)#neighbor 40.40.15.26 remote-as 520
+R23(config-router)#neighbor 40.40.15.26 route-reflector-client
+R23(config-router)#neighbor 40.40.15.26 update-source Loopback1
+```
+```
+R25(config)#router bgp 520
+R25(config-router)#neighbor 40.40.15.23 remote-as 520
+R25(config-router)#neighbor 40.40.15.23 route-reflector-client
+R25(config-router)#neighbor 40.40.15.23 update-source Loopback1
+R25(config-router)#neighbor 40.40.15.24 remote-as 520
+R25(config-router)#neighbor 40.40.15.24 route-reflector-client
+R25(config-router)#neighbor 40.40.15.24 update-source Loopback1
+R25(config-router)#neighbor 40.40.15.26 remote-as 520
+R25(config-router)#neighbor 40.40.15.26 route-reflector-client
+R25(config-router)#neighbor 40.40.15.26 route-reflector-client
+R25(config-router)#neighbor 40.40.15.26 update-source Loopback1
+R25(config-router)#network 40.40.27.0 mask 255.255.255.252
+R25(config-router)#network 40.40.28.0 mask 255.255.255.252
 
+```
+#### Настройка eBGP между R26 и R18
+```
+R26(config)#router bgp 520
+R26(config-router)#neighbor 40.40.19.2 remote-as 2042
+```
+```
+R18(config)#router bgp 2042
+R18(config-router)#neighbor 40.40.19.1 remote-as 520
+R18(config-router)#network 40.40.19.0 mask 255.255.255.252
 ```
