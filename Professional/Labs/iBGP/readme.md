@@ -231,3 +231,4 @@ VPC8> ping 40.40.27.2
 84 bytes from 40.40.27.2 icmp_seq=5 ttl=252 time=0.644 ms
 
 ```
+### Конфиги [тут](https://github.com/V1RaJ97/OTUS-NE/tree/fa55e4a6a5decc56e3a1bed0f5240117c9785b2d/Professional/Labs/iBGP/Configs).
