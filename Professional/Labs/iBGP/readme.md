@@ -1,4 +1,6 @@
 # Лабораторная работа - iBGP
+## Схема сети
+![alt-text](https://github.com/V1RaJ97/OTUS-NE/blob/7cb30c4bd6739b318e20dd84b65e308da00f04f9/Professional/Labs/iBGP/%D0%A2%D0%BE%D0%BF%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F.png)
 ## Цели:
 1. Настроить iBGP в офисе Москва
 2. Настроить iBGP в сети провайдера Триада
