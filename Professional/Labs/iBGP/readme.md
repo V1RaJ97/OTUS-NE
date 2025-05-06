@@ -13,3 +13,31 @@
 - Настройка офиса С.-Петербург так, чтобы трафик до любого офиса распределялся по двум линкам одновременно.
 - Все сети в лабораторной работе должны иметь IP связность.
 - План работы и изменения зафиксированы в документации.
+
+## Настройка
+### Настройка iBGP между R14 и R15
+```
+R14(config)#router bgp 1001
+R14(config-router)#neighbor 10.10.15.15 remote-as 1001
+R14(config-router)#neighbor 10.10.15.15 update-source Loopback1
+
+R15(config)#router bgp 1001
+R15(config-router)#neighbor 10.10.15.14 remote-as 1001
+R15(config-router)#neighbor 10.10.15.14 update-source Loopback1
+```
+### Настройка iBGP между маршрутизаторами Триада
+```
+R24(config)#router bgp 520
+R24(config-router)#neighbor 40.40.15.23 remote-as 520
+R24(config-router)#neighbor 40.40.15.23 route-reflector-client
+R24(config-router)#neighbor 40.40.15.23 update-source Loopback1
+R24(config-router)#neighbor 40.40.15.25 remote-as 520
+R24(config-router)#neighbor 40.40.15.25 route-reflector-client
+R24(config-router)#neighbor 40.40.15.25 update-source Loopback1
+R24(config-router)#neighbor 40.40.15.26 remote-as 520
+R24(config-router)#neighbor 40.40.15.26 route-reflector-cliente
+R24(config-router)#neighbor 40.40.15.26 update-source Loopback1
+```
+```
+
+```
