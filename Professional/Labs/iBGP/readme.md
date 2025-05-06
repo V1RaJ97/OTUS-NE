@@ -88,6 +88,11 @@ R26(config-router)#neighbor 40.40.19.2 remote-as 2042
 R18(config)#router bgp 2042
 R18(config-router)#neighbor 40.40.19.1 remote-as 520
 R18(config-router)#network 40.40.19.0 mask 255.255.255.252
+R18(config-router)#network 10.20.0.0 mask 255.255.0.0
+R18(config-router)#network 10.20.15.0 mask 255.255.255.0
+R18(config)#ip route 10.20.15.0 255.255.255.0 null 0
+
+
 ```
 #### Проверка маршрутов
 ```
@@ -148,5 +153,81 @@ Routing entry for 0.0.0.0/0, supernet
       Route metric is 0, traffic share count is 1
   * 40.40.18.1
       Route metric is 0, traffic share count is 1
+```
+##### Ping от R18 до R14
+```
+R18#ping 10.10.15.14
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 10.10.15.14, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 1/1/2 ms
+R18#sh ip route  10.10.15.14
+Routing entry for 10.10.15.0/24
+  Known via "bgp 2042", distance 20, metric 0
+  Tag 520, type external
+  Last update from 40.40.18.1 02:16:40 ago
+  Routing Descriptor Blocks:
+  * 40.40.18.1, from 40.40.18.1, 02:16:40 ago
+      Route metric is 0, traffic share count is 1
+      AS Hops 3
+      Route tag 520
+      MPLS label: none
+```
+### Проверка на IP связность
+#### Проверка между Москвой и Питером
+```
+VPC8> ping 10.10.112.4
+
+84 bytes from 10.10.112.4 icmp_seq=1 ttl=58 time=11.378 ms
+84 bytes from 10.10.112.4 icmp_seq=2 ttl=58 time=2.398 ms
+84 bytes from 10.10.112.4 icmp_seq=3 ttl=58 time=3.318 ms
+84 bytes from 10.10.112.4 icmp_seq=4 ttl=58 time=5.296 ms
+84 bytes from 10.10.112.4 icmp_seq=5 ttl=58 time=1.435 ms
+```
+```
+VPC1> ping 10.20.121.4
+
+84 bytes from 10.20.121.4 icmp_seq=1 ttl=58 time=3.413 ms
+84 bytes from 10.20.121.4 icmp_seq=2 ttl=58 time=6.590 ms
+84 bytes from 10.20.121.4 icmp_seq=3 ttl=58 time=5.303 ms
+84 bytes from 10.20.121.4 icmp_seq=4 ttl=58 time=6.423 ms
+84 bytes from 10.20.121.4 icmp_seq=5 ttl=58 time=6.038 ms
+
+```
+#### Ping из Москвыи Питерома до Чокурдах и Лабытнанги
+```
+VPC1> ping 40.40.27.2
+
+84 bytes from 40.40.27.2 icmp_seq=1 ttl=249 time=2.017 ms
+84 bytes from 40.40.27.2 icmp_seq=2 ttl=249 time=1.392 ms
+84 bytes from 40.40.27.2 icmp_seq=3 ttl=249 time=4.935 ms
+84 bytes from 40.40.27.2 icmp_seq=4 ttl=249 time=3.086 ms
+84 bytes from 40.40.27.2 icmp_seq=5 ttl=249 time=5.728 ms
+
+VPC1> ping 40.40.29.2
+
+84 bytes from 40.40.29.2 icmp_seq=1 ttl=249 time=4.352 ms
+84 bytes from 40.40.29.2 icmp_seq=2 ttl=249 time=4.651 ms
+84 bytes from 40.40.29.2 icmp_seq=3 ttl=249 time=5.662 ms
+84 bytes from 40.40.29.2 icmp_seq=4 ttl=249 time=5.104 ms
+84 bytes from 40.40.29.2 icmp_seq=5 ttl=249 time=3.877 ms
+
+```
+```
+VPC8> ping 40.40.29.2
+
+84 bytes from 40.40.29.2 icmp_seq=1 ttl=252 time=0.589 ms
+84 bytes from 40.40.29.2 icmp_seq=2 ttl=252 time=2.540 ms
+84 bytes from 40.40.29.2 icmp_seq=3 ttl=252 time=1.952 ms
+84 bytes from 40.40.29.2 icmp_seq=4 ttl=252 time=1.881 ms
+84 bytes from 40.40.29.2 icmp_seq=5 ttl=252 time=1.892 ms
+
+VPC8> ping 40.40.27.2
+
+84 bytes from 40.40.27.2 icmp_seq=1 ttl=249 time=2.845 ms
+84 bytes from 40.40.27.2 icmp_seq=2 ttl=249 time=4.046 ms
+84 bytes from 40.40.27.2 icmp_seq=3 ttl=249 time=4.351 ms
+84 bytes from 40.40.27.2 icmp_seq=4 ttl=249 time=4.625 ms
+84 bytes from 40.40.27.2 icmp_seq=5 ttl=249 time=4.644 ms
 
 ```
