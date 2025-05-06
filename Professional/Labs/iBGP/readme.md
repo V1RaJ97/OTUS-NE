@@ -224,10 +224,10 @@ VPC8> ping 40.40.29.2
 
 VPC8> ping 40.40.27.2
 
-84 bytes from 40.40.27.2 icmp_seq=1 ttl=249 time=2.845 ms
-84 bytes from 40.40.27.2 icmp_seq=2 ttl=249 time=4.046 ms
-84 bytes from 40.40.27.2 icmp_seq=3 ttl=249 time=4.351 ms
-84 bytes from 40.40.27.2 icmp_seq=4 ttl=249 time=4.625 ms
-84 bytes from 40.40.27.2 icmp_seq=5 ttl=249 time=4.644 ms
+84 bytes from 40.40.27.2 icmp_seq=1 ttl=252 time=1.845 ms
+84 bytes from 40.40.27.2 icmp_seq=2 ttl=252 time=2.046 ms
+84 bytes from 40.40.27.2 icmp_seq=3 ttl=252 time=2.351 ms
+84 bytes from 40.40.27.2 icmp_seq=4 ttl=252 time=1.625 ms
+84 bytes from 40.40.27.2 icmp_seq=5 ttl=252 time=0.644 ms
 
 ```
